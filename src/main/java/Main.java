@@ -5,6 +5,6 @@ public class Main {
 
         System.out.println("This is a test by Mikhail");
 
-        System.out.println("Test by Martin to check Jenkins Building");
+        System.out.println("Test2 by Martin to check Jenkins Building");
     }
 }
