@@ -11,11 +11,6 @@ public class CalculatorUnitTests {
         calculator = new Calculator();
     }
 
-    @After
-    public void teardown(){
-        calculator = null;
-    }
-
     // Addition Tests
     @Test
     public void TestAdd_testTwoPositiveNumbers_shouldBeAdding(){
