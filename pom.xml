@@ -8,6 +8,7 @@
     <groupId>groupId</groupId>
     <artifactId>CPS2002_MartinMikhail</artifactId>
     <version>1.0-SNAPSHOT</version>
+  
     <dependencies>
         <dependency>
             <groupId>junit</groupId>
