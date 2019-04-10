@@ -3,7 +3,7 @@ import org.junit.Test;
 import org.junit.After;
 import org.junit.Assert;
 
-public class CalculatorUnitTests {
+public class CalculatorTest {
     Calculator calculator;
 
     @Before
