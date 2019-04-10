@@ -8,15 +8,7 @@
     <groupId>groupId</groupId>
     <artifactId>CPS2002_MartinMikhail</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <reporting>
-      <plugins>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-surefire-report-plugin</artifactId>
-          <version>3.0.0-M3</version>
-         </plugin>
-       </plugins>
-     </reporting>
+  
     <dependencies>
         <dependency>
             <groupId>junit</groupId>
