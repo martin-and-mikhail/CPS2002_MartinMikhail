@@ -73,4 +73,31 @@ public class CalculatorUnitTests {
     public void TestSubtract_TwoZeros_shouldBeSubtracting(){
         Assert.assertEquals(0, calculator.subtract(0,0));
     }
+
+    @Test
+    public void TestMultiply_testTwoPositiveNumbers_shouldBeMultiplying(){
+        Assert.assertEquals(10, calculator.multiply(2,5));
+    }
+
+    @Test
+    public void TestMultiply_testTwoNegativeNumbers_shouldBeMultiplying(){
+        Assert.assertEquals(10, calculator.multiply(-2,-5));
+    }
+
+    @Test
+    public void TestMultiply_testNegativeAndPositiveNumber_shouldBeMultiplying(){
+        Assert.assertEquals(-10, calculator.multiply(-2,5));
+    }
+
+    @Test
+    public void TestMultiply_multiplyWithZero_shouldBeMultiplying(){
+        Assert.assertEquals(0, calculator.multiply(0,5));
+    }
+
+    @Test
+    public void TestMultiply_testTwoZeroValues_shouldBeMultiplying(){
+        Assert.assertEquals(0, calculator.multiply(0,0));
+    }
+
+    
 }
