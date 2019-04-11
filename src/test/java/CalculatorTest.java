@@ -4,7 +4,7 @@ import org.junit.After;
 import org.junit.Assert;
 
 public class CalculatorTest {
-    Calculator calculator;
+    private Calculator calculator;
 
     @Before
     public void setup(){
