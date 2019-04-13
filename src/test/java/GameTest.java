@@ -85,6 +85,138 @@ public class GameTest {
         Assert.assertEquals(20,game.validateMapSize(scanner));
     }
 
+    // testing checkOutOfBounds
 
+    @Test
+    public void TestDirectionBounds_testMovingUpOutOfBounds_shouldReturn0(){
+        game.playerNum = 2;
+        game.mapSize = 5;
+        Position position = new Position(4,0);
+        Player player = new Player(position);
+        Assert.assertEquals(0,game.checkOutOfBounds('u',player));
+    }
 
+    @Test
+    public void TestDirectionBounds_testMovingLeftOutOfBounds_shouldReturn0(){
+        game.mapSize = 5;
+        Position position = new Position(0,3);
+        Player player = new Player(position);
+        Assert.assertEquals(0,game.checkOutOfBounds('l',player));
+    }
+
+    @Test
+    public void TestDirectionBounds_testMovingRightOutOfBounds_shouldReturn0(){
+        game.mapSize = 5;
+        Position position = new Position(game.mapSize-1,2);
+        Player player = new Player(position);
+        Assert.assertEquals(0,game.checkOutOfBounds('r',player));
+    }
+
+    @Test
+    public void TestDirectionBounds_testMovingDownOutOfBounds_shouldReturn0(){
+        game.mapSize = 5;
+        Position position = new Position(2,game.mapSize-1);
+        Player player = new Player(position);
+        Assert.assertEquals(0,game.checkOutOfBounds('d',player));
+    }
+
+    @Test
+    public void TestDirectionBounds_testMovingUpCorrectly_shouldReturn1(){
+        game.mapSize = 5;
+        Position position = new Position(0,3);
+        Player player = new Player(position);
+        Assert.assertEquals(1,game.checkOutOfBounds('u',player));
+    }
+
+    @Test
+    public void TestDirectionBounds_testMovingLeftCorrectly_shouldReturn1(){
+        game.mapSize = 5;
+        Position position = new Position(2,3);
+        Player player = new Player(position);
+        Assert.assertEquals(1,game.checkOutOfBounds('l',player));
+    }
+
+    @Test
+    public void TestDirectionBounds_testMovingRightCorrectly_shouldReturn1(){
+        game.mapSize = 5;
+        Position position = new Position(1,3);
+        Player player = new Player(position);
+        Assert.assertEquals(1,game.checkOutOfBounds('r',player));
+    }
+
+    @Test
+    public void TestDirectionBounds_testMovingDownCorrectly_shouldReturn1(){
+        game.mapSize = 5;
+        Position position = new Position(4,3);
+        Player player = new Player(position);
+        Assert.assertEquals(1,game.checkOutOfBounds('d',player));
+    }
+
+    // testing validateDirectionInput
+
+    @Test
+    public void TestDirectionInput_testNonCharInput_shouldCatchRuntimeErrorAndReturny(){
+        Scanner scanner = new Scanner("3");
+        Assert.assertEquals('y',game.validateDirectionInput(scanner));
+    }
+
+    @Test
+    public void TestDirectionInput_testTooLongInput_shouldCatchRuntimeErrorAndReturny(){
+        Scanner scanner = new Scanner("66bg");
+        Assert.assertEquals('y',game.validateDirectionInput(scanner));
+    }
+
+    @Test
+    public void TestDirectionInput_testIncorrectChar_shouldReturnx(){
+        Scanner scanner = new Scanner("t");
+        Assert.assertEquals('x',game.validateDirectionInput(scanner));
+    }
+
+    @Test
+    public void TestDirectionInput_testu_shouldReturnu(){
+        Scanner scanner = new Scanner("u");
+        Assert.assertEquals('u',game.validateDirectionInput(scanner));
+    }
+
+    @Test
+    public void TestDirectionInput_testd_shouldReturnd(){
+        Scanner scanner = new Scanner("d");
+        Assert.assertEquals('d',game.validateDirectionInput(scanner));
+    }
+
+    @Test
+    public void TestDirectionInput_testl_shouldReturnl(){
+        Scanner scanner = new Scanner("l");
+        Assert.assertEquals('l',game.validateDirectionInput(scanner));
+    }
+
+    @Test
+    public void TestDirectionInput_testr_shouldReturnr(){
+        Scanner scanner = new Scanner("r");
+        Assert.assertEquals('r',game.validateDirectionInput(scanner));
+    }
+
+    @Test
+    public void TestDirectionInput_testU_shouldReturnu(){
+        Scanner scanner = new Scanner("U");
+        Assert.assertEquals('u',game.validateDirectionInput(scanner));
+    }
+
+    @Test
+    public void TestDirectionInput_testD_shouldReturnd(){
+        Scanner scanner = new Scanner("D");
+        Assert.assertEquals('d',game.validateDirectionInput(scanner));
+    }
+
+    @Test
+    public void TestDirectionInput_testL_shouldReturnl(){
+        Scanner scanner = new Scanner("L");
+        Assert.assertEquals('l',game.validateDirectionInput(scanner));
+    }
+
+    @Test
+    public void TestDirectionInput_testR_shouldReturnr(){
+        Scanner scanner = new Scanner("R");
+        Assert.assertEquals('r',game.validateDirectionInput(scanner));
+    }
 }

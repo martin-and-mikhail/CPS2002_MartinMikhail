@@ -2,6 +2,10 @@ public class Player {
 
     Position position;
 
+    public Player(Position pPosition){
+        position = pPosition;
+    }
+
     //Need to obtain size of mapSize
     int mapSize;
 
