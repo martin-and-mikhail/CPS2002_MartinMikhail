@@ -1,6 +1,8 @@
+import java.io.File;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+
 
 public class Game {
     static int turns = 0;// Amount of turns which have been played
@@ -8,7 +10,7 @@ public class Game {
     int mapSize;// Size of map n x n
 
     ArrayList<Player> players = new ArrayList<Player>();// ArrayList of players
-    Map map = new Map();// map object
+    Map map = new Map(mapSize);// map object
 
     final private int minPlayers = 2;
     final private int maxPlayersFirstRange = 4;
@@ -27,10 +29,10 @@ public class Game {
         System.out.println("Welcome to the Treasure Map Game by Martin Bartolo and Mikhail Cassar");
         Game game = new Game();
         game.startGame();
-<<<<<<< HEAD
-    }
-    
-=======
+
+        //Map is created here and also the tile set is randomely generated here
+        //This is so to have each player play on the same tile set
+
 
         while(true){
             turns ++;// incremenet amount of turns which have been played
@@ -50,7 +52,6 @@ public class Game {
     }
 
     // Method to initialise map and players and start the main game loop
->>>>>>> 0d36120007cbfa66c1713605ad09b968f4877836
     private void startGame() {
         playerNum = getPlayerNum();
         mapSize = getMapSize();    // Method to initialise map and players and start the main game loop
