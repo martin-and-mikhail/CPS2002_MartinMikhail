@@ -56,9 +56,8 @@ public class Game {
 
         for(int i = 0; i < playerNum; i++){
             // MIKHAIL method to get starting position of player (random x and y values)
-            Position position1 = new Position(4,5);
-            Player player = new Player(position1);
-            players.add(player);
+            //Player player = new Player(/* MIKHAIL position from starting position method */);
+            //players.add(player);
         }
     }
 
@@ -179,7 +178,7 @@ public class Game {
     }
 
     // Method to check whether a move is within the map boundaries
-    private int checkOutOfBounds(char direction, Player player) {
+    int checkOutOfBounds(char direction, Player player) {
         switch (direction) {
             case 'l':
                 // If map limit is exceeded
@@ -195,7 +194,7 @@ public class Game {
 
             case 'r':
                 // If map limit is exceeded
-                if (player.position.x == mapSize) {
+                if (player.position.x == mapSize-1) {
                     System.err.println("Cannot move right. Please try another direction.");
                     return 0;// return error code
                 }
@@ -219,7 +218,7 @@ public class Game {
 
             case 'd':
                 // If map limit is exceeded
-                if (player.position.y == mapSize) {
+                if (player.position.y == mapSize-1) {
                     System.err.println("Cannot move down. Please try another direction.");
                     return 0;// return error code
                 }
@@ -235,33 +234,45 @@ public class Game {
     }
 
     // Method to check whether an inputted direction is valid (i.e. either u, d, l or r)
-    private char validateDirectionInput(Scanner scanner) {
-        char direction;
+    char validateDirectionInput(Scanner scanner) {
+        String direction;// user input
+        char c;// user input after it being converted into a character
         String directions = "udlr";// string containing each accepted direction
 
-        // set to user input from getDirections
         try{
-            direction = scanner.next().charAt(0);//
+            // set to user input from getDirections
+            direction = scanner.next();
+
+            // check if length of input is more than 1
+            if(direction.length() > 1) {
+                throw new RuntimeException("Input too long. Please enter a character (u, d, l or r)");
+            }
+            // convert input string to char
+            c = direction.charAt(0);
+            // check if character is a letter
+            if (!Character.isLetter(c)){
+                throw new RuntimeException("Input is not a character. Please enter a character (u, d, l or r)");
+            }
         }
 
         // if input is not a char
-        catch(InputMismatchException e){
-            System.err.println("Invalid input. Please enter a character (u, d, l or r)");
+        catch(RuntimeException e){
+            System.err.println(e.getMessage());
             return 'y';// return an error value which we will associate with InputMismatchException when testing
         }
 
         // change char input to lowercase to allow (U, D, L and R)
-        direction = Character.toLowerCase(direction);
+        c = Character.toLowerCase(c);
 
-        // if input is an char but not one of the directions
-        if(directions.indexOf(direction) == -1){
+        // if input is a char but not one of the directions
+        if(!directions.contains(Character.toString(c))){
             System.err.println("Invalid input. Please enter a direction (u, d, l or r)");
             return 'x';// return an error value which we will associate with an invalid character when testing
         }
 
         // if input is correct
         else{
-            return direction;
+            return c;
         }
     }
 }

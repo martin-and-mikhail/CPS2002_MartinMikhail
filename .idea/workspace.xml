@@ -4,8 +4,6 @@
     <list default="true" id="e9f6fb8f-a2a2-4fa8-894d-77361c58593c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Position.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Position.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/GameTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/GameTest.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -21,11 +19,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Game.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3538">
-              <caret line="252" column="66" lean-forward="true" selection-start-line="252" selection-start-column="66" selection-end-line="252" selection-end-column="66" />
+            <state relative-caret-position="144">
+              <caret line="251" column="45" selection-start-line="251" selection-start-column="45" selection-end-line="251" selection-end-column="45" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#221#229#0" expanded="true" />
@@ -68,11 +66,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/test/java/GameTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="433">
-              <caret line="85" column="5" selection-start-line="85" selection-start-column="5" selection-end-line="85" selection-end-column="5" />
+            <state relative-caret-position="543">
+              <caret line="220" column="5" selection-start-line="220" selection-start-column="5" selection-end-line="220" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -93,10 +91,10 @@
         <option value="$PROJECT_DIR$/src/test/java/CalculatorUnitTests.java" />
         <option value="$PROJECT_DIR$/src/main/java/Calculator.java" />
         <option value="$PROJECT_DIR$/src/main/java/Main.java" />
-        <option value="$PROJECT_DIR$/src/test/java/GameTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/Position.java" />
         <option value="$PROJECT_DIR$/src/main/java/Player.java" />
         <option value="$PROJECT_DIR$/src/main/java/Game.java" />
+        <option value="$PROJECT_DIR$/src/test/java/GameTest.java" />
       </list>
     </option>
   </component>
@@ -220,7 +218,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.Game">
+  <component name="RunManager" selected="JUnit.GameTest">
     <configuration name="Game" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Game" />
       <module name="CPS2002_MartinMikhail" />
@@ -238,11 +236,31 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CalculatorUnitTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="GameTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="CPS2002_MartinMikhail" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="CalculatorUnitTests" />
+      <option name="MAIN_CLASS_NAME" value="GameTest" />
       <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GameTest.TestDirectionInput_testNonCharInput_shouldCatchInputMismatchExceptionAndReturny" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="CPS2002_MartinMikhail" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="GameTest" />
+      <option name="METHOD_NAME" value="TestDirectionInput_testNonCharInput_shouldCatchInputMismatchExceptionAndReturny" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GameTest.TestDirections_testMovingUpwardsOutOfBounds_shouldReturn0" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="CPS2002_MartinMikhail" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="GameTest" />
+      <option name="METHOD_NAME" value="TestDirections_testMovingUpwardsOutOfBounds_shouldReturn0" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -296,9 +314,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.GameTest" />
+        <item itemvalue="JUnit.GameTest.TestDirectionInput_testNonCharInput_shouldCatchInputMismatchExceptionAndReturny" />
         <item itemvalue="Application.Game" />
+        <item itemvalue="JUnit.GameTest.TestDirections_testMovingUpwardsOutOfBounds_shouldReturn0" />
         <item itemvalue="Application.Main" />
-        <item itemvalue="JUnit.CalculatorUnitTests" />
       </list>
     </recent_temporary>
   </component>
@@ -335,15 +355,46 @@
       <option name="project" value="LOCAL" />
       <updated>1555160245473</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Added Methods in Game class to allow players to choose directions to move in">
+      <created>1555166533423</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1555166533423</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="CalculatorUnitTests - 2019.04.10 at 11h 24m 56s.xml">
-      <configuration name="CalculatorUnitTests" configurationId="JUnit" />
+    <history-entry file="GameTest_TestDirections_testMovingUpwardsOutOfBounds_shouldReturn0 - 2019.04.13 at 16h 46m 55s.xml">
+      <configuration name="GameTest.TestDirections_testMovingUpwardsOutOfBounds_shouldReturn0" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="CalculatorUnitTests - 2019.04.10 at 11h 48m 42s.xml">
-      <configuration name="CalculatorUnitTests" configurationId="JUnit" />
+    <history-entry file="GameTest_TestDirections_testMovingUpwardsOutOfBounds_shouldReturn0 - 2019.04.13 at 16h 55m 05s.xml">
+      <configuration name="GameTest.TestDirections_testMovingUpwardsOutOfBounds_shouldReturn0" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="GameTest - 2019.04.13 at 16h 55m 21s.xml">
+      <configuration name="GameTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="GameTest - 2019.04.13 at 16h 56m 01s.xml">
+      <configuration name="GameTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="GameTest - 2019.04.13 at 16h 56m 05s.xml">
+      <configuration name="GameTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="GameTest_TestDirectionInput_testNonCharInput_shouldCatchInputMismatchExceptionAndReturny - 2019.04.13 at 17h 00m 41s.xml">
+      <configuration name="GameTest.TestDirectionInput_testNonCharInput_shouldCatchInputMismatchExceptionAndReturny" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="GameTest_TestDirectionInput_testNonCharInput_shouldCatchInputMismatchExceptionAndReturny - 2019.04.13 at 17h 04m 56s.xml">
+      <configuration name="GameTest.TestDirectionInput_testNonCharInput_shouldCatchInputMismatchExceptionAndReturny" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="GameTest_TestDirectionInput_testNonCharInput_shouldCatchInputMismatchExceptionAndReturny - 2019.04.13 at 17h 14m 10s.xml">
+      <configuration name="GameTest.TestDirectionInput_testNonCharInput_shouldCatchInputMismatchExceptionAndReturny" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="GameTest_TestDirectionInput_testNonCharInput_shouldCatchInputMismatchExceptionAndReturny - 2019.04.13 at 17h 14m 24s.xml">
+      <configuration name="GameTest.TestDirectionInput_testNonCharInput_shouldCatchInputMismatchExceptionAndReturny" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="GameTest - 2019.04.13 at 17h 18m 01s.xml">
+      <configuration name="GameTest" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
@@ -422,7 +473,8 @@
     <MESSAGE value="Mikhail Test Commit" />
     <MESSAGE value="Jenkins Building Test" />
     <MESSAGE value="Deleted Calculator Classes and Amended Game Class" />
-    <option name="LAST_COMMIT_MESSAGE" value="Deleted Calculator Classes and Amended Game Class" />
+    <MESSAGE value="Added Methods in Game class to allow players to choose directions to move in" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added Methods in Game class to allow players to choose directions to move in" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/pom.xml">
@@ -493,23 +545,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/GameTest.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/Game.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="433">
-          <caret line="85" column="5" selection-start-line="85" selection-start-column="5" selection-end-line="85" selection-end-column="5" />
+        <state relative-caret-position="144">
+          <caret line="251" column="45" selection-start-line="251" selection-start-column="45" selection-end-line="251" selection-end-column="45" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#221#229#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Game.java">
+    <entry file="file://$PROJECT_DIR$/src/test/java/GameTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3538">
-          <caret line="252" column="66" lean-forward="true" selection-start-line="252" selection-start-column="66" selection-end-line="252" selection-end-column="66" />
+        <state relative-caret-position="543">
+          <caret line="220" column="5" selection-start-line="220" selection-start-column="5" selection-end-line="220" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#221#229#0" expanded="true" />
           </folding>
         </state>
       </provider>
