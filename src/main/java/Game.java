@@ -60,6 +60,7 @@ public class Game {
         //The map is generated with the tile type randomly allocated
         map.generate();// Generate map
 
+        //In this loop all the Player objects are created along with their starting position in the map
         for(int i = 0; i < playerNum; i++){
 
             //A new player object is made
@@ -285,5 +286,10 @@ public class Game {
         else{
             return c;
         }
+    }
+    
+    //This method is used to generate the HTML files so that they can be opened in browser
+    void generateHtmlFiles(){
+
     }
 }
