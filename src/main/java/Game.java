@@ -10,7 +10,7 @@ public class Game {
     int mapSize;// Size of map n x n
 
     ArrayList<Player> players = new ArrayList<Player>();// ArrayList of players
-    Map map = new Map(mapSize);// map object
+    Map map = new Map();// map object
 
     final private int minPlayers = 2;
     final private int maxPlayersFirstRange = 4;
@@ -29,10 +29,6 @@ public class Game {
         System.out.println("Welcome to the Treasure Map Game by Martin Bartolo and Mikhail Cassar");
         Game game = new Game();
         game.startGame();
-
-        //Map is created here and also the tile set is randomely generated here
-        //This is so to have each player play on the same tile set
-
 
         while(true){
             turns ++;// incremenet amount of turns which have been played
@@ -56,14 +52,23 @@ public class Game {
         playerNum = getPlayerNum();
         mapSize = getMapSize();    // Method to initialise map and players and start the main game loop
 
+        //The size of the map is passed to the map obejct
+        map.setMapSize(mapSize);
+
         System.out.println("Generating map of size "+mapSize+"x"+mapSize+" for "+playerNum+" players.");
 
-        map.generate(/*MIKHAIL MapSize*/);// Generate map
+        //The map is generated with the tile type randomly allocated
+        map.generate();// Generate map
 
         for(int i = 0; i < playerNum; i++){
-            // MIKHAIL method to get starting position of player (random x and y values)
-            //Player player = new Player(/* MIKHAIL position from starting position method */);
-            //players.add(player);
+
+            //A new player object is made
+            Player player = new Player();
+
+            //The random position of the player is set in a grass tile
+            player.setStartingPosition(map.getGrassTiles());
+
+            players.add(player);
         }
     }
 

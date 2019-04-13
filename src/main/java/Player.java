@@ -1,17 +1,20 @@
+import java.util.Random;
+
 public class Player {
 
     Position position;
 
-    public Player(Position pPosition){
-        position = pPosition;
+    public Player(){
+
+    }
+
+    public Player(Position position){
+       this.position = position;
+
     }
 
     //Need to obtain size of mapSize
     int mapSize;
-
-    public Player(){
-
-    }
 
     void setMapSize(int mapSize){
         this.mapSize = mapSize;
@@ -80,10 +83,26 @@ public class Player {
 
     }
 
-    boolean setPosition(Position p){
+    //This method sets the starting position of a player
+    Position setStartingPosition(int[][] grassTiles){
 
+        Random random = new Random();
 
-        return true;
+        Position startPosition;
+
+        //Obtaining the length of grassTiles so as to be able to know from which range to obtain a random number
+        int grassCount = grassTiles.length;
+
+        //random number from 0 to length of grassTiles is obtained
+        int grassTilesIndex = random.nextInt(grassCount);
+
+        //The start position is set
+        startPosition = new Position(grassTiles[grassTilesIndex][0], grassTiles[grassTilesIndex][1]);
+
+        //The current position of the player is set to the start position
+        position = startPosition;
+
+        return startPosition;
     }
 
 }

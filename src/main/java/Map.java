@@ -11,12 +11,16 @@ public class Map {
     private int mapSize;
 
     //The map will consist of 2d array of tiles with every tile having a weight
-    private int[][][] tiles = new int[mapSize][mapSize][0];
+    private int[][][] tiles;
 
-    //Maybe grass, water and treasure count
+    //Below are counters used to hold the current number of tiles with the corresponding tile type
+    //The use of these is so that the program does not have more than one treasure or a large amount of
+    //water tiles
+    int grassCount = 0;
+    int waterCount = 0;
+    int treasureCount = 0;
 
-    public Map(int mapSize){
-        this.mapSize = mapSize;
+    public Map(){
     }
 
     //The getter for the mapSize
@@ -40,15 +44,8 @@ public class Map {
         //This check is used to make sure that no tileSet is full
         boolean tileSetFull = false;
 
-        //Below are counters used to hold the current number of tiles with the corresponding tile type
-        //The use of these is so that the program does not have more than one treasure or a large amount of
-        //water tiles
-        int grassCount = 0;
-        int waterCount = 0;
-        int treasureCount = 0;
-
         //The maximum number of watrer tiles in a map is set to a fifth of the whole map
-        double waterMaxTiles = Math.ceil(mapSize/5.0);
+        double waterMaxTiles = Math.ceil(mapSize*mapSize/5.0);
 
         //The maximum number of treasure tiles is one
         double treasureMaxTiles = 1;
@@ -152,6 +149,11 @@ public class Map {
     //Method used to show the map
     private void showMap(){
 
+        for (int x = 0; x < mapSize; x++) {
+            for (int y = 0; y < mapSize; y++) {
+                System.out.println("(" + x  + "," + y + ") -> " + tiles[x][y][0]);
+            }
+        }
     }
 
     //This method is used on start up to create the map
@@ -159,12 +161,50 @@ public class Map {
 
         System.out.println("Map is being generated");
 
+        tiles = new int[mapSize][mapSize][1];
+
         setTiles();
+
+        //showMap();
 
         System.out.println("Tiles for map are set with the corresponding tile type");
 
 
         //Random allocation of the tile set
+    }
+
+    //This method is used to create a 2d array which holds the map location of all grass tiles
+    int[][] getGrassTiles(){
+
+        //This array holds the number of grass elements each with 2 spaces for the x and y values of the given tile
+        int[][] grassTiles = new int[grassCount][2];
+
+        //Counter used to keep track of the element in grassTiles
+        int i = 0;
+
+        //Loop through all the tiles
+        for (int x = 0; x < mapSize; x++) {
+            for (int y = 0; y < mapSize; y++) {
+
+                //To obtain which tiles are grass just check the tile type indicated by a 0
+
+                //If the current tile has a grass tile type
+                if(tiles[x][y][0] == 0){
+
+                    //Save the x and y coordinates in the grassTiles array
+                    grassTiles[i][0] = x;
+                    grassTiles[i][1] = y;
+
+                    //The counter is incremented so as to be able to go to the next value in the array
+                    i++;
+
+                }
+
+            }
+        }
+
+        return grassTiles;
+
     }
 
 
