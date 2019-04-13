@@ -3,7 +3,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Game {
-    int turns = 0;
+    static int turns = 0;// Amount of turns which have been played
     int playerNum;// Amount of players
     int mapSize;// Size of map n x n
 
@@ -22,11 +22,28 @@ public class Game {
     private Scanner scanner;// to be used throughout class
 
     public static void main(String[] args) {
+        boolean foundTreasure = false;// will be set to true when the treasure is found by one of the players
+
         System.out.println("Welcome to the Treasure Map Game by Martin Bartolo and Mikhail Cassar");
         Game game = new Game();
         game.startGame();
-    }
 
+        while(true){
+            turns ++;// incremenet amount of turns which have been played
+
+            //Generate HTML files
+
+            // get each players desired direction of movement for the current turn
+            game.directionsLoop();
+
+            // if the treasure has been found by one of the players
+            foundTreasure = true;
+            if(foundTreasure){
+                //Congratulations to Player X, you won the game!!
+                break;
+            }
+        }
+    }
 
     // Method to initialise map and players and start the main game loop
     private void startGame() {
@@ -38,10 +55,9 @@ public class Game {
         map.generate(/*MIKHAIL MapSize*/);// Generate map
 
         for(int i = 0; i < playerNum; i++){
-
             // MIKHAIL method to get starting position of player (random x and y values)
-
-            Player player = new Player(/*MIKHAIL Put position here*/);
+            Position position1 = new Position(4,5);
+            Player player = new Player(position1);
             players.add(player);
         }
     }
@@ -55,7 +71,7 @@ public class Game {
             scanner = new Scanner(System.in);
             num = validatePlayerNum(scanner);
             // if value of num is not an error value
-            if(num > 2){
+            if(num > 1){
                 return num;
             }
         }
@@ -106,29 +122,146 @@ public class Game {
             // set to user input from getMapSize
             size = scanner.nextInt();
         }
+
         // if input is not an int
         catch(InputMismatchException e){
             System.err.println("Invalid input. Please enter a number");
             return 0;// error value of 0
         }
+
         // if input is above largest allowed map size
         if(size > maxMapSize){
             System.err.println("Map too big. Please enter a size below 50");
             return 1;// error value of 1
         }
+
         // if map is too small for 2-4 players
         else if(playerNum <= maxPlayersFirstRange && size < minMapSizeFirstRange){
             System.err.println("Map too small. Please enter a size of 5 or more");
             return 2;// error value of 2
         }
+
         // if map is too small for 5-8 players
         else if(playerNum >= minPlayersSecondRange && size < minMapSizeSecondRange){
             System.err.println("Map too small. Please enter a size of 8 or more");
             return 3;// error value of 3
         }
+
         // if input is correct
         else{
             return size;
+        }
+    }
+
+    // Method to get direction which each player would like to move in for the current turn
+    private void directionsLoop() {
+        char direction;// (u, d, l or r) depending on user's desired direction of movement
+        boolean validMove;// condition to break out of while loop when a valid direction is entered
+
+        // loop through each player in ArrayList
+        for(Player player : players) {
+            System.out.println("Player " + (players.indexOf(player) + 1) + ", please choose a direction (u, d, l or r).");
+
+            validMove = false;
+            while (!validMove) {
+                // get user input
+                scanner = new Scanner(System.in);
+                // make sure that user input is valid (i.e. one of u, d, l or r)
+                direction = validateDirectionInput(scanner);
+
+                // check if move is within map and execute if it is
+                if (checkOutOfBounds(direction, player) == 1) {
+                    validMove = true;
+                    player.move(direction);// STILL NEED TO FIX
+                }
+            }
+        }
+    }
+
+    // Method to check whether a move is within the map boundaries
+    private int checkOutOfBounds(char direction, Player player) {
+        switch (direction) {
+            case 'l':
+                // If map limit is exceeded
+                if (player.position.x == 0) {
+                    System.err.println("Cannot move left. Please try another direction.");
+                    return 0;// return error code
+                }
+                // If move is within map
+                else {
+                    System.out.println("Player moved to the left");
+                    return 1;// return correct code
+                }
+
+            case 'r':
+                // If map limit is exceeded
+                if (player.position.x == mapSize) {
+                    System.err.println("Cannot move right. Please try another direction.");
+                    return 0;// return error code
+                }
+                // If move is within map
+                else {
+                    System.out.println("Player moved to the right");
+                    return 1;// return correct code
+                }
+
+            case 'u':
+                // If map limit is exceeded
+                if (player.position.y == 0) {
+                    System.err.println("Cannot move up. Please try another direction.");
+                    return 0;// return error code
+                }
+                // If move is within map
+                else {
+                    System.out.println("Player moved up");
+                    return 1;// return correct code
+                }
+
+            case 'd':
+                // If map limit is exceeded
+                if (player.position.y == mapSize) {
+                    System.err.println("Cannot move down. Please try another direction.");
+                    return 0;// return error code
+                }
+                // If move is within map
+                else {
+                    System.out.println("Player moved down");
+                    return 1;// return correct code
+                }
+
+            default:
+                return 0;// return error code
+        }
+    }
+
+    // Method to check whether an inputted direction is valid (i.e. either u, d, l or r)
+    private char validateDirectionInput(Scanner scanner) {
+        char direction;
+        String directions = "udlr";// string containing each accepted direction
+
+        // set to user input from getDirections
+        try{
+            direction = scanner.next().charAt(0);//
+        }
+
+        // if input is not a char
+        catch(InputMismatchException e){
+            System.err.println("Invalid input. Please enter a character (u, d, l or r)");
+            return 'y';// return an error value which we will associate with InputMismatchException when testing
+        }
+
+        // change char input to lowercase to allow (U, D, L and R)
+        direction = Character.toLowerCase(direction);
+
+        // if input is an char but not one of the directions
+        if(directions.indexOf(direction) == -1){
+            System.err.println("Invalid input. Please enter a direction (u, d, l or r)");
+            return 'x';// return an error value which we will associate with an invalid character when testing
+        }
+
+        // if input is correct
+        else{
+            return direction;
         }
     }
 }

@@ -84,7 +84,4 @@ public class GameTest {
         Scanner scanner = new Scanner("20");
         Assert.assertEquals(20,game.validateMapSize(scanner));
     }
-
-
-
 }
