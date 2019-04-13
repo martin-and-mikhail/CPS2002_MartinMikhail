@@ -5,10 +5,13 @@ public class Player {
     //Need to obtain size of mapSize
     int mapSize;
 
+    public Player(){
+
+    }
+
     void setMapSize(int mapSize){
         this.mapSize = mapSize;
     }
-
 
     //The player moves the next tile given the direction he inputs
     void move(char direction){

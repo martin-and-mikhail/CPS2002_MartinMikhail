@@ -24,6 +24,9 @@ public class Map {
     //The is a header used to display the previous moves and also the current player
     JPanel header = new JPanel();
 
+    //A 2d array of labels is made so as to hold each tile and so that it can be easily accessed with its unique coordinate
+    JLabel[][] tiles = new JLabel[mapSize][mapSize];
+
 
     //When generating map each tile is given a value, this is a character and is either g, b, y which correspond to grass, water or treasure
     //If the tile contains g then it is changed to green when user steps on it. Similar code for the b and y tiles
@@ -38,41 +41,8 @@ public class Map {
         generate();
     }
 
-    //Grid here generated kind of
-    void generate() {
+    void setTileType(){
 
-        //This is an array which holds the x y and tile type
-        tileStatus = new char[mapSize][mapSize][1];
-
-        //These labels will be added to header so as to be able to display the information
-        JLabel playerInfo = new JLabel("Player 1");
-        JLabel moveInfo = new JLabel("Moves: right right");
-
-        header.add(playerInfo);
-        header.add(moveInfo);
-
-        //A 2d array of labels is made so as to hold each tile and so that it can be easily accessed with its unique coordinate
-        JLabel[][] tiles = new JLabel[mapSize][mapSize];
-
-        //Here each tile is being created and initialised
-        for (int x = 0; x < mapSize; x++) {
-            for (int y = 0; y < mapSize; y++) {
-                tiles[x][y] = new JLabel(" ");
-                tiles[x][y].setBorder(BorderFactory.createLineBorder(Color.BLACK));
-                tiles[x][y].setOpaque(true);
-                tiles[x][y].setBackground(Color.GRAY);
-
-                tileGrid.add(tiles[x][y]);
-            }
-        }
-//            }
-//        }
-
-        //Getting the start position of the character
-
-        //setting the character of the tileStatus array to either 'g' 'y' 'b' or 'p'
-
-        //Object used to obtain random numbers
         Random rand = new Random();
 
         int totalLabel = 0;
@@ -81,6 +51,7 @@ public class Map {
         int water = 0;
         double waterLim;
         waterLim = Math.ceil((mapSize*mapSize)/5.0);
+
 
         //max values of water is ceil(mapSize/5)
 
@@ -100,58 +71,60 @@ public class Map {
         //Go through each element in the matrix and assigning a random value from 0 - 2, 0 is grass, 1 is water, 2 is treasure
         //update counter when a value is set
 
-            int ran;
 
-            boolean tileFull = false;
 
-            for (int x1 = 0; x1 < mapSize; x1++) {
-                for (int y1 = 0; y1 < mapSize; y1++) {
 
-                    if(x1 == x && y1 == y){
-                        continue;
-                    }
+        int ran;
 
-                    else {
+        boolean tileFull = false;
 
-                        //While loop to keep on iteration
-                        do {
-                            ran = rand.nextInt(3);
+        for (int x1 = 0; x1 < mapSize; x1++) {
+            for (int y1 = 0; y1 < mapSize; y1++) {
 
-                            if (ran == 0) {
-                                grass += 1;
-                                tileStatus[x1][y1][0] = 'g';
+                if(x1 == x && y1 == y){
+                    continue;
+                }
+
+                else {
+
+                    //While loop to keep on iteration
+                    do {
+                        ran = rand.nextInt(3);
+
+                        if (ran == 0) {
+                            grass += 1;
+                            tileStatus[x1][y1][0] = 'g';
+                            tileFull = false;
+
+                        } else if (ran == 1) {
+                            if (water == waterLim) {
+
+                                tileFull = true;
+
+                            } else {
+
+                                tileStatus[x1][y1][0] = 'b';
                                 tileFull = false;
-
-                            } else if (ran == 1) {
-                                if (water == waterLim) {
-
-                                    tileFull = true;
-
-                                } else {
-
-                                    tileStatus[x1][y1][0] = 'b';
-                                    tileFull = false;
-                                    water += 1;
-                                }
-                            } else if (ran == 2) {
-                                if (treasure == 1) {
-                                    tileFull = true;
-                                } else {
-
-                                    tileStatus[x1][y1][0] = 'y';
-                                    tileFull = false;
-                                    treasure += 1;
-                                }
-
-
+                                water += 1;
                             }
-                        } while (tileFull);
-                    }
+                        } else if (ran == 2) {
+                            if (treasure == 1) {
+                                tileFull = true;
+                            } else {
+
+                                tileStatus[x1][y1][0] = 'y';
+                                tileFull = false;
+                                treasure += 1;
+                            }
+
+
+                        }
+                    } while (tileFull);
+                }
 
 
             }
         }
-
 
         for (int y2 = 0; y2 < mapSize; y2++) {
             for (int x2 = 0; x2 < mapSize; x2++) {
@@ -178,6 +151,48 @@ public class Map {
                 }
             }
         }
+
+
+    }
+
+
+
+
+
+
+
+    //Grid here generated kind of
+    void generate() {
+
+        //This is an array which holds the x y and tile type
+        tileStatus = new char[mapSize][mapSize][1];
+
+        //These labels will be added to header so as to be able to display the information
+        JLabel playerInfo = new JLabel("Player 1");
+        JLabel moveInfo = new JLabel("Moves: right right");
+
+        header.add(playerInfo);
+        header.add(moveInfo);
+
+        //Here each tile is being created and initialised
+        for (int x = 0; x < mapSize; x++) {
+            for (int y = 0; y < mapSize; y++) {
+                tiles[x][y] = new JLabel(" ");
+                tiles[x][y].setBorder(BorderFactory.createLineBorder(Color.BLACK));
+                tiles[x][y].setOpaque(true);
+                tiles[x][y].setBackground(Color.GRAY);
+
+                tileGrid.add(tiles[x][y]);
+            }
+        }
+//            }
+//        }
+
+        //Getting the start position of the character
+
+        //setting the character of the tileStatus array to either 'g' 'y' 'b' or 'p'
+
+        //Object used to obtain random numbers
 
 
 
@@ -258,6 +273,9 @@ public class Map {
         return labels[1][1];
     }
 
+
+
+
     public class ArrowAction extends AbstractAction {
 
         //get the starting coordinates
@@ -267,13 +285,13 @@ public class Map {
         private int xPos;
         private int yPos;
 
-        public ArrowAction(String cmd, int x, int y ) {
+        public ArrowAction(String cmd, int x, int y) {
             this.cmd = cmd;
             xPos = x;
             yPos = y;
         }
 
-        @Override
+
         public void actionPerformed(ActionEvent e) {
             if (cmd.equalsIgnoreCase("Left")) {
                 //Get current position and do plus 1 in the x axis
@@ -289,9 +307,13 @@ public class Map {
             } else if (cmd.equalsIgnoreCase("Down")) {
                 System.out.println("The down arrow was pressed!");
             }
+
+
         }
 
     }
+
+
 }
 
 
