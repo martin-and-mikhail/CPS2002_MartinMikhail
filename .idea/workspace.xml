@@ -1,12 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="e9f6fb8f-a2a2-4fa8-894d-77361c58593c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CPS2002_MartinMikhail.iml" beforeDir="false" afterPath="$PROJECT_DIR$/CPS2002_MartinMikhail.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Map.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Map.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Player.java" afterDir="false" />
+=======
+    <list default="true" id="e9f6fb8f-a2a2-4fa8-894d-77361c58593c" name="Default Changelist" comment="Deleted Calculator Classes and Amended Game Class">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Calculator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Position.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Position.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/CalculatorTest.java" beforeDir="false" />
+>>>>>>> 90818054e05ac42c7ea7f17d1fe9f6fd11c80801
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -21,24 +31,54 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+<<<<<<< HEAD
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Player.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="187">
               <caret line="12" column="14" lean-forward="true" selection-start-line="12" selection-start-column="14" selection-end-line="12" selection-end-column="14" />
+=======
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/Game.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2023">
+              <caret line="128" column="30" selection-start-line="128" selection-start-column="30" selection-end-line="128" selection-end-column="30" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#221#229#0" expanded="true" />
+              </folding>
+>>>>>>> 90818054e05ac42c7ea7f17d1fe9f6fd11c80801
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/Game.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/Player.java">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="-799">
               <caret line="32" column="30" selection-start-line="32" selection-start-column="30" selection-end-line="32" selection-end-column="30" />
+=======
+            <state relative-caret-position="952">
+              <caret line="58" column="16" selection-start-line="58" selection-start-column="16" selection-end-line="58" selection-end-column="16" />
             </state>
           </provider>
         </entry>
       </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/Map.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="382">
+              <caret line="121" column="60" lean-forward="true" selection-start-line="121" selection-start-column="60" selection-end-line="121" selection-end-column="60" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+>>>>>>> 90818054e05ac42c7ea7f17d1fe9f6fd11c80801
+            </state>
+          </provider>
+        </entry>
+      </file>
+<<<<<<< HEAD
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/Map.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -47,15 +87,32 @@
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+=======
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/Position.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="23" selection-start-column="23" selection-end-column="23" />
+>>>>>>> 90818054e05ac42c7ea7f17d1fe9f6fd11c80801
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+<<<<<<< HEAD
         <entry file="file://$PROJECT_DIR$/src/main/java/Main.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="119">
               <caret line="7" column="5" lean-forward="true" selection-start-line="7" selection-start-column="5" selection-end-line="7" selection-end-column="5" />
+=======
+        <entry file="file://$PROJECT_DIR$/src/test/java/GameTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="296">
+              <caret line="77" column="18" selection-start-line="77" selection-start-column="18" selection-end-line="77" selection-end-column="18" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+>>>>>>> 90818054e05ac42c7ea7f17d1fe9f6fd11c80801
             </state>
           </provider>
         </entry>
@@ -70,11 +127,16 @@
       <list>
         <option value="$PROJECT_DIR$/src/Main.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/Main.java" />
         <option value="$PROJECT_DIR$/src/test/java/CalculatorUnitTests.java" />
         <option value="$PROJECT_DIR$/src/main/java/Calculator.java" />
+<<<<<<< HEAD
         <option value="$PROJECT_DIR$/src/main/java/Player.java" />
         <option value="$PROJECT_DIR$/src/main/java/Map.java" />
+=======
+        <option value="$PROJECT_DIR$/src/main/java/Position.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Main.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Game.java" />
+>>>>>>> 90818054e05ac42c7ea7f17d1fe9f6fd11c80801
       </list>
     </option>
   </component>
@@ -86,17 +148,60 @@
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
+<<<<<<< HEAD
     <option name="x" value="54" />
     <option name="y" value="-8" />
     <option name="width" value="1320" />
     <option name="height" value="784" />
+=======
+    <option name="x" value="52" />
+    <option name="y" value="20" />
+    <option name="width" value="744" />
+    <option name="height" value="844" />
+>>>>>>> 90818054e05ac42c7ea7f17d1fe9f6fd11c80801
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
-    <navigator proportions="" version="1">
+    <navigator currentView="Scope" currentSubView="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope" proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+<<<<<<< HEAD
+=======
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="CPS2002_MartinMikhail" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CPS2002_MartinMikhail" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="CPS2002_MartinMikhail" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CPS2002_MartinMikhail" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="CPS2002_MartinMikhail" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CPS2002_MartinMikhail" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="CPS2002_MartinMikhail" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CPS2002_MartinMikhail" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="CPS2002_MartinMikhail" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+>>>>>>> 90818054e05ac42c7ea7f17d1fe9f6fd11c80801
       <pane id="Scope">
         <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
           <expand>
@@ -134,44 +239,6 @@
               <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
               <item name="test" type="9f88c78c:ScopeViewTreeModel$FileNode" />
               <item name="java" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-            </path>
-            <path>
-              <item name="CPS2002_MartinMikhail" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="CPS2002_MartinMikhail" type="2674bda8:ScopeViewTreeModel$GroupNode" />
-              <item name="target" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="CPS2002_MartinMikhail" type="b2602c69:ProjectViewProjectNode" />
-              <item name="CPS2002_MartinMikhail" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="CPS2002_MartinMikhail" type="b2602c69:ProjectViewProjectNode" />
-              <item name="CPS2002_MartinMikhail" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="CPS2002_MartinMikhail" type="b2602c69:ProjectViewProjectNode" />
-              <item name="CPS2002_MartinMikhail" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="CPS2002_MartinMikhail" type="b2602c69:ProjectViewProjectNode" />
-              <item name="CPS2002_MartinMikhail" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="CPS2002_MartinMikhail" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
             </path>
           </expand>
           <select />
@@ -225,6 +292,7 @@
       <module name="CPS2002_MartinMikhail" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="CalculatorUnitTests" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -327,10 +395,17 @@
     <option name="totallyTimeSpent" value="6021000" />
   </component>
   <component name="ToolWindowManager">
+<<<<<<< HEAD
     <frame x="54" y="-8" width="1320" height="784" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18412699" />
+=======
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26385927" />
+>>>>>>> 90818054e05ac42c7ea7f17d1fe9f6fd11c80801
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -339,7 +414,11 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
+<<<<<<< HEAD
       <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.038402457" />
+=======
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.32827735" />
+>>>>>>> 90818054e05ac42c7ea7f17d1fe9f6fd11c80801
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -349,7 +428,7 @@
       <window_info anchor="bottom" id="Terminal" order="9" weight="0.32936078" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" weight="0.32872504" />
       <window_info anchor="bottom" id="Version Control" order="11" />
-      <window_info anchor="bottom" id="Messages" order="12" weight="0.32872504" />
+      <window_info anchor="bottom" id="Messages" order="12" weight="0.32827735" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -417,8 +496,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Calculator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="11" selection-start-line="1" selection-start-column="11" selection-end-line="1" selection-end-column="11" />
+        <state>
+          <caret column="6" selection-start-column="6" selection-end-column="6" />
           <folding>
             <element signature="e#223#224#0" expanded="true" />
             <element signature="e#251#252#0" expanded="true" />
@@ -427,22 +506,35 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/CalculatorUnitTests.java" />
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2578">
           <caret line="473" column="10" selection-start-line="473" selection-start-column="10" selection-end-line="473" selection-end-column="10" />
+=======
+    <entry file="file://$PROJECT_DIR$/src/main/java/Position.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="23" selection-start-column="23" selection-end-column="23" />
+>>>>>>> 90818054e05ac42c7ea7f17d1fe9f6fd11c80801
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Main.java">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="119">
           <caret line="7" column="5" lean-forward="true" selection-start-line="7" selection-start-column="5" selection-end-line="7" selection-end-column="5" />
+=======
+        <state relative-caret-position="51">
+          <caret line="3" column="8" selection-start-line="3" selection-start-column="8" selection-end-line="3" selection-end-column="8" />
+>>>>>>> 90818054e05ac42c7ea7f17d1fe9f6fd11c80801
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Player.java">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="187">
           <caret line="12" column="14" lean-forward="true" selection-start-line="12" selection-start-column="14" selection-end-line="12" selection-end-column="14" />
         </state>
@@ -461,6 +553,30 @@
           <caret line="9" column="5" selection-start-line="9" selection-start-column="5" selection-end-line="9" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
+=======
+        <state relative-caret-position="382">
+          <caret line="121" column="60" lean-forward="true" selection-start-line="121" selection-start-column="60" selection-end-line="121" selection-end-column="60" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Player.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="952">
+          <caret line="58" column="16" selection-start-line="58" selection-start-column="16" selection-end-line="58" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Game.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2023">
+          <caret line="128" column="30" selection-start-line="128" selection-start-column="30" selection-end-line="128" selection-end-column="30" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#221#229#0" expanded="true" />
+>>>>>>> 90818054e05ac42c7ea7f17d1fe9f6fd11c80801
           </folding>
         </state>
       </provider>
