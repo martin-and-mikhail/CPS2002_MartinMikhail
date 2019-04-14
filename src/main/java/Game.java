@@ -185,10 +185,13 @@ public class Game {
                 if (checkOutOfBounds(direction, player) == 1) {
                     validMove = true;
 
-                    //Show position method 
+                    //Show position method used to see how player moves
                     //player.showPosition();
                     player.move(direction);// STILL NEED TO FIX
                     //player.showPosition();
+
+                    //Add method here which compares the tile to the current player position and change his tile accordingly
+
                 }
             }
         }
