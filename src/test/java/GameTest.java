@@ -5,7 +5,7 @@ import org.junit.Test;
 import java.util.Scanner;
 
 public class GameTest {
-    private Game game;
+    Game game;
 
     @Before
     public void setup(){
@@ -89,67 +89,74 @@ public class GameTest {
 
     @Test
     public void TestDirectionBounds_testMovingUpOutOfBounds_shouldReturn0(){
-        game.playerNum = 2;
-        game.mapSize = 5;
+        Map map = new Map();
+        map.mapSize = 5;
         Position position = new Position(4,0);
         Player player = new Player(position);
-        Assert.assertEquals(0,game.checkOutOfBounds('u',player));
+        Assert.assertEquals(0,game.checkOutOfBounds('u',player, map.mapSize));
     }
 
     @Test
     public void TestDirectionBounds_testMovingLeftOutOfBounds_shouldReturn0(){
-        game.mapSize = 5;
+        Map map = new Map();
+        map.mapSize = 5;
         Position position = new Position(0,3);
         Player player = new Player(position);
-        Assert.assertEquals(0,game.checkOutOfBounds('l',player));
+        Assert.assertEquals(0,game.checkOutOfBounds('l',player, map.mapSize));
     }
 
     @Test
     public void TestDirectionBounds_testMovingRightOutOfBounds_shouldReturn0(){
-        game.mapSize = 5;
-        Position position = new Position(game.mapSize-1,2);
+        Map map = new Map();
+        map.mapSize = 5;
+        Position position = new Position(map.mapSize-1,2);
         Player player = new Player(position);
-        Assert.assertEquals(0,game.checkOutOfBounds('r',player));
+        Assert.assertEquals(0,game.checkOutOfBounds('r',player, map.mapSize));
     }
 
     @Test
     public void TestDirectionBounds_testMovingDownOutOfBounds_shouldReturn0(){
-        game.mapSize = 5;
-        Position position = new Position(2,game.mapSize-1);
+        Map map = new Map();
+        map.mapSize = 5;
+        Position position = new Position(2,(map.mapSize-1));
         Player player = new Player(position);
-        Assert.assertEquals(0,game.checkOutOfBounds('d',player));
+        Assert.assertEquals(0,game.checkOutOfBounds('d',player, map.mapSize));
     }
 
     @Test
     public void TestDirectionBounds_testMovingUpCorrectly_shouldReturn1(){
-        game.mapSize = 5;
+        Map map = new Map();
+        map.mapSize = 5;
         Position position = new Position(0,3);
         Player player = new Player(position);
-        Assert.assertEquals(1,game.checkOutOfBounds('u',player));
+        Assert.assertEquals(1,game.checkOutOfBounds('u',player, map.mapSize));
     }
 
     @Test
     public void TestDirectionBounds_testMovingLeftCorrectly_shouldReturn1(){
-        game.mapSize = 5;
+        Map map = new Map();
+        map.mapSize = 5;
         Position position = new Position(2,3);
         Player player = new Player(position);
-        Assert.assertEquals(1,game.checkOutOfBounds('l',player));
+        Assert.assertEquals(1,game.checkOutOfBounds('l',player, map.mapSize));
     }
 
     @Test
     public void TestDirectionBounds_testMovingRightCorrectly_shouldReturn1(){
-        game.mapSize = 5;
+        Map map = new Map();
+        map.mapSize = 5;
         Position position = new Position(1,3);
         Player player = new Player(position);
-        Assert.assertEquals(1,game.checkOutOfBounds('r',player));
+        Assert.assertEquals(1,game.checkOutOfBounds('r',player, map.mapSize));
     }
 
     @Test
     public void TestDirectionBounds_testMovingDownCorrectly_shouldReturn1(){
-        game.mapSize = 5;
+        Map map = new Map();
+        map.mapSize = 5;
         Position position = new Position(4,3);
         Player player = new Player(position);
-        Assert.assertEquals(1,game.checkOutOfBounds('d',player));
+        Assert.assertEquals(1,game.checkOutOfBounds('d',player, map.mapSize));
     }
 
     // testing validateDirectionInput

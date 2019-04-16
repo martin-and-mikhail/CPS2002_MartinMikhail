@@ -6,10 +6,9 @@ import java.util.Scanner;
 public class Game {
     static int turns = 0;// Amount of turns which have been played
     int playerNum;// Amount of players
-    public int mapSize;// Size of map n x n
 
     ArrayList<Player> players = new ArrayList<Player>();// ArrayList of players
-    Map map = new Map();// map object
+    private Map map = new Map();// map object
 
     final private int minPlayers = 2;
     final private int maxPlayersFirstRange = 4;
@@ -50,11 +49,12 @@ public class Game {
     // Method to initialise map and players and start the main game loop
     private void startGame() {
         playerNum = getPlayerNum();
-        mapSize = getMapSize();    // Method to initialise map and players and start the main game loop
+        int mapSize = getMapSize();    // Method to initialise map and players and start the main game loop
 
         System.out.println("Generating map of size "+mapSize+"x"+mapSize+" for "+playerNum+" players.");
 
         //The map is generated with the tile type randomly allocated
+        map.mapSize = mapSize;
         map.generate();// Generate map
 
         //In this loop all the Player objects are created along with their starting position in the map
@@ -179,13 +179,12 @@ public class Game {
                 direction = validateDirectionInput(scanner);
 
                 // check if move is within map and execute if it is
-                if (checkOutOfBounds(direction, player) == 1) {
+                if (checkOutOfBounds(direction, player, map.mapSize) == 1) {
                     validMove = true;
 
                     //Show position method used to see how player moves
                     System.out.println(player.position.toString());
                     player.move(direction);
-                    System.out.println(player.position.toString());
 
                     //Add method here which compares the tile to the current player position and change his tile accordingly
                     //add methods for water event
@@ -197,24 +196,23 @@ public class Game {
     }
 
     // Method to check whether a move is within the map boundaries
-    int checkOutOfBounds(char direction, Player player) {
+    int checkOutOfBounds(char direction, Player player, int mapSize) {
         switch (direction) {
             case 'l':
                 // If map limit is exceeded
-                if (player.position.x == 0) {
+                if (player.position.x-1 < 0) {
                     System.err.println("Cannot move left. Please try another direction.");
                     return 0;// return error code
                 }
                 // If move is within map
                 else {
-                    //Check tiles here Or do function whch checks tiles
                     System.out.println("Player moved to the left");
                     return 1;// return correct code
                 }
 
             case 'r':
                 // If map limit is exceeded
-                if (player.position.x == mapSize-1) {
+                if (player.position.x+1 >= mapSize) {
                     System.err.println("Cannot move right. Please try another direction.");
                     return 0;// return error code
                 }
@@ -226,7 +224,7 @@ public class Game {
 
             case 'u':
                 // If map limit is exceeded
-                if (player.position.y == 0) {
+                if (player.position.y-1 < 0) {
                     System.err.println("Cannot move up. Please try another direction.");
                     return 0;// return error code
                 }
@@ -238,7 +236,7 @@ public class Game {
 
             case 'd':
                 // If map limit is exceeded
-                if (player.position.y == mapSize-1) {
+                if (player.position.y+1 >= mapSize) {
                     System.err.println("Cannot move down. Please try another direction.");
                     return 0;// return error code
                 }

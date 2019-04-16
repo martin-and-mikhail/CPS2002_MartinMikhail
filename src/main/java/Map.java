@@ -7,8 +7,7 @@ import java.util.Random;
 
 public class Map {
 
-    //The map size is needed so as to create the n by n map
-    private int mapSize;
+    int mapSize;
 
     //The map will consist of 2d array of tiles with every tile having a weight
     private int[][][] tiles;
@@ -147,10 +146,7 @@ public class Map {
     }
 
     //This method is used on start up to create the map
-    public void generate(){
-
-        System.out.println("Map is being generated");
-
+    void generate(){
         tiles = new int[mapSize][mapSize][1];
 
         setTiles();
