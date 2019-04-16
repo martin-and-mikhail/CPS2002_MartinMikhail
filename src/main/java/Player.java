@@ -5,8 +5,11 @@ public class Player {
 
     Position position;
 
-    //This array list is used to hold the previous positions of all players
+    //This array list is used to hold the previous positions the player
     ArrayList<Position> positions = new ArrayList<Position>();
+
+    //This array list is used to hold the previous directions of the player
+    ArrayList<String> directions = new ArrayList<String>();
 
     public Player(){
 
@@ -27,21 +30,25 @@ public class Player {
                 position.x --;
                 // add position to list of previous positions
                 positions.add(position);
+                directions.add("left");
                 break;
 
             case 'r':
                 position.x ++;
                 positions.add(position);
+                directions.add("right");
                 break;
 
             case 'u':
                 position.y --;
                 positions.add(position);
+                directions.add("up");
                 break;
 
             case 'd':
                 position.y ++;
                 positions.add(position);
+                directions.add("down");
                 break;
 
             default:
@@ -72,5 +79,26 @@ public class Player {
         positions.add(startPosition);
 
         return startPosition;
+    }
+
+    //This method is used in the game class to check if the player already went on the current position in the map grid
+    boolean ifTileExists(int x, int y){
+
+        //Create the Position object to use to compare
+        Position positionUse = new Position(x,y);
+
+        //Looping through element in the positions array list
+        for (Position position : positions) {
+
+            //Comparing the x and y values of the current Position object in the array list and the positionUse object
+            if(positionUse.x == position.x && positionUse.y == position.y){
+
+                //If one of the obejct in the array list matched then it exists in the array list
+                return true;
+            }
+
+
+        }
+        return false;
     }
 }

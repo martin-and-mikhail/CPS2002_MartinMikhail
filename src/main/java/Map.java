@@ -151,12 +151,7 @@ public class Map {
 
         setTiles();
 
-        //showMap();
-
-        System.out.println("Tiles for map are set with the corresponding tile type");
-
-
-        //Random allocation of the tile set
+        //Maybe place the set tiles method in generate
     }
 
     //This method is used to create a 2d array which holds the map location of all grass tiles
@@ -218,6 +213,12 @@ public class Map {
 
         }
 
+    }
+
+    //This method is used to get the tile type of the current tile
+    int getTileType(int x, int y){
+
+        return tiles[x][y][0];
     }
 
     //Event which occurs when a player is on a grass tile
