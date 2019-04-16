@@ -23,16 +23,6 @@ public class Map {
     public Map(){
     }
 
-    //The getter for the mapSize
-    public int getMapSize(){
-        return mapSize;
-    }
-
-    //The setter for the mapSize
-    public void setMapSize(int mapSize){
-        this.mapSize = mapSize;
-    }
-
     //The method is used to randomly allocate the tile types of all the tiles at the start of the game
     private void setTiles(){
 

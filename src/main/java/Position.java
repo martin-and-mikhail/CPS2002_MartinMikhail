@@ -2,7 +2,15 @@ public class Position {
     int x;
     int y;
 
-    public Position(int px, int py) {
+    @Override
+    public String toString() {
+        return "Position{" +
+                "x=" + x +
+                ", y=" + y +
+                '}';
+    }
+
+    Position(int px, int py) {
         x = px;
         y = py;
     }

@@ -17,80 +17,36 @@ public class Player {
 
     }
 
-    //Need to obtain size of mapSize
-    int mapSize;
-
-    public void showPosition(){
-        System.out.println("x is " + position.x);
-        System.out.println("y is " + position.y);
-
-    }
-
-    void setMapSize(int mapSize){
-        this.mapSize = mapSize;
-    }
-
-    //The player moves the next tile given the direction he inputs
+    //The player moves to the next tile depending on the inputted direction
     void move(char direction){
 
         //A switch statement is used to represent all possible directions
         switch(direction){
             case 'l':
-                //Check if map limit going left is reached first
-                //This is when x=0
-
-                if(position.x == 0){
-                    //Output to the user that the map limit has been reached
-                }
-
-                else{
-                    //The x coordinate is decremented so that it looks like the player moved on tile back
-                    position.x = position.x - 1;
-                }
-
+                // change player's position
+                position.x --;
+                // add position to list of previous positions
+                positions.add(position);
                 break;
 
             case 'r':
-
-                if(position.x == mapSize){
-
-                }
-
-                else{
-                    position.x = position.x + 1;
-                }
+                position.x ++;
+                positions.add(position);
                 break;
 
             case 'u':
-
-                if(position.y == 0){
-                    //Output to the user that the map limit has been reached
-                }
-
-                else{
-                    //The x coordinate is decremented so that it looks like the player moved on tile back
-                    position.y = position.y - 1;
-                }
-
+                position.y --;
+                positions.add(position);
                 break;
 
             case 'd':
-
-                if(position.y == mapSize){
-                    //Output to the user that the map limit has been reached
-                }
-
-                else{
-                    //The x coordinate is decremented so that it looks like the player moved on tile back
-                    position.y = position.y + 1;
-                }
+                position.y ++;
+                positions.add(position);
                 break;
 
             default:
-                //error handling here
                 break;
         }
-
     }
 
     //This method sets the starting position of a player
@@ -117,9 +73,4 @@ public class Player {
 
         return startPosition;
     }
-
-    void addCurrentPositionToPositions(){
-        positions.add(position);
-    }
-
 }
