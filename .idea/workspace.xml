@@ -1,12 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="e9f6fb8f-a2a2-4fa8-894d-77361c58593c" name="Default Changelist" comment="Added more code for the directions">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Game.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+=======
+<<<<<<< HEAD
+    <list default="true" id="e9f6fb8f-a2a2-4fa8-894d-77361c58593c" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Map.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Map.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/GameTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/GameTest.java" afterDir="false" />
+    </list>
+    <ignored path="$PROJECT_DIR$/out/" />
+    <ignored path="$PROJECT_DIR$/target/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+=======
+    <list default="true" id="e9f6fb8f-a2a2-4fa8-894d-77361c58593c" name="Default Changelist" comment="Added more code for the directions" />
+>>>>>>> 0ea9ea083460d8ac8c86d2e4c0ffd221852e6729
+>>>>>>> 7ab434e896bdcaa4a3ccf3fbc7113304f75ba22a
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -17,8 +33,15 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/Game.java">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="486">
               <caret line="321" column="23" lean-forward="true" selection-start-line="321" selection-start-column="23" selection-end-line="321" selection-end-column="23" />
+              <folding>
+                <element signature="imports" expanded="true" />
+=======
+<<<<<<< HEAD
+            <state relative-caret-position="161">
+              <caret line="181" column="56" selection-start-line="181" selection-start-column="56" selection-end-line="181" selection-end-column="56" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -26,6 +49,33 @@
           </provider>
         </entry>
       </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/Player.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="386">
+              <caret line="61" column="16" selection-start-line="61" selection-start-column="16" selection-end-line="61" selection-end-column="16" />
+              <folding>
+                <element signature="e#226#236#0" expanded="true" />
+=======
+            <state relative-caret-position="357">
+              <caret line="36" lean-forward="true" selection-start-line="36" selection-end-line="36" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#313#321#0" expanded="true" />
+>>>>>>> 0ea9ea083460d8ac8c86d2e4c0ffd221852e6729
+>>>>>>> 7ab434e896bdcaa4a3ccf3fbc7113304f75ba22a
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+<<<<<<< HEAD
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/test/java/GameTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2618">
+              <caret line="158" column="75" selection-start-line="158" selection-start-column="75" selection-end-line="158" selection-end-column="75" />
+=======
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Map.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -40,6 +90,7 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="901">
               <caret line="54" selection-start-line="54" selection-end-line="54" />
+>>>>>>> 0ea9ea083460d8ac8c86d2e4c0ffd221852e6729
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -54,22 +105,82 @@
       </file>
     </leaf>
   </component>
+<<<<<<< HEAD
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>SetMap</find>
+      <find>setMap</find>
+      <find>setM</find>
+      <find>hello</find>
+      <find>grass</find>
+      <find>grassTiles</find>
+      <find>grassTil</find>
+      <find>getGrass</find>
+      <find>show</find>
+      <find>move</find>
+      <find>che</find>
+      <find>mapSize</find>
+      <find>check</find>
+    </findStrings>
+  </component>
+=======
+>>>>>>> 0ea9ea083460d8ac8c86d2e4c0ffd221852e6729
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
+<<<<<<< HEAD
+        <option value="$PROJECT_DIR$/src/Main.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Main.java" />
+        <option value="$PROJECT_DIR$/src/test/java/CalculatorUnitTests.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Calculator.java" />
+        <option value="$PROJECT_DIR$/src/main/java/template.html" />
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/Position.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Player.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Map.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Game.java" />
+        <option value="$PROJECT_DIR$/src/test/java/GameTest.java" />
+      </list>
+    </option>
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="importAutomatically" value="true" />
+      </MavenImportingSettings>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="497" />
+    <option name="y" value="-18" />
+    <option name="width" value="930" />
+    <option name="height" value="1055" />
+  </component>
+=======
         <option value="$PROJECT_DIR$/.idea/workspace.xml" />
         <option value="$PROJECT_DIR$/src/main/java/Game.java" />
       </list>
     </option>
   </component>
+<<<<<<< HEAD
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="17" />
     <option name="width" value="1382" />
     <option name="height" value="744" />
   </component>
+=======
+>>>>>>> 0ea9ea083460d8ac8c86d2e4c0ffd221852e6729
+>>>>>>> 7ab434e896bdcaa4a3ccf3fbc7113304f75ba22a
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -173,7 +284,11 @@
       </list>
     </option>
   </component>
+<<<<<<< HEAD
+  <component name="RunManager" selected="JUnit.GameTest.TestDirectionBounds_testMovingRightCorrectly_shouldReturn1">
+=======
   <component name="RunManager">
+>>>>>>> 0ea9ea083460d8ac8c86d2e4c0ffd221852e6729
     <configuration name="Game" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Game" />
       <module name="CPS2002_MartinMikhail" />
@@ -181,9 +296,105 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+<<<<<<< HEAD
+    <configuration name="GameTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="CPS2002_MartinMikhail" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="GameTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GameTest.TestDirectionBounds_testMovingDownOutOfBounds_shouldReturn0" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="CPS2002_MartinMikhail" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="GameTest" />
+      <option name="METHOD_NAME" value="TestDirectionBounds_testMovingDownOutOfBounds_shouldReturn0" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GameTest.TestDirectionBounds_testMovingLeftCorrectly_shouldReturn1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="CPS2002_MartinMikhail" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="GameTest" />
+      <option name="METHOD_NAME" value="TestDirectionBounds_testMovingLeftCorrectly_shouldReturn1" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GameTest.TestDirectionBounds_testMovingRightCorrectly_shouldReturn1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="CPS2002_MartinMikhail" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="GameTest" />
+      <option name="METHOD_NAME" value="TestDirectionBounds_testMovingRightCorrectly_shouldReturn1" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="JetRunConfigurationType" factoryName="Kotlin">
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="WORKING_DIRECTORY" />
+      <module name="" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType" factoryName="Kotlin script">
+      <option name="filePath" />
+      <option name="vmParameters" />
+      <option name="alternativeJrePath" />
+      <option name="programParameters" />
+      <option name="passParentEnvs" value="true" />
+      <option name="workingDirectory" />
+      <option name="isAlternativeJrePathEnabled" value="false" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="WORKING_DIRECTORY" />
+      <module name="" />
+      <option name="filePath" />
+      <option name="vmParameters" />
+      <option name="alternativeJrePath" />
+      <option name="programParameters" />
+      <option name="passParentEnvs" value="true" />
+      <option name="workingDirectory" />
+      <option name="isAlternativeJrePathEnabled" value="false" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="WORKING_DIRECTORY" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+=======
+>>>>>>> 0ea9ea083460d8ac8c86d2e4c0ffd221852e6729
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.GameTest.TestDirectionBounds_testMovingRightCorrectly_shouldReturn1" />
+        <item itemvalue="JUnit.GameTest" />
+        <item itemvalue="JUnit.GameTest.TestDirectionBounds_testMovingLeftCorrectly_shouldReturn1" />
         <item itemvalue="Application.Game" />
+<<<<<<< HEAD
+        <item itemvalue="JUnit.GameTest.TestDirectionBounds_testMovingDownOutOfBounds_shouldReturn0" />
+=======
+>>>>>>> 0ea9ea083460d8ac8c86d2e4c0ffd221852e6729
       </list>
     </recent_temporary>
   </component>
@@ -231,6 +442,41 @@
     </task>
     <servers />
   </component>
+<<<<<<< HEAD
+  <component name="TestHistory">
+    <history-entry file="GameTest_TestDirectionBounds_testMovingRightOutOfBounds_shouldReturn0 - 2019.04.16 at 13h 30m 20s.xml">
+      <configuration name="GameTest.TestDirectionBounds_testMovingRightOutOfBounds_shouldReturn0" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="GameTest_TestDirectionBounds_testMovingDownOutOfBounds_shouldReturn0 - 2019.04.16 at 13h 30m 26s.xml">
+      <configuration name="GameTest.TestDirectionBounds_testMovingDownOutOfBounds_shouldReturn0" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="GameTest - 2019.04.16 at 13h 30m 52s.xml">
+      <configuration name="GameTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="GameTest - 2019.04.16 at 13h 36m 05s.xml">
+      <configuration name="GameTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="GameTest_TestDirectionBounds_testMovingRightCorrectly_shouldReturn1 - 2019.04.16 at 13h 36m 19s.xml">
+      <configuration name="GameTest.TestDirectionBounds_testMovingRightCorrectly_shouldReturn1" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="GameTest - 2019.04.16 at 13h 36m 43s.xml">
+      <configuration name="GameTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="GameTest - 2019.04.16 at 13h 36m 53s.xml">
+      <configuration name="GameTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="GameTest_TestDirectionBounds_testMovingRightCorrectly_shouldReturn1 - 2019.04.16 at 13h 37m 14s.xml">
+      <configuration name="GameTest.TestDirectionBounds_testMovingRightCorrectly_shouldReturn1" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="GameTest_TestDirectionBounds_testMovingRightCorrectly_shouldReturn1 - 2019.04.16 at 13h 42m 20s.xml">
+      <configuration name="GameTest.TestDirectionBounds_testMovingRightCorrectly_shouldReturn1" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="GameTest_TestDirectionBounds_testMovingLeftCorrectly_shouldReturn1 - 2019.04.16 at 13h 47m 45s.xml">
+      <configuration name="GameTest.TestDirectionBounds_testMovingLeftCorrectly_shouldReturn1" configurationId="JUnit" />
+    </history-entry>
+  </component>
+=======
+>>>>>>> 0ea9ea083460d8ac8c86d2e4c0ffd221852e6729
   <component name="TimeTrackingManager">
     <option name="totallyTimeSpent" value="2220000" />
   </component>
@@ -257,8 +503,16 @@
       <window_info anchor="bottom" id="Terminal" order="9" weight="0.32936078" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" weight="0.32872504" />
       <window_info anchor="bottom" id="Version Control" order="11" />
+<<<<<<< HEAD
+      <window_info anchor="bottom" id="Messages" order="12" weight="0.32827735" />
+      <window_info anchor="bottom" id="Thumbnails" order="13" visible="true" weight="0.32872504" />
+=======
       <window_info anchor="bottom" id="Messages" order="12" weight="0.32872504" />
+<<<<<<< HEAD
       <window_info anchor="bottom" id="Thumbnails" order="13" weight="0.32872504" />
+=======
+>>>>>>> 0ea9ea083460d8ac8c86d2e4c0ffd221852e6729
+>>>>>>> 7ab434e896bdcaa4a3ccf3fbc7113304f75ba22a
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -340,6 +594,10 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
+    <entry file="file://$PROJECT_DIR$/src/main/java/template.html" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/Position.java">
+=======
     <entry file="jar://C:/Program Files/Java/jdk-11.0.1/lib/src.zip!/java.base/java/util/Random.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="403">
@@ -352,14 +610,56 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
+>>>>>>> 0ea9ea083460d8ac8c86d2e4c0ffd221852e6729
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
           <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
+=======
+    <entry file="file://$PROJECT_DIR$/src/main/java/Map.java">
+      <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+        <state relative-caret-position="170">
+          <caret line="15" column="62" selection-start-line="15" selection-start-column="62" selection-end-line="15" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Player.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="386">
+          <caret line="61" column="16" selection-start-line="61" selection-start-column="16" selection-end-line="61" selection-end-column="16" />
+          <folding>
+            <element signature="e#226#236#0" expanded="true" />
+          </folding>
+=======
+        <state relative-caret-position="374">
+          <caret line="153" column="36" selection-start-line="153" selection-start-column="36" selection-end-line="153" selection-end-column="36" />
+>>>>>>> 0ea9ea083460d8ac8c86d2e4c0ffd221852e6729
+        </state>
+      </provider>
+    </entry>
+>>>>>>> 7ab434e896bdcaa4a3ccf3fbc7113304f75ba22a
     <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+        <state relative-caret-position="161">
+          <caret line="181" column="56" selection-start-line="181" selection-start-column="56" selection-end-line="181" selection-end-column="56" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/GameTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2618">
+          <caret line="158" column="75" selection-start-line="158" selection-start-column="75" selection-end-line="158" selection-end-column="75" />
+          <folding>
+            <element signature="imports" expanded="true" />
+=======
         <state relative-caret-position="501">
           <caret line="433" column="10" selection-start-line="433" selection-start-column="10" selection-end-line="433" selection-end-column="10" />
         </state>
@@ -371,6 +671,11 @@
           <caret line="321" column="23" lean-forward="true" selection-start-line="321" selection-start-column="23" selection-end-line="321" selection-end-column="23" />
           <folding>
             <element signature="imports" expanded="true" />
+<<<<<<< HEAD
+=======
+            <element signature="e#313#321#0" expanded="true" />
+>>>>>>> 0ea9ea083460d8ac8c86d2e4c0ffd221852e6729
+>>>>>>> 7ab434e896bdcaa4a3ccf3fbc7113304f75ba22a
           </folding>
         </state>
       </provider>
