@@ -1,5 +1,3 @@
-import java.awt.*;
-import java.io.*;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -8,7 +6,7 @@ import java.util.Scanner;
 public class Game {
     static int turns = 0;// Amount of turns which have been played
     int playerNum;// Amount of players
-    int mapSize;// Size of map n x n
+    public int mapSize;// Size of map n x n
 
     ArrayList<Player> players = new ArrayList<Player>();// ArrayList of players
     Map map = new Map();// map object
@@ -54,9 +52,6 @@ public class Game {
         playerNum = getPlayerNum();
         mapSize = getMapSize();    // Method to initialise map and players and start the main game loop
 
-        //The size of the map is passed to the map obejct
-        map.setMapSize(mapSize);
-
         System.out.println("Generating map of size "+mapSize+"x"+mapSize+" for "+playerNum+" players.");
 
         //The map is generated with the tile type randomly allocated
@@ -70,7 +65,7 @@ public class Game {
 
             //The random position of the player is set in a grass tile
             //The starting position obtained is also put into the player position array list
-            player.setStartingPosition(map.getGrassTiles());
+            player.position = player.setStartingPosition(map.getGrassTiles());
 
             players.add(player);
         }
@@ -188,13 +183,9 @@ public class Game {
                     validMove = true;
 
                     //Show position method used to see how player moves
-                    player.showPosition();
-                    player.move(direction);// STILL NEED TO FIX
-                    //player.showPosition();
-
-                    //When the player is moved the current position is placed in the positions list
-                    player.addCurrentPositionToPositions();
-
+                    System.out.println(player.position.toString());
+                    player.move(direction);
+                    System.out.println(player.position.toString());
 
                     //Add method here which compares the tile to the current player position and change his tile accordingly
                     //add methods for water event
