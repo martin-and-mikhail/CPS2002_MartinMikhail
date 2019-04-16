@@ -1,3 +1,6 @@
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -303,6 +306,5 @@ public class Game {
 
     //This method is used to generate the HTML files so that they can be opened in browser
     void generateHtmlFiles(){
-
     }
 }
