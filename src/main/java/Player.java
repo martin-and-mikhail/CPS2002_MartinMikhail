@@ -1,8 +1,12 @@
+import java.util.ArrayList;
 import java.util.Random;
 
 public class Player {
 
     Position position;
+
+    //This array list is used to hold the previous positions of all players
+    ArrayList<Position> positions = new ArrayList<Position>();
 
     public Player(){
 
@@ -108,7 +112,14 @@ public class Player {
         //The current position of the player is set to the start position
         position = startPosition;
 
+        //The start positions is added to the created player
+        positions.add(startPosition);
+
         return startPosition;
+    }
+
+    void addCurrentPositionToPositions(){
+        positions.add(position);
     }
 
 }

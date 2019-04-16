@@ -1,4 +1,5 @@
-import java.io.File;
+import java.awt.*;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -68,6 +69,7 @@ public class Game {
             Player player = new Player();
 
             //The random position of the player is set in a grass tile
+            //The starting position obtained is also put into the player position array list
             player.setStartingPosition(map.getGrassTiles());
 
             players.add(player);
@@ -186,11 +188,17 @@ public class Game {
                     validMove = true;
 
                     //Show position method used to see how player moves
-                    //player.showPosition();
+                    player.showPosition();
                     player.move(direction);// STILL NEED TO FIX
                     //player.showPosition();
 
+                    //When the player is moved the current position is placed in the positions list
+                    player.addCurrentPositionToPositions();
+
+
                     //Add method here which compares the tile to the current player position and change his tile accordingly
+                    //add methods for water event
+                    //add method for treasure event
 
                 }
             }
@@ -295,6 +303,10 @@ public class Game {
         else{
             return c;
         }
+    }
+
+    void grassTileEvent(Player player){
+
     }
 
 

@@ -207,6 +207,50 @@ public class Map {
 
     }
 
+    //Comapres the current player tile with a tile the tiles in the grid to obtain the tile type
+    //Then execute the event associated with each tile
+    public void compareTiles(Player player){
+
+        //variable which holds the tile type
+        int tileType;
+
+        //Now we have obtained the tile type of the current tile the player is on
+        tileType = tiles[player.position.x][player.position.y][0];
+
+        switch(tileType){
+            case 0:
+                grassTileEvent();
+                break;
+
+            case 1:
+                waterTileEvent(player);
+            break;
+
+            case 2:
+                treasureTileEvent(player);
+                break;
+
+        }
+
+    }
+
+    //Event which occurs when a player is on a grass tile
+    void grassTileEvent(){
+        // do nothing really as position stays the same so probably delete this method l8r
+    }
+
+    //Event which occure when a player is on a water tile
+    void waterTileEvent(Player player){
+
+        //The position of the current player is set to the starting position which is saved in the positions array list
+        player.position = player.positions.get(0);
+
+    }
+
+    void treasureTileEvent(Player player){
+        //Do something to stop game and make the current player win
+    }
+
 
 
 
