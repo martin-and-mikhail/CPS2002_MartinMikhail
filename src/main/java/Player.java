@@ -23,30 +23,37 @@ public class Player {
     //The player moves to the next tile depending on the inputted direction
     void move(char direction){
 
+        //A new object needs to be created so that the array list would not contain all the same items
+        //Maybe needs to change after more turns
+        //If needs to change just add a new object somewhere or the problem can be that the current position is not updated
+        //However it is supposed to be ok
+        Position position = new Position(this.position.x, this.position.y);
+
         //A switch statement is used to represent all possible directions
         switch(direction){
             case 'l':
                 // change player's position
-                position.x --;
+                this.position.x --;
                 // add position to list of previous positions
                 positions.add(position);
+                // add direction to list of previous directions
                 directions.add("left");
                 break;
 
             case 'r':
-                position.x ++;
+                this.position.x ++;
                 positions.add(position);
                 directions.add("right");
                 break;
 
             case 'u':
-                position.y --;
+                this.position.y --;
                 positions.add(position);
                 directions.add("up");
                 break;
 
             case 'd':
-                position.y ++;
+                this.position.y ++;
                 positions.add(position);
                 directions.add("down");
                 break;
