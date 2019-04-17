@@ -11,7 +11,9 @@ public class Game {
     int playerNum;// Amount of players
 
     private static ArrayList<Player> players = new ArrayList<Player>();// ArrayList of players
-    private Map map = new Map();// map object
+
+    //The reasons the map is static is since everyone will be using the same map
+    private static Map map = new Map();// map object
 
     final private int minPlayers = 2;
     final private int maxPlayersFirstRange = 4;
@@ -35,15 +37,35 @@ public class Game {
         while (true) {
             turns++;// incremenet amount of turns which have been played
 
+            //Generating the initial html files here before there are any moves
             //Generating an html file for each player in the game
             for(int i = 0; i < game.players.size(); i++){
 
-                game.generateHtmlFile(i, 5);
+                game.generateHtmlFile(i, map.mapSize, " ");
 
             }
 
+            System.out.println("Your game files have been generated");
+
             // get each players desired direction of movement for the current turn
             game.directionsLoop();
+
+            //Here the tile type of the current tile is checked
+            //This is so as to take action on the player accordingly
+            for(Player player: players){
+                for(int i = 0; i < player.positions.size(); i++){
+
+                    System.out.println(player.positions.get(i));
+
+                }
+            }
+
+            //Generating an html file for each player in the game
+            for(int i = 0; i < game.players.size(); i++){
+
+                game.generateHtmlFile(i, map.mapSize, players.get(i).directions.get(game.getLastDirectionsElement(i)));
+
+            }
 
             // if the treasure has been found by one of the players
             foundTreasure = true;
@@ -191,12 +213,9 @@ public class Game {
                     validMove = true;
 
                     //Show position method used to see how player moves
-                    System.out.println(player.position.toString());
+                    System.out.println("Current position is " + player.position.toString());
                     player.move(direction);
-
-                    //Add method here which compares the tile to the current player position and change his tile accordingly
-                    //add methods for water event
-                    //add method for treasure event
+                    System.out.println("Position after moving is" + player.position.toString());
 
                 }
             }
@@ -308,7 +327,7 @@ public class Game {
 
 
     //This method is used to generate the HTML files so that they can be opened in browser
-    void generateHtmlFile(int playerIndex, int mapSize) {
+    void generateHtmlFile(int playerIndex, int mapSize, String direction) {
 
         //This variable is used to hols the type of tile which the player has went on
         int tileType;
@@ -407,7 +426,7 @@ public class Game {
                 "    \n" +
                 //First we need to set a header for each game map which each player sees
                 "     <p> Player " + (playerIndex + 1) +"</p>\n" +
-                "     <p> Moves: </p> \n" +//DIRECTION GOES HERE Dir1 Dir2
+                "     <p> Moves: " +  direction +" </p> \n" +
                 "    </div>\n" +
                 "    \n" );
 
@@ -419,11 +438,11 @@ public class Game {
             for (int y = 0; y < mapSize; y++) {
 
                 //Check if the player went on this tile already
-                if(players.get(playerIndex).ifTileExists(x, y)){
+                //The x and y coordinates are inverted here so as to build the map grid well
+                if(players.get(playerIndex).ifTileExists(y, x)){
 
                     //Obtain the tile type of the current tile
-                    tileType = map.getTileType(x,y);
-                    System.out.println("Tile type is " +  tileType);
+                    tileType = map.getTileType(y,x);
                 }
 
                 else{
@@ -473,5 +492,9 @@ public class Game {
         }
         System.out.println("Wrote to file");
 
+    }
+
+    int getLastDirectionsElement(int playerIndex){
+       return players.get(playerIndex).directions.size() - 1;
     }
 }

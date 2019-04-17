@@ -19,11 +19,15 @@ public class Map {
     int waterCount = 0;
     int treasureCount = 0;
 
+    //Constructor for the map object
     public Map(){
     }
 
-    //The method is used to randomly allocate the tile types of all the tiles at the start of the game
-    private void setTiles(){
+    //This method is used on start up to create the map
+    //All tiles are randomly assigned a tile type
+    void generate(){
+
+        tiles = new int[mapSize][mapSize][1];
 
         Random random = new Random();
 
@@ -104,7 +108,7 @@ public class Map {
                         default:
                             //This case is accessed only when a random number which is not 0,1 or 2 is obtained
                             System.out.println("Invalid random number obtained");
-                        }
+                    }
 
 
                 }
@@ -112,27 +116,6 @@ public class Map {
                 while (tileSetFull);
             }
         }
-
-    }
-
-    //This method is used to return the tile type of the current tile
-    private void getTileType(int tileNum){
-
-        switch (tileNum){
-
-            case 0:
-                System.out.println("This is a grass tile");
-                break;
-
-            case 1:
-                System.out.println("This is a water tile");
-                break;
-
-            case 2:
-                System.out.println("This is a treasure tile");
-                break;
-        }
-
     }
 
     //Method used to show the map
@@ -143,15 +126,6 @@ public class Map {
                 System.out.println("(" + x  + "," + y + ") -> " + tiles[x][y][0]);
             }
         }
-    }
-
-    //This method is used on start up to create the map
-    void generate(){
-        tiles = new int[mapSize][mapSize][1];
-
-        setTiles();
-
-        //Maybe place the set tiles method in generate
     }
 
     //This method is used to create a 2d array which holds the map location of all grass tiles
@@ -188,37 +162,50 @@ public class Map {
 
     }
 
-    //Comapres the current player tile with a tile the tiles in the grid to obtain the tile type
-    //Then execute the event associated with each tile
-    public void compareTiles(Player player){
-
-        //variable which holds the tile type
-        int tileType;
-
-        //Now we have obtained the tile type of the current tile the player is on
-        tileType = tiles[player.position.x][player.position.y][0];
-
-        switch(tileType){
-            case 0:
-                grassTileEvent();
-                break;
-
-            case 1:
-                waterTileEvent(player);
-            break;
-
-            case 2:
-                treasureTileEvent(player);
-                break;
-
-        }
-
-    }
-
     //This method is used to get the tile type of the current tile
     int getTileType(int x, int y){
 
         return tiles[x][y][0];
+    }
+
+    void evaluateCurrentPlayerTile(Player player){
+
+        int tileType = tiles[player.position.x][player.position.y][0];
+
+        switch(tileType){
+
+            //When grass tile
+            case 0:
+            //Nothing happens since a player is able to walk on grass
+                break;
+
+            //When water tile
+            case 1:
+                //Get the start position of the current player
+                int startPosx = player.positions.get(0).x;
+                int startPosy = player.positions.get(0).y;
+
+                //The current position of the current player is reset to the start position
+                player.position.x = startPosx;
+                player.position.y = startPosy;
+
+                //A new object is created which holds the start position
+                Position startPosition = new Position(startPosx, startPosy);
+                player.positions.add(startPosition);
+                break;
+
+            //when treasure
+            case 2:
+                //game stopes and player wins
+
+                //Maybe add a variable in player for wins
+                //If so game stops
+                break;
+
+            default:
+                break;
+        }
+
     }
 
     //Event which occurs when a player is on a grass tile
