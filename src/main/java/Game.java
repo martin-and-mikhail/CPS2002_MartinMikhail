@@ -7,13 +7,13 @@ import java.util.Scanner;
 
 
 public class Game {
-    static int turns = 0;// Amount of turns which have been played
+    int turns = 0;// Amount of turns which have been played
     int playerNum;// Amount of players
 
-    private static ArrayList<Player> players = new ArrayList<Player>();// ArrayList of players
+    ArrayList<Player> players = new ArrayList<Player>();// ArrayList of players
 
     //The reasons the map is static is since everyone will be using the same map
-    private static Map map = new Map();// map object
+    Map map = new Map();// map object
 
     final private int minPlayers = 2;
     final private int maxPlayersFirstRange = 4;
@@ -26,58 +26,9 @@ public class Game {
 
     private Scanner scanner;// to be used throughout class
 
-    public static void main(String[] args) {
-        boolean foundTreasure = false;// will be set to true when the treasure is found by one of the players
-
-        System.out.println("Welcome to the Treasure Map Game by Martin Bartolo and Mikhail Cassar");
-        Game game = new Game();
-        game.startGame();
-
-        //This is the game loop
-        while (true) {
-            turns++;// incremenet amount of turns which have been played
-
-            //Generating the initial html files here before there are any moves
-            //Generating an html file for each player in the game
-            for(int i = 0; i < game.players.size(); i++){
-
-                game.generateHtmlFile(i, map.mapSize, " ");
-
-            }
-
-            System.out.println("Your game files have been generated");
-
-            // get each players desired direction of movement for the current turn
-            game.directionsLoop();
-
-            //Here the tile type of the current tile is checked
-            //This is so as to take action on the player accordingly
-            for(Player player: players){
-                for(int i = 0; i < player.positions.size(); i++){
-
-                    System.out.println(player.positions.get(i));
-
-                }
-            }
-
-            //Generating an html file for each player in the game
-            for(int i = 0; i < game.players.size(); i++){
-
-                game.generateHtmlFile(i, map.mapSize, players.get(i).directions.get(game.getLastDirectionsElement(i)));
-
-            }
-
-            // if the treasure has been found by one of the players
-            foundTreasure = true;
-            if (foundTreasure) {
-                //Congratulations to Player X, you won the game!!
-                break;
-            }
-        }
-    }
 
     // Method to initialise map and players and start the main game loop
-    private void startGame() {
+    void startGame() {
         playerNum = getPlayerNum();
         int mapSize = getMapSize();    // Method to initialise map and players and start the main game loop
 
@@ -102,7 +53,7 @@ public class Game {
     }
 
     // Method to get the amount of players from the user
-    private int getPlayerNum() {
+    int getPlayerNum() {
         int num = 0;
         System.out.println("How many players will be playing? (Pick a number between 2 and 8)");
         while (true) {
@@ -140,7 +91,7 @@ public class Game {
     }
 
     // Method to get the map size from the user
-    private int getMapSize() {
+    int getMapSize() {
         int size = 0;
         System.out.println("How large would you like the map to be? (Map will be n x n)");
         while (true) {
@@ -192,8 +143,10 @@ public class Game {
         }
     }
 
+
+
     // Method to get direction which each player would like to move in for the current turn
-    private void directionsLoop() {
+    void directionsLoop() {
         char direction;// (u, d, l or r) depending on user's desired direction of movement
         boolean validMove;// condition to break out of while loop when a valid direction is entered
 
@@ -215,6 +168,9 @@ public class Game {
                     //Show position method used to see how player moves
                     System.out.println("Current position is " + player.position.toString());
                     player.move(direction);
+
+                    //Triggers event for corresponding tile type
+                    map.evaluateCurrentPlayerTile(player);
                     System.out.println("Position after moving is" + player.position.toString());
 
                 }
@@ -332,6 +288,9 @@ public class Game {
         //This variable is used to hols the type of tile which the player has went on
         int tileType;
 
+        //This variable checks if the player is currently on this tile
+        boolean playerHere;
+
         //Direction can be used when changing allowign the user to make a move before generating the html code
         //Will work on this tomorrow
 
@@ -437,9 +396,18 @@ public class Game {
         for (int x = 0; x < mapSize; x++) {
             for (int y = 0; y < mapSize; y++) {
 
+                //playerHere is set to false at each iteration
+                playerHere = false;
+
                 //Check if the player went on this tile already
                 //The x and y coordinates are inverted here so as to build the map grid well
                 if(players.get(playerIndex).ifTileExists(y, x)){
+
+                    //If the tile exists then the player must be on one of these tiles
+                    //Checking if the current tile is the players current position on the map
+                    if(players.get(playerIndex).position.x == y && players.get(playerIndex).position.y == x){
+                        playerHere = true;
+                    }
 
                     //Obtain the tile type of the current tile
                     tileType = map.getTileType(y,x);
@@ -453,23 +421,61 @@ public class Game {
                 switch(tileType){
                     case 0:
 
-                        htmlText.append("<div class=\"cellGreen\"></div>\n");
+                        if(playerHere){
+
+                            htmlText.append("<div class=\"cellGreen\">" +
+                                    "<img src=\"player.png\" alt=\"player\">" +
+                                    "</div>\n");
+                        }
+
+                        else{
+
+                            htmlText.append("<div class=\"cellGreen\"></div>\n");
+
+                        }
 
                         break;
 
                     case 1:
 
-                        htmlText.append("<div class=\"cellBlue\"></div>\n");
+                        if(playerHere){
+
+                            htmlText.append("<div class=\"cellBlue\">" +
+                                    "<img src=\"player.png\" alt=\"player\">" +
+                                    "</div>\n");
+                        }
+
+                        else{
+
+                            htmlText.append("<div class=\"cellBlue\"></div>\n");
+
+                        }
+
+
 
                         break;
 
                     case 2:
 
-                        htmlText.append("<div class=\"cellYellow\"></div>\n");
+                        if(playerHere){
+
+                            htmlText.append("<div class=\"cellYellow\">" +
+                                    "<img src=\"player.png\" alt=\"player\">" +
+                                    "</div>\n");
+
+                        }
+
+                        else{
+
+                            htmlText.append("<div class=\"cellYellow\"></div>\n");
+
+                        }
 
                         break;
 
                     default:
+
+                        //No need to check for player here as a player can never be on a gray tile
 
                         htmlText.append("<div class=\"cellGray\"></div>\n");
 
@@ -498,3 +504,4 @@ public class Game {
        return players.get(playerIndex).directions.size() - 1;
     }
 }
+

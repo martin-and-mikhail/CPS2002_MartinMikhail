@@ -181,25 +181,28 @@ public class Map {
 
             //When water tile
             case 1:
+
                 //Get the start position of the current player
-                int startPosx = player.positions.get(0).x;
-                int startPosy = player.positions.get(0).y;
+                int startPositionx = player.positions.get(0).x;
+                int startPositiony = player.positions.get(0).y;
+
+                //The start position of the current player is added again to the visited tiles
+                player.addToPositions(startPositionx, startPositiony);
 
                 //The current position of the current player is reset to the start position
-                player.position.x = startPosx;
-                player.position.y = startPosy;
+                player.position.x = startPositionx;
+                player.position.y = startPositiony;
 
-                //A new object is created which holds the start position
-                Position startPosition = new Position(startPosx, startPosy);
-                player.positions.add(startPosition);
+                //Thus the player is set to the start tile again
+                System.out.println("Player stepped on a blue tile");
                 break;
 
             //when treasure
             case 2:
-                //game stopes and player wins
 
-                //Maybe add a variable in player for wins
-                //If so game stops
+                //The foundTreasure element is set to true
+                player.setFoundTreasure(true);
+
                 break;
 
             default:
@@ -213,7 +216,7 @@ public class Map {
         // do nothing really as position stays the same so probably delete this method l8r
     }
 
-    //Event which occure when a player is on a water tile
+    //Event which occurs when a player is on a water tile
     void waterTileEvent(Player player){
 
         //The position of the current player is set to the starting position which is saved in the positions array list

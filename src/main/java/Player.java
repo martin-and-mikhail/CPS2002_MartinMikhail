@@ -11,6 +11,9 @@ public class Player {
     //This array list is used to hold the previous directions of the player
     ArrayList<String> directions = new ArrayList<String>();
 
+    //Check to see if a player has found the treasure
+    boolean foundTreasure;
+
     public Player(){
 
     }
@@ -20,6 +23,28 @@ public class Player {
 
     }
 
+    //Method used to pass a new position by value
+    public void addToPositions(int posx, int posy){
+
+        Position position = new Position(posx, posy);
+
+        positions.add(position);
+        //This just used
+//        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!");
+//        System.out.println(positions);
+    }
+
+    public void setFoundTreasure(boolean foundTreasure){
+
+        this.foundTreasure = foundTreasure;
+
+    }
+
+    public boolean getFoundTreasure(){
+
+        return foundTreasure;
+    }
+
     //The player moves to the next tile depending on the inputted direction
     void move(char direction){
 
@@ -27,7 +52,6 @@ public class Player {
         //Maybe needs to change after more turns
         //If needs to change just add a new object somewhere or the problem can be that the current position is not updated
         //However it is supposed to be ok
-        Position position = new Position(this.position.x, this.position.y);
 
         //A switch statement is used to represent all possible directions
         switch(direction){
@@ -35,26 +59,27 @@ public class Player {
                 // change player's position
                 this.position.x --;
                 // add position to list of previous positions
-                positions.add(position);
+                addToPositions(position.x, position.y);
+                //positions.add(pos);
                 // add direction to list of previous directions
                 directions.add("left");
                 break;
 
             case 'r':
                 this.position.x ++;
-                positions.add(position);
+                addToPositions(position.x, position.y);
                 directions.add("right");
                 break;
 
             case 'u':
                 this.position.y --;
-                positions.add(position);
+                addToPositions(position.x, position.y);
                 directions.add("up");
                 break;
 
             case 'd':
                 this.position.y ++;
-                positions.add(position);
+                addToPositions(position.x, position.y);
                 directions.add("down");
                 break;
 
@@ -68,7 +93,7 @@ public class Player {
 
         Random random = new Random();
 
-        Position startPosition;
+        Position position = new Position(0, 0);
 
         //Obtaining the length of grassTiles so as to be able to know from which range to obtain a random number
         int grassCount = grassTiles.length;
@@ -77,15 +102,16 @@ public class Player {
         int grassTilesIndex = random.nextInt(grassCount);
 
         //The start position is set
-        startPosition = new Position(grassTiles[grassTilesIndex][0], grassTiles[grassTilesIndex][1]);
+        position.x = grassTiles[grassTilesIndex][0];
+        position.y = grassTiles[grassTilesIndex][1];
 
         //The current position of the player is set to the start position
-        position = startPosition;
+        this.position = position;
 
         //The start positions is added to the created player
-        positions.add(startPosition);
+        addToPositions(position.x, position.y);
 
-        return startPosition;
+        return position;
     }
 
     //This method is used in the game class to check if the player already went on the current position in the map grid
