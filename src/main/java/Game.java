@@ -66,7 +66,7 @@ public class Game {
             int i = 0;
             for(Player player: game.players){
 
-                if(player.getFoundTreasure()){
+                if(player.foundTreasure){
                     foundTreasure = true;
                     winners[i] = true;
                 }

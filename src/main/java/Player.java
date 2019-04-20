@@ -14,11 +14,11 @@ public class Player {
     //Check to see if a player has found the treasure
     boolean foundTreasure;
 
-    public Player(){
+    Player(){
 
     }
 
-    public Player(Position position){
+    Player(Position position){
        this.position = position;
 
     }
@@ -32,17 +32,6 @@ public class Player {
         //This just used
 //        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!");
 //        System.out.println(positions);
-    }
-
-    public void setFoundTreasure(boolean foundTreasure){
-
-        this.foundTreasure = foundTreasure;
-
-    }
-
-    public boolean getFoundTreasure(){
-
-        return foundTreasure;
     }
 
     //The player moves to the next tile depending on the inputted direction

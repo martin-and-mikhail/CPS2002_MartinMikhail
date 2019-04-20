@@ -2,17 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e9f6fb8f-a2a2-4fa8-894d-77361c58593c" name="Default Changelist" comment="Added main method to Game class, &#10;cleaned up game class, &#10;changed player.png, &#10;removed GUI code text file.">
-      <change beforePath="$PROJECT_DIR$/ map_player_1.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ map_player_2.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ map_player_3.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ map_player_4.html" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/MapTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/player.png" beforeDir="false" afterPath="$PROJECT_DIR$/player.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Map.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Map.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/extraGuiCode" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/GameTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/GameTest.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -30,22 +24,13 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Game.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="108">
-              <caret line="363" column="95" selection-start-line="363" selection-start-column="95" selection-end-line="363" selection-end-column="95" />
+            <state relative-caret-position="247">
+              <caret line="68" column="41" lean-forward="true" selection-start-line="68" selection-start-column="41" selection-end-line="68" selection-end-column="41" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#20399#20400#0" expanded="true" />
-                <element signature="e#20467#20468#0" expanded="true" />
+                <element signature="e#20530#20531#0" expanded="true" />
+                <element signature="e#20598#20599#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/test/java/GameTest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="413">
-              <caret line="253" column="5" lean-forward="true" selection-start-line="253" selection-start-column="5" selection-end-line="253" selection-end-column="5" />
             </state>
           </provider>
         </entry>
@@ -53,8 +38,28 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Map.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="139">
-              <caret line="125" column="34" selection-start-line="125" selection-start-column="27" selection-end-line="125" selection-end-column="34" />
+            <state relative-caret-position="-80">
+              <caret line="169" column="34" lean-forward="true" selection-start-line="169" selection-start-column="9" selection-end-line="169" selection-end-column="34" />
+              <folding>
+                <element signature="e#5870#5871#0" expanded="true" />
+                <element signature="e#5907#5908#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/test/java/MapTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="251">
+              <caret line="150" column="80" selection-start-line="150" selection-start-column="80" selection-end-line="150" selection-end-column="80" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#182#183#0" expanded="true" />
+                <element signature="e#215#216#0" expanded="true" />
+                <element signature="e#255#256#0" expanded="true" />
+                <element signature="e#282#283#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -62,8 +67,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Player.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="139">
-              <caret line="33" column="26" selection-start-line="33" selection-start-column="21" selection-end-line="33" selection-end-column="26" />
+            <state relative-caret-position="238">
+              <caret line="20" column="4" selection-start-line="20" selection-start-column="4" selection-end-line="20" selection-end-column="4" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#361#369#0" expanded="true" />
@@ -101,10 +106,11 @@
       <find>playerNum</find>
       <find>after</find>
       <find>position</find>
-      <find>print</find>
-      <find>println</find>
       <find>if</find>
       <find>crea</find>
+      <find>println</find>
+      <find>getGra</find>
+      <find>print</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -117,11 +123,12 @@
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/test/java/CalculatorUnitTests.java" />
         <option value="$PROJECT_DIR$/src/main/java/Calculator.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Map.java" />
         <option value="$PROJECT_DIR$/src/main/java/Main.java" />
+        <option value="$PROJECT_DIR$/src/test/java/GameTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/Player.java" />
         <option value="$PROJECT_DIR$/src/main/java/Game.java" />
-        <option value="$PROJECT_DIR$/src/test/java/GameTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Map.java" />
+        <option value="$PROJECT_DIR$/src/test/java/MapTest.java" />
       </list>
     </option>
   </component>
@@ -259,48 +266,51 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.GameTest.TestGenerateHtmlFiles_testNewFileWithDirection_shouldCreateFileAndReturn1">
-    <configuration name="Game" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Game" />
-      <module name="CPS2002_MartinMikhail" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="GameTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.MapTest">
+    <configuration name="MapTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="CPS2002_MartinMikhail" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="GameTest" />
+      <option name="MAIN_CLASS_NAME" value="MapTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="GameTest.TestGenerateHtmlFiles_testNewFileWithDirection_shouldCreateFileAndReturn1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="MapTest.TestEvaluateCurrentPlayerTile_testGrassTile_shouldDoNothing" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="CPS2002_MartinMikhail" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="GameTest" />
-      <option name="METHOD_NAME" value="TestGenerateHtmlFiles_testNewFileWithDirection_shouldCreateFileAndReturn1" />
+      <option name="MAIN_CLASS_NAME" value="MapTest" />
+      <option name="METHOD_NAME" value="TestEvaluateCurrentPlayerTile_testGrassTile_shouldDoNothing" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="GameTest.TestGenerateHtmlFiles_testNewFile_shouldCreateFileAndReturn1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="MapTest.TestEvaluateCurrentPlayerTile_testWaterTile_shouldMoveBackToStartingPosition" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="CPS2002_MartinMikhail" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="GameTest" />
-      <option name="METHOD_NAME" value="TestGenerateHtmlFiles_testNewFile_shouldCreateFileAndReturn1" />
+      <option name="MAIN_CLASS_NAME" value="MapTest" />
+      <option name="METHOD_NAME" value="TestEvaluateCurrentPlayerTile_testWaterTile_shouldMoveBackToStartingPosition" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="GameTest.TestGenerateHtmlFiles_testNormalFileNoDirection_shouldCreateFileAndReturn1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="MapTest.TestGetGrassTiles_testSomeGrass_oneElementShouldHaveGrassValue" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="CPS2002_MartinMikhail" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="GameTest" />
-      <option name="METHOD_NAME" value="TestGenerateHtmlFiles_testNormalFileNoDirection_shouldCreateFileAndReturn1" />
+      <option name="MAIN_CLASS_NAME" value="MapTest" />
+      <option name="METHOD_NAME" value="TestGetGrassTiles_testSomeGrass_oneElementShouldHaveGrassValue" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MapTest.TestMapGenerate_shouldGenerateMapWithoutErrorsAndDisplayIt" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="CPS2002_MartinMikhail" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="MapTest" />
+      <option name="METHOD_NAME" value="TestMapGenerate_shouldGenerateMapWithoutErrorsAndDisplayIt" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -355,11 +365,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.GameTest.TestGenerateHtmlFiles_testNewFileWithDirection_shouldCreateFileAndReturn1" />
-        <item itemvalue="JUnit.GameTest" />
-        <item itemvalue="JUnit.GameTest.TestGenerateHtmlFiles_testNewFile_shouldCreateFileAndReturn1" />
-        <item itemvalue="JUnit.GameTest.TestGenerateHtmlFiles_testNormalFileNoDirection_shouldCreateFileAndReturn1" />
-        <item itemvalue="Application.Game" />
+        <item itemvalue="JUnit.MapTest" />
+        <item itemvalue="JUnit.MapTest.TestEvaluateCurrentPlayerTile_testWaterTile_shouldMoveBackToStartingPosition" />
+        <item itemvalue="JUnit.MapTest.TestEvaluateCurrentPlayerTile_testGrassTile_shouldDoNothing" />
+        <item itemvalue="JUnit.MapTest.TestGetGrassTiles_testSomeGrass_oneElementShouldHaveGrassValue" />
+        <item itemvalue="JUnit.MapTest.TestMapGenerate_shouldGenerateMapWithoutErrorsAndDisplayIt" />
       </list>
     </recent_temporary>
   </component>
@@ -417,32 +427,35 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="CalculatorUnitTests - 2019.04.10 at 11h 24m 56s.xml">
-      <configuration name="CalculatorUnitTests" configurationId="JUnit" />
+    <history-entry file="MapTest_TestGetGrassTiles_testSomeGrass_oneElementShouldHaveGrassValue - 2019.04.20 at 17h 14m 49s.xml">
+      <configuration name="MapTest.TestGetGrassTiles_testSomeGrass_oneElementShouldHaveGrassValue" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="CalculatorUnitTests - 2019.04.10 at 11h 48m 42s.xml">
-      <configuration name="CalculatorUnitTests" configurationId="JUnit" />
+    <history-entry file="MapTest_TestGetGrassTiles_testSomeGrass_oneElementShouldHaveGrassValue - 2019.04.20 at 17h 15m 47s.xml">
+      <configuration name="MapTest.TestGetGrassTiles_testSomeGrass_oneElementShouldHaveGrassValue" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="GameTest - 2019.04.20 at 14h 01m 25s.xml">
-      <configuration name="GameTest" configurationId="JUnit" />
+    <history-entry file="MapTest - 2019.04.20 at 17h 18m 07s.xml">
+      <configuration name="MapTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="GameTest_TestGenerateHtmlFiles_testNormalFileNoDirection_shouldCreateFileAndReturn1 - 2019.04.20 at 14h 03m 22s.xml">
-      <configuration name="GameTest.TestGenerateHtmlFiles_testNormalFileNoDirection_shouldCreateFileAndReturn1" configurationId="JUnit" />
+    <history-entry file="MapTest - 2019.04.20 at 17h 25m 40s.xml">
+      <configuration name="MapTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="GameTest_TestGenerateHtmlFiles_testNormalFileNoDirection_shouldCreateFileAndReturn1 - 2019.04.20 at 14h 04m 58s.xml">
-      <configuration name="GameTest.TestGenerateHtmlFiles_testNormalFileNoDirection_shouldCreateFileAndReturn1" configurationId="JUnit" />
+    <history-entry file="MapTest - 2019.04.20 at 17h 26m 15s.xml">
+      <configuration name="MapTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="GameTest_TestGenerateHtmlFiles_testNewFile_shouldCreateFileAndReturn1 - 2019.04.20 at 14h 08m 43s.xml">
-      <configuration name="GameTest.TestGenerateHtmlFiles_testNewFile_shouldCreateFileAndReturn1" configurationId="JUnit" />
+    <history-entry file="MapTest - 2019.04.20 at 17h 26m 25s.xml">
+      <configuration name="MapTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="GameTest - 2019.04.20 at 14h 09m 15s.xml">
-      <configuration name="GameTest" configurationId="JUnit" />
+    <history-entry file="MapTest - 2019.04.20 at 17h 26m 39s.xml">
+      <configuration name="MapTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="GameTest_TestGenerateHtmlFiles_testNewFileWithDirection_shouldCreateFileAndReturn1 - 2019.04.20 at 14h 11m 22s.xml">
-      <configuration name="GameTest.TestGenerateHtmlFiles_testNewFileWithDirection_shouldCreateFileAndReturn1" configurationId="JUnit" />
+    <history-entry file="MapTest_TestEvaluateCurrentPlayerTile_testGrassTile_shouldDoNothing - 2019.04.20 at 17h 33m 39s.xml">
+      <configuration name="MapTest.TestEvaluateCurrentPlayerTile_testGrassTile_shouldDoNothing" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="GameTest_TestGenerateHtmlFiles_testNewFileWithDirection_shouldCreateFileAndReturn1 - 2019.04.20 at 14h 11m 35s.xml">
-      <configuration name="GameTest.TestGenerateHtmlFiles_testNewFileWithDirection_shouldCreateFileAndReturn1" configurationId="JUnit" />
+    <history-entry file="MapTest_TestEvaluateCurrentPlayerTile_testWaterTile_shouldMoveBackToStartingPosition - 2019.04.20 at 17h 38m 41s.xml">
+      <configuration name="MapTest.TestEvaluateCurrentPlayerTile_testWaterTile_shouldMoveBackToStartingPosition" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="MapTest_TestEvaluateCurrentPlayerTile_testWaterTile_shouldMoveBackToStartingPosition - 2019.04.20 at 17h 40m 09s.xml">
+      <configuration name="MapTest.TestEvaluateCurrentPlayerTile_testWaterTile_shouldMoveBackToStartingPosition" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
@@ -452,7 +465,7 @@
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25586355" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25586355" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -461,7 +474,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32936078" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.46095446" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.46045503" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.437788" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -567,16 +580,8 @@
     <entry file="file://$PROJECT_DIR$/player.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/ map_player_1.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="4" selection-start-line="2" selection-start-column="4" selection-end-line="2" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/ map_player_1.html" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/Main.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/Position.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
@@ -584,10 +589,32 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/GameTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="20" column="4" selection-start-line="20" selection-start-column="4" selection-end-line="26" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Game.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="68" column="41" lean-forward="true" selection-start-line="68" selection-start-column="41" selection-end-line="68" selection-end-column="41" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#20530#20531#0" expanded="true" />
+            <element signature="e#20598#20599#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Player.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="139">
-          <caret line="33" column="26" selection-start-line="33" selection-start-column="21" selection-end-line="33" selection-end-column="26" />
+        <state relative-caret-position="238">
+          <caret line="20" column="4" selection-start-line="20" selection-start-column="4" selection-end-line="20" selection-end-column="4" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#361#369#0" expanded="true" />
@@ -597,27 +624,26 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Map.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="139">
-          <caret line="125" column="34" selection-start-line="125" selection-start-column="27" selection-end-line="125" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Game.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="363" column="95" selection-start-line="363" selection-start-column="95" selection-end-line="363" selection-end-column="95" />
+        <state relative-caret-position="-80">
+          <caret line="169" column="34" lean-forward="true" selection-start-line="169" selection-start-column="9" selection-end-line="169" selection-end-column="34" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#20399#20400#0" expanded="true" />
-            <element signature="e#20467#20468#0" expanded="true" />
+            <element signature="e#5870#5871#0" expanded="true" />
+            <element signature="e#5907#5908#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/GameTest.java">
+    <entry file="file://$PROJECT_DIR$/src/test/java/MapTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="413">
-          <caret line="253" column="5" lean-forward="true" selection-start-line="253" selection-start-column="5" selection-end-line="253" selection-end-column="5" />
+        <state relative-caret-position="251">
+          <caret line="150" column="80" selection-start-line="150" selection-start-column="80" selection-end-line="150" selection-end-column="80" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#182#183#0" expanded="true" />
+            <element signature="e#215#216#0" expanded="true" />
+            <element signature="e#255#256#0" expanded="true" />
+            <element signature="e#282#283#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
