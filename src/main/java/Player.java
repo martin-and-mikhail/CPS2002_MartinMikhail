@@ -48,11 +48,6 @@ public class Player {
     //The player moves to the next tile depending on the inputted direction
     void move(char direction){
 
-        //A new object needs to be created so that the array list would not contain all the same items
-        //Maybe needs to change after more turns
-        //If needs to change just add a new object somewhere or the problem can be that the current position is not updated
-        //However it is supposed to be ok
-
         //A switch statement is used to represent all possible directions
         switch(direction){
             case 'l':

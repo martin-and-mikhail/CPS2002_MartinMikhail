@@ -5,7 +5,7 @@ import org.junit.Test;
 import java.util.Scanner;
 
 public class GameTest {
-    Game game;
+    private Game game;
 
     @Before
     public void setup(){
@@ -89,74 +89,66 @@ public class GameTest {
 
     @Test
     public void TestDirectionBounds_testMovingUpOutOfBounds_shouldReturn0(){
-        Map map = new Map();
-        map.mapSize = 5;
+        game.map.mapSize = 5;
         Position position = new Position(4,0);
         Player player = new Player(position);
-        Assert.assertEquals(0,game.checkOutOfBounds('u',player, map.mapSize));
+        Assert.assertEquals(0,game.checkOutOfBounds('u',player, game.map.mapSize));
     }
 
     @Test
     public void TestDirectionBounds_testMovingLeftOutOfBounds_shouldReturn0(){
-        Map map = new Map();
-        map.mapSize = 5;
+        game.map.mapSize = 5;
         Position position = new Position(0,3);
         Player player = new Player(position);
-        Assert.assertEquals(0,game.checkOutOfBounds('l',player, map.mapSize));
+        Assert.assertEquals(0,game.checkOutOfBounds('l',player, game.map.mapSize));
     }
 
     @Test
     public void TestDirectionBounds_testMovingRightOutOfBounds_shouldReturn0(){
-        Map map = new Map();
-        map.mapSize = 5;
-        Position position = new Position(map.mapSize-1,2);
+        game.map.mapSize = 5;
+        Position position = new Position(game.map.mapSize-1,2);
         Player player = new Player(position);
-        Assert.assertEquals(0,game.checkOutOfBounds('r',player, map.mapSize));
+        Assert.assertEquals(0,game.checkOutOfBounds('r',player, game.map.mapSize));
     }
 
     @Test
     public void TestDirectionBounds_testMovingDownOutOfBounds_shouldReturn0(){
-        Map map = new Map();
-        map.mapSize = 5;
-        Position position = new Position(2,(map.mapSize-1));
+        game.map.mapSize = 5;
+        Position position = new Position(2,(game.map.mapSize-1));
         Player player = new Player(position);
-        Assert.assertEquals(0,game.checkOutOfBounds('d',player, map.mapSize));
+        Assert.assertEquals(0,game.checkOutOfBounds('d',player, game.map.mapSize));
     }
 
     @Test
     public void TestDirectionBounds_testMovingUpCorrectly_shouldReturn1(){
-        Map map = new Map();
-        map.mapSize = 5;
+        game.map.mapSize = 5;
         Position position = new Position(0,3);
         Player player = new Player(position);
-        Assert.assertEquals(1,game.checkOutOfBounds('u',player, map.mapSize));
+        Assert.assertEquals(1,game.checkOutOfBounds('u',player, game.map.mapSize));
     }
 
     @Test
     public void TestDirectionBounds_testMovingLeftCorrectly_shouldReturn1(){
-        Map map = new Map();
-        map.mapSize = 5;
+        game.map.mapSize = 5;
         Position position = new Position(2,3);
         Player player = new Player(position);
-        Assert.assertEquals(1,game.checkOutOfBounds('l',player, map.mapSize));
+        Assert.assertEquals(1,game.checkOutOfBounds('l',player, game.map.mapSize));
     }
 
     @Test
     public void TestDirectionBounds_testMovingRightCorrectly_shouldReturn1(){
-        Map map = new Map();
-        map.mapSize = 5;
+        game.map.mapSize = 5;
         Position position = new Position(1,3);
         Player player = new Player(position);
-        Assert.assertEquals(1,game.checkOutOfBounds('r',player, map.mapSize));
+        Assert.assertEquals(1,game.checkOutOfBounds('r',player, game.map.mapSize));
     }
 
     @Test
     public void TestDirectionBounds_testMovingDownCorrectly_shouldReturn1(){
-        Map map = new Map();
-        map.mapSize = 5;
+        game.map.mapSize = 5;
         Position position = new Position(4,3);
         Player player = new Player(position);
-        Assert.assertEquals(1,game.checkOutOfBounds('d',player, map.mapSize));
+        Assert.assertEquals(1,game.checkOutOfBounds('d',player, game.map.mapSize));
     }
 
     // testing validateDirectionInput
@@ -225,5 +217,39 @@ public class GameTest {
     public void TestDirectionInput_testR_shouldReturnr(){
         Scanner scanner = new Scanner("R");
         Assert.assertEquals('r',game.validateDirectionInput(scanner));
+    }
+
+    //Testing generateHtmlFiles
+
+    @Test
+    public void TestGenerateHtmlFiles_testNewFile_shouldCreateFileAndReturn1(){
+        game.map.mapSize = 5;
+        Position position = new Position(4,3);
+        Player player = new Player(position);
+        game.players.add(player);
+        Assert.assertEquals(1, game.generateHtmlFile(0,game.map.mapSize, " "));
+    }
+
+    @Test
+    public void TestGenerateHtmlFiles_testNewFileWithDirection_shouldCreateFileAndReturn1(){
+        game.map.mapSize = 5;
+        Position position = new Position(4,3);
+        Player player = new Player(position);
+        game.players.add(player);
+        Assert.assertEquals(1, game.generateHtmlFile(0,game.map.mapSize, "u"));
+    }
+
+    @Test
+    public void TestGenerateHtmlFiles_testOverwriteFile_shouldOverwriteExistingFileAndReturn2(){
+        game.map.mapSize = 5;
+        Position position = new Position(4,3);
+        Player player = new Player(position);
+        game.players.add(player);
+
+        //create file
+        game.generateHtmlFile(0,game.map.mapSize, " ");
+
+        //check that overwriting file returns correct value
+        Assert.assertEquals(2, game.generateHtmlFile(0,game.map.mapSize, " "));
     }
 }

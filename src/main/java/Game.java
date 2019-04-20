@@ -7,12 +7,11 @@ import java.util.Scanner;
 
 
 public class Game {
-    int turns = 0;// Amount of turns which have been played
+    private int turns = 0;// Amount of turns which have been played
     int playerNum;// Amount of players
 
     ArrayList<Player> players = new ArrayList<Player>();// ArrayList of players
 
-    //The reasons the map is static is since everyone will be using the same map
     Map map = new Map();// map object
 
     final private int minPlayers = 2;
@@ -26,41 +25,103 @@ public class Game {
 
     private Scanner scanner;// to be used throughout class
 
+    public static void main(String[] args) {
+        System.out.println("Welcome to the Treasure Map Game by Martin Bartolo and Mikhail Cassar");
+        Game game = new Game();
 
-    // Method to initialise map and players and start the main game loop
-    void startGame() {
-        playerNum = getPlayerNum();
-        int mapSize = getMapSize();    // Method to initialise map and players and start the main game loop
+        //Run startGame method to initialise players and map
+        game.startGame(game);
 
-        System.out.println("Generating map of size " + mapSize + "x" + mapSize + " for " + playerNum + " players.");
+        boolean foundTreasure = false;// will be set to true when the treasure is found by one of the players
 
-        //The map is generated with the tile type randomly allocated
-        map.mapSize = mapSize;
+        //An array which holds all the players who found the treasure on a given turn
+        //This is just in case more than one player finds it on the same turn
+        boolean[] winners = new boolean[game.players.size()];
+
+        //Generating the initial html files here before there are any moves
+        //Generating an html file for each player in the game
+        for(int i = 0; i < game.players.size(); i++){
+
+            if(game.generateHtmlFile(i, game.map.mapSize, " ") == 0){
+                System.err.println("Could not generate HTML files");
+            }
+        }
+
+        //Main game loop
+        while (true) {
+            game.turns++;//Increment amount of turns which have been played
+
+            //Get each players desired direction of movement for the current turn
+            game.directionsLoop();
+
+            //Generating an html file for each player's current state
+            for(int i = 0; i < game.players.size(); i++){
+                if(game.generateHtmlFile(i, game.map.mapSize, game.players.get(i).directions.get(game.getLastDirection(i))) == 0){
+                    System.err.println("Could not generate HTML files");
+                }
+            }
+
+            //Go through each player in the game and check if they found the treasure
+            //Mark the players who have found the treasure
+            int i = 0;
+            for(Player player: game.players){
+
+                if(player.getFoundTreasure()){
+                    foundTreasure = true;
+                    winners[i] = true;
+                }
+
+                i++;
+            }
+
+            //If the treasure has been found by one of the players
+            if (foundTreasure) {
+
+                for(i = 0; i < winners.length; i++){
+
+                    if (winners[i]){
+                        System.out.println("Congratualtions player " + (i+1) + ", you have found the treasure in " + game.turns + " turns!");
+                    }
+                }
+                break;
+            }
+        }
+    }
+
+    //Method to initialise map along with players and their starting positions
+    private void startGame(Game game) {
+        game.playerNum = getPlayerNum();
+
+        map.mapSize = getMapSize();
         map.generate();// Generate map
 
         //In this loop all the Player objects are created along with their starting position in the map
-        for (int i = 0; i < playerNum; i++) {
+        for (int i = 0; i < game.playerNum; i++) {
 
             //A new player object is made
             Player player = new Player();
 
-            //The random position of the player is set in a grass tile
-            //The starting position obtained is also put into the player position array list
+            //The random position of the player is set to a grass tile
             player.position = player.setStartingPosition(map.getGrassTiles());
 
+            //The created player is added to the ArrayList of players
             players.add(player);
         }
     }
 
     // Method to get the amount of players from the user
-    int getPlayerNum() {
-        int num = 0;
+    private int getPlayerNum() {
+        int num;
         System.out.println("How many players will be playing? (Pick a number between 2 and 8)");
+
         while (true) {
-            // get user input
+            //Get user input
             scanner = new Scanner(System.in);
+
+            //Validate user input
             num = validatePlayerNum(scanner);
-            // if value of num is not an error value
+
+            //Return value if it is valid (not an error value)
             if (num > 1) {
                 return num;
             }
@@ -69,36 +130,40 @@ public class Game {
 
     // Method to validate the user's input for the player number
     int validatePlayerNum(Scanner scanner) {
-        int num = 0;
+        int num;
         try {
-            // set to user input from getPlayerNum
+            //Set to user input from getPlayerNum
             num = scanner.nextInt();
         }
-        // if input is not an int
+        //If input is not an integer
         catch (InputMismatchException e) {
             System.err.println("Invalid input. Please enter a number between 2 and 8");
-            return 0;// error value of 0
+            return 0;//Return error value of 0
         }
-        // if input is correct
+        //If input is correct
         if (num >= minPlayers && num <= maxPlayers) {
-            return num;
+            return num;//Return value entered by the user
         }
-        // if input is not within required range
+        //If input is not within required range
         else {
             System.err.println("Please enter a number between 2 and 8");
-            return 1;// error value of 1
+            return 1;//Return error value of 1
         }
     }
 
     // Method to get the map size from the user
-    int getMapSize() {
-        int size = 0;
+    private int getMapSize() {
+        int size;
         System.out.println("How large would you like the map to be? (Map will be n x n)");
+
         while (true) {
-            // get user input
+            //Get user input
             scanner = new Scanner(System.in);
+
+            //Validate user input
             size = validateMapSize(scanner);
-            // if value of num is not an error value
+
+            //Return value if it is valid (not an error value)
             if (size > 4) {
                 return size;
             }
@@ -107,72 +172,70 @@ public class Game {
 
     // Method to validate the user's input for the map size
     int validateMapSize(Scanner scanner) {
-        int size = 0;
+        int size;
         try {
-            // set to user input from getMapSize
+            //Set to user input from getMapSize
             size = scanner.nextInt();
         }
 
-        // if input is not an int
+        //If input is not an integer
         catch (InputMismatchException e) {
             System.err.println("Invalid input. Please enter a number");
-            return 0;// error value of 0
+            return 0;//Return error value of 0
         }
 
-        // if input is above largest allowed map size
+        //If input is above largest allowed map size
         if (size > maxMapSize) {
             System.err.println("Map too big. Please enter a size below 50");
-            return 1;// error value of 1
+            return 1;//Return error value of 1
         }
 
-        // if map is too small for 2-4 players
+        //If map is too small for 2-4 players
         else if (playerNum <= maxPlayersFirstRange && size < minMapSizeFirstRange) {
             System.err.println("Map too small. Please enter a size of 5 or more");
-            return 2;// error value of 2
+            return 2;//Return error value of 2
         }
 
-        // if map is too small for 5-8 players
+        //If map is too small for 5-8 players
         else if (playerNum >= minPlayersSecondRange && size < minMapSizeSecondRange) {
             System.err.println("Map too small. Please enter a size of 8 or more");
-            return 3;// error value of 3
+            return 3;//Return error value of 3
         }
 
-        // if input is correct
+        //If input is correct
         else {
-            return size;
+            return size;//Return value entered by the user
         }
     }
 
 
 
     // Method to get direction which each player would like to move in for the current turn
-    void directionsLoop() {
-        char direction;// (u, d, l or r) depending on user's desired direction of movement
-        boolean validMove;// condition to break out of while loop when a valid direction is entered
+    private void directionsLoop() {
+        char direction;//(u, d, l or r) depending on user's desired direction of movement
+        boolean validMove;//Condition to break out of while loop when a valid direction is entered
 
-        // loop through each player in ArrayList
+        //Loop through each player in ArrayList
         for (Player player : players) {
             System.out.println("Player " + (players.indexOf(player) + 1) + ", please choose a direction (u, d, l or r).");
 
             validMove = false;
             while (!validMove) {
-                // get user input
+                //Get user input
                 scanner = new Scanner(System.in);
-                // make sure that user input is valid (i.e. one of u, d, l or r)
+
+                //Make sure that user input is valid (i.e. one of u, d, l or r)
                 direction = validateDirectionInput(scanner);
 
-                // check if move is within map and execute if it is
+                //Check if move is within map and execute if it is
                 if (checkOutOfBounds(direction, player, map.mapSize) == 1) {
                     validMove = true;
 
-                    //Show position method used to see how player moves
-                    System.out.println("Current position is " + player.position.toString());
+                    //Change player's position variables to new position
                     player.move(direction);
 
                     //Triggers event for corresponding tile type
                     map.evaluateCurrentPlayerTile(player);
-                    System.out.println("Position after moving is" + player.position.toString());
-
                 }
             }
         }
@@ -182,135 +245,129 @@ public class Game {
     int checkOutOfBounds(char direction, Player player, int mapSize) {
         switch (direction) {
             case 'l':
-                // If map limit is exceeded
+                //If map limit is exceeded
                 if (player.position.x - 1 < 0) {
                     System.err.println("Cannot move left. Please try another direction.");
-                    return 0;// return error code
+                    return 0;//Return error value of 0
                 }
-                // If move is within map
+
+                //If move is within map
                 else {
                     System.out.println("Player moved to the left");
-                    return 1;// return correct code
+                    return 1;//Return correct value 1 to indicate that move is valid
                 }
 
             case 'r':
-                // If map limit is exceeded
+                //If map limit is exceeded
                 if (player.position.x + 1 >= mapSize) {
                     System.err.println("Cannot move right. Please try another direction.");
-                    return 0;// return error code
+                    return 0;//Return error value of 0
                 }
-                // If move is within map
+                //If move is within map
                 else {
                     System.out.println("Player moved to the right");
-                    return 1;// return correct code
+                    return 1;//Return correct value 1 to indicate that move is valid
                 }
 
             case 'u':
-                // If map limit is exceeded
+                //If map limit is exceeded
                 if (player.position.y - 1 < 0) {
                     System.err.println("Cannot move up. Please try another direction.");
-                    return 0;// return error code
+                    return 0;//Return error value of 0
                 }
-                // If move is within map
+                //If move is within map
                 else {
                     System.out.println("Player moved up");
-                    return 1;// return correct code
+                    return 1;//Return correct value 1 to indicate that move is valid
                 }
 
             case 'd':
-                // If map limit is exceeded
+                //If map limit is exceeded
                 if (player.position.y + 1 >= mapSize) {
                     System.err.println("Cannot move down. Please try another direction.");
-                    return 0;// return error code
+                    return 0;//Return error value of 0
                 }
-                // If move is within map
+                //If move is within map
                 else {
                     System.out.println("Player moved down");
-                    return 1;// return correct code
+                    return 1;//Return correct value 1 to indicate that move is valid
                 }
 
             default:
-                return 0;// return error code
+                return 0;//Return error value of 0
         }
     }
 
     // Method to check whether an inputted direction is valid (i.e. either u, d, l or r)
     char validateDirectionInput(Scanner scanner) {
-        String direction;// user input
-        char c;// user input after it being converted into a character
-        String directions = "udlr";// string containing each accepted direction
+        String direction;//User input
+        char c;//User input after it being converted into a character
+        String directions = "udlr";//String containing each accepted direction
 
         try {
-            // set to user input from getDirections
+            //Set to user input from getDirections
             direction = scanner.next();
 
-            // check if length of input is more than 1
+            //Ensure that inputted string is of length 1
             if (direction.length() > 1) {
                 throw new RuntimeException("Input too long. Please enter a character (u, d, l or r)");
             }
-            // convert input string to char
+
+            //Convert input string to char
             c = direction.charAt(0);
-            // check if character is a letter
+
+            //Ensure that character is a letter
             if (!Character.isLetter(c)) {
                 throw new RuntimeException("Input is not a character. Please enter a character (u, d, l or r)");
             }
         }
 
-        // if input is not a char
+        //If an error is thrown in the try block
         catch (RuntimeException e) {
             System.err.println(e.getMessage());
-            return 'y';// return an error value which we will associate with InputMismatchException when testing
+            return 'y';//Return an error value which we will associate with an exception when testing
         }
 
-        // change char input to lowercase to allow (U, D, L and R)
+        //Change char input to lowercase to allow U, D, L and R
         c = Character.toLowerCase(c);
 
-        // if input is a char but not one of the directions
+        //If input is a char but not one of the directions
         if (!directions.contains(Character.toString(c))) {
             System.err.println("Invalid input. Please enter a direction (u, d, l or r)");
-            return 'x';// return an error value which we will associate with an invalid character when testing
+            return 'x';//Return an error value which we will associate with an invalid character when testing
         }
 
-        // if input is correct
+        //If input is correct
         else {
-            return c;
+            return c;//Return valid user inputted character
         }
     }
 
-    void grassTileEvent(Player player) {
 
-    }
+    // This method is used to generate the HTML files so that they can be opened in browser
+    int generateHtmlFile(int playerIndex, int mapSize, String direction) {
+        //Value to return to mark if method has run successfully or not
+        //Set to 1 by default. This will change to 0 if an error is encountered
+        int returnValue = 1;
 
-
-    //This method is used to generate the HTML files so that they can be opened in browser
-    void generateHtmlFile(int playerIndex, int mapSize, String direction) {
-
-        //This variable is used to hols the type of tile which the player has went on
+        //This variable is used to hold the type of tile which the player has landed on
         int tileType;
 
         //This variable checks if the player is currently on this tile
         boolean playerHere;
-
-        //Direction can be used when changing allowign the user to make a move before generating the html code
-        //Will work on this tomorrow
-
-        //This variable holds the amount of directions the player made
-        //int directionSize = players.get(playerIndex).directions.size();
-
-        //This variable holds the last direction the player went
-        //String direction = players.get(playerIndex).directions.get(directionSize);
-
-        System.out.println("File for player " + (playerIndex + 1) + " is being created\n");
 
         //A file object is being created where the name is given depending on the number of the player
         File file = new File(" map_player_" + (playerIndex +1)+ ".html");
 
         //The actual file is created here
         try {
-            if(file.createNewFile()) {
+            //If file already exists set return value to 2 to mark that it is being overwritten
+            if(!file.createNewFile()){
+                returnValue = 2;
             }
         } catch (IOException e) {
             e.printStackTrace();
+            returnValue = 0;//Set return value to error
         }
 
         //This object is used to be able to add to the string easily
@@ -326,91 +383,88 @@ public class Game {
         htmlText.append("div {\n" +
                 //The width of the grid is set depending on the inputted map size
                 //The height is larger than the width since we are also goign to have to count the header which is above the grid
-                "    width: " + mapSize + "00px;\n" +
-                "    height: " + (mapSize + 1) + "00px;\n" +
-                "}\n" +
-                "\n" +
-                ".header {\n" +
+                "    width: ").append(mapSize).append("00px;\n")
+                .append("    height: ").append(mapSize + 1).append("00px;\n")
+                .append("}\n")
+                .append("\n")
+                .append(".header {\n").append(
                 //The width of the header is changed depending on the size of the map
-                "  width: " + mapSize + "00px;\n" +
-                "  height: 100px;\n" +
-                "  outline: 1px solid;\n" +
-                "  float: left;\n" +
-                "  text-align: center;\n" +
-                "  background-color: #1f599a;\n" +
-                "  font-family: Arial, sans-serif;\n" +
-                "  font-size: 20px;\n" +
-                "  color: white;\n" +
-                "}\n" +
-                "\n" +
-                ".cellGray {\n" +
-                "    width: 100px;\n" +
-                "    height: 100px;\n" +
-                "    outline: 1px solid;\n" +
-                "    float: left;\n" +
-                "    background-color: Gray;\n" +
-                "}\n" +
-                "\n" +
-                ".cellGreen {\n" +
-                "  width: 100px;\n" +
-                "    height: 100px;\n" +
-                "    outline: 1px solid;\n" +
-                "    float: left;\n" +
-                "    background-color: Green;\n" +
-                "}\n" +
-                "\n" +
-                ".cellBlue {\n" +
-                "  width: 100px;\n" +
-                "    height: 100px;\n" +
-                "    outline: 1px solid;\n" +
-                "    float: left;\n" +
-                "    background-color: Blue;\n" +
-                "}\n" +
-                "\n" +
-                ".cellYellow {\n" +
-                "  width: 100px;\n" +
-                "    height: 100px;\n" +
-                "    outline: 1px solid;\n" +
-                "    float: left;\n" +
-                "    background-color: Yellow;\n" +
-                "}\n" );
+                "  width: ").append(mapSize).append("00px;\n")
+                .append("  height: 100px;\n")
+                .append("  outline: 1px solid;\n")
+                .append("  float: left;\n")
+                .append("  text-align: center;\n")
+                .append("  background-color: #1f599a;\n")
+                .append("  font-family: Arial, sans-serif;\n")
+                .append("  font-size: 20px;\n")
+                .append("  color: white;\n")
+                .append("}\n")
+                .append("\n")
+                .append(".cellGray {\n")
+                .append("    width: 100px;\n")
+                .append("    height: 100px;\n")
+                .append("    outline: 1px solid;\n")
+                .append("    float: left;\n")
+                .append("    background-color: Gray;\n")
+                .append("}\n")
+                .append("\n")
+                .append(".cellGreen {\n")
+                .append("  width: 100px;\n")
+                .append("    height: 100px;\n")
+                .append("    outline: 1px solid;\n")
+                .append("    float: left;\n")
+                .append("    background-color: Green;\n")
+                .append("}\n")
+                .append("\n")
+                .append(".cellBlue {\n")
+                .append("  width: 100px;\n")
+                .append("    height: 100px;\n")
+                .append("    outline: 1px solid;\n")
+                .append("    float: left;\n")
+                .append("    background-color: Blue;\n")
+                .append("}\n")
+                .append("\n")
+                .append(".cellYellow {\n")
+                .append("  width: 100px;\n")
+                .append("    height: 100px;\n")
+                .append("    outline: 1px solid;\n")
+                .append("    float: left;\n")
+                .append("    background-color: Yellow;\n")
+                .append("}\n");
 
         htmlText.append( "</style>\n" );
         htmlText.append( "</head>\n\n" );
 
         htmlText.append( "<body>\n" );
 
-        htmlText.append( "<div>\n" +
-                "    <div class=\"header\"> \n" +
-                "    \n" +
+        htmlText.append("<div>\n" + "    <div class=\"header\"> \n" + "    \n" +
                 //First we need to set a header for each game map which each player sees
-                "     <p> Player " + (playerIndex + 1) +"</p>\n" +
-                "     <p> Moves: " +  direction +" </p> \n" +
-                "    </div>\n" +
-                "    \n" );
+                "     <p> Player ").append(playerIndex + 1)
+                .append("</p>\n")
+                .append("     <p> Moves: ").append(direction).append(" </p> \n")
+                .append("    </div>\n")
+                .append("    \n");
 
-                //Then given the size of the map the number of grids is made
-        tileType = 0;
-
+        //Now we will build the current map depending on the players current position
+        //We will change colours of new tiles that have been stepped on and mark the player's current position
         //For loop used to loop through each grid
-        for (int x = 0; x < mapSize; x++) {
-            for (int y = 0; y < mapSize; y++) {
+        for (int j = 0; j < mapSize; j++) {
+            for (int i = 0; i < mapSize; i++) {
 
                 //playerHere is set to false at each iteration
                 playerHere = false;
 
                 //Check if the player went on this tile already
-                //The x and y coordinates are inverted here so as to build the map grid well
-                if(players.get(playerIndex).ifTileExists(y, x)){
+                if(players.get(playerIndex).ifTileExists(i, j)){
 
                     //If the tile exists then the player must be on one of these tiles
                     //Checking if the current tile is the players current position on the map
-                    if(players.get(playerIndex).position.x == y && players.get(playerIndex).position.y == x){
+                    if(players.get(playerIndex).position.x == i && players.get(playerIndex).position.y == j){
                         playerHere = true;
                     }
 
                     //Obtain the tile type of the current tile
-                    tileType = map.getTileType(y,x);
+                    tileType = map.getTileType(i,j);
                 }
 
                 else{
@@ -419,6 +473,7 @@ public class Game {
                 }
 
                 switch(tileType){
+                    //Grass tile
                     case 0:
 
                         if(playerHere){
@@ -433,9 +488,9 @@ public class Game {
                             htmlText.append("<div class=\"cellGreen\"></div>\n");
 
                         }
-
                         break;
 
+                    //Water tile
                     case 1:
 
                         if(playerHere){
@@ -450,11 +505,9 @@ public class Game {
                             htmlText.append("<div class=\"cellBlue\"></div>\n");
 
                         }
-
-
-
                         break;
 
+                    //Treasure Tile
                     case 2:
 
                         if(playerHere){
@@ -470,20 +523,15 @@ public class Game {
                             htmlText.append("<div class=\"cellYellow\"></div>\n");
 
                         }
-
                         break;
 
                     default:
-
                         //No need to check for player here as a player can never be on a gray tile
-
                         htmlText.append("<div class=\"cellGray\"></div>\n");
-
                         break;
                 }
             }
         }
-
 
         htmlText.append("\n</div>");
         htmlText.append( "</body>\n" );
@@ -495,12 +543,14 @@ public class Game {
             bw.close();
         }catch(IOException io){
             io.printStackTrace();
+            returnValue = 0;
         }
-        System.out.println("Wrote to file");
 
+        return returnValue;
     }
 
-    int getLastDirectionsElement(int playerIndex){
+    // Method to return the last direction which the player has moved
+    private int getLastDirection(int playerIndex){
        return players.get(playerIndex).directions.size() - 1;
     }
 }
