@@ -26,6 +26,9 @@ public class Game {
     private Scanner scanner;// to be used throughout class
 
     public static void main(String[] args) {
+        //This variable is used to hold the previous directions taken by a given player
+        String directions;
+
         System.out.println("Welcome to the Treasure Map Game by Martin Bartolo and Mikhail Cassar");
         Game game = new Game();
 
@@ -51,12 +54,18 @@ public class Game {
         while (true) {
             game.turns++;//Increment amount of turns which have been played
 
+            System.out.println("------------------------------------------------------------------------\n");
+
             //Get each players desired direction of movement for the current turn
             game.directionsLoop();
 
             //Generating an html file for each player's current state
             for(int i = 0; i < game.players.size(); i++){
-                if(game.generateHtmlFile(i, game.map.mapSize, game.players.get(i).directions.get(game.getLastDirection(i))) == 0){
+
+                //Obtaining the last 4 directions of each player
+                directions = game.getPreviousDirections(i, 4);
+
+                if(game.generateHtmlFile(i, game.map.mapSize, directions) == 0){
                     System.err.println("Could not generate HTML files");
                 }
             }
@@ -86,7 +95,14 @@ public class Game {
                 break;
             }
         }
+
+        System.out.println("------------------------------------------------------------------------\n");
+
+        //After a player wins the game the user is able to prompted to exit the game
+        game.exitGame();
     }
+
+
 
     //Method to initialise map along with players and their starting positions
     private void startGame(Game game) {
@@ -549,9 +565,78 @@ public class Game {
         return returnValue;
     }
 
-    // Method to return the last direction which the player has moved
-    private int getLastDirection(int playerIndex){
-       return players.get(playerIndex).directions.size() - 1;
+    //Method used to get the last n directions
+    private String getPreviousDirections(int playerIndex, int numberOfDirections){
+        String directions;
+        StringBuilder stringBuilder = new StringBuilder();
+
+        int directionSize = players.get(playerIndex).directions.size();
+
+        stringBuilder.append(" " + players.get(playerIndex).directions.get(directionSize - 1));
+
+        //Checking that the directionSize - n element exists in the array list
+        //If not the string is set to a default value
+        for(int i = 1; i <= numberOfDirections; i++){
+            if((directionSize - 1) - i < 0){
+                //index does not exists
+                stringBuilder.append(" ");
+            }else{
+                // index exists
+                stringBuilder.append(" " + players.get(playerIndex).directions.get(directionSize - i));
+            }
+        }
+
+        directions = stringBuilder.toString();
+
+        return directions;
+    }
+
+    private void deleteHtmlFiles(int playerNum){
+
+        for(int i = 1; i <= playerNum ; i++){
+
+            try{
+
+                File file = new File("/map_player_" + i + ".html");
+
+                System.out.println(file.getAbsolutePath());
+
+                if(file.delete()){
+                    System.out.println(file.getName() + " is deleted!");
+                }else{
+                    System.out.println("Delete operation failed.");
+                }
+
+            }catch(Exception e){
+
+                e.printStackTrace();
+
+            }
+
+        }
+
+    }
+
+    private void exitGame(){
+
+        char exit;
+
+        System.out.println("Press e if you would like to exit the program");
+        exit = scanner.next().charAt(0);
+
+        //Keep on looping until the user enters e to exit
+        while(exit != 'e'){
+
+            System.out.println("Press e if you would like to exit the program");
+            exit = scanner.next().charAt(0);
+
+        }
+
+        //Here the user has exited the while loop
+        //All the files created will be deleted and the user exits the porgram
+
+        deleteHtmlFiles(playerNum);
+
     }
 }
 
