@@ -1,8 +1,9 @@
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Player {
+class Player {
 
+    //Player's current position
     Position position;
 
     //This array list is used to hold the previous positions the player
@@ -14,27 +15,22 @@ public class Player {
     //Check to see if a player has found the treasure
     boolean foundTreasure;
 
+    //Constructor for the player object
     Player(){
-
     }
 
+    //Constructor for the player object when the player's position is given
     Player(Position position){
        this.position = position;
-
     }
 
-    //Method used to pass a new position by value
-    public void addToPositions(int posx, int posy){
-
+    //Method used to add a position to the positions ArrayList using the x and y values
+    void addToPositions(int posx, int posy){
         Position position = new Position(posx, posy);
-
         positions.add(position);
-        //This just used
-//        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!");
-//        System.out.println(positions);
     }
 
-    //The player moves to the next tile depending on the inputted direction
+    //Method to move the player's position according to a given direction
     void move(char direction){
 
         //A switch statement is used to represent all possible directions
@@ -44,26 +40,34 @@ public class Player {
                 this.position.x --;
                 // add position to list of previous positions
                 addToPositions(position.x, position.y);
-                //positions.add(pos);
                 // add direction to list of previous directions
                 directions.add("left");
                 break;
 
             case 'r':
+                // change player's position
                 this.position.x ++;
+                // add position to list of previous positions
                 addToPositions(position.x, position.y);
+                // add direction to list of previous directions
                 directions.add("right");
                 break;
 
             case 'u':
+                // change player's position
                 this.position.y --;
+                // add position to list of previous positions
                 addToPositions(position.x, position.y);
+                // add direction to list of previous directions
                 directions.add("up");
                 break;
 
             case 'd':
+                // change player's position
                 this.position.y ++;
+                // add position to list of previous positions
                 addToPositions(position.x, position.y);
+                // add direction to list of previous directions
                 directions.add("down");
                 break;
 
@@ -98,7 +102,7 @@ public class Player {
         return position;
     }
 
-    //This method is used in the game class to check if the player already went on the current position in the map grid
+    //This method is used in the game class to check if a player has already been on a specific tile
     boolean ifTileExists(int x, int y){
 
         //Create the Position object to use to compare
@@ -113,8 +117,6 @@ public class Player {
                 //If one of the obejct in the array list matched then it exists in the array list
                 return true;
             }
-
-
         }
         return false;
     }

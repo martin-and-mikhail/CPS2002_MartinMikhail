@@ -1,12 +1,10 @@
-
 import java.io.*;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-
-
 public class Game {
+
     private int turns = 0;// Amount of turns which have been played
     int playerNum;// Amount of players
 
@@ -24,6 +22,10 @@ public class Game {
     final private int maxMapSize = 50;
 
     private Scanner scanner;// to be used throughout class
+
+    //Constructor for the game object
+    Game() {
+    }
 
     public static void main(String[] args) {
         System.out.println("Welcome to the Treasure Map Game by Martin Bartolo and Mikhail Cassar");
@@ -70,7 +72,6 @@ public class Game {
                     foundTreasure = true;
                     winners[i] = true;
                 }
-
                 i++;
             }
 
