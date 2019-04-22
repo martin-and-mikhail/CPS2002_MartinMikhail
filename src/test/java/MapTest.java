@@ -2,7 +2,6 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-
 import java.util.Arrays;
 
 public class MapTest {
@@ -19,6 +18,7 @@ public class MapTest {
     }
 
     // Testing Map generation
+
     @Test
     public void TestMapGenerate_shouldGenerateMapWithoutErrorsAndDisplayIt(){
         map.mapSize = 5;
@@ -28,6 +28,7 @@ public class MapTest {
     }
 
     //Testing getGrassTiles
+
     @Test
     public void TestGetGrassTiles_testNoGrass_eachElementShouldBe0ByDefault(){
         //simulate map with a single tile

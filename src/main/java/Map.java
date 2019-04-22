@@ -1,12 +1,8 @@
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.KeyEvent;
-import java.sql.SQLOutput;
 import java.util.Random;
 
 class Map {
 
+    //Size of the map. Total squares will be mapSize x mapSize
     int mapSize;
 
     //The map will consist of 2d array of tiles along with each tile's type
@@ -20,7 +16,6 @@ class Map {
 
     //Constructor for the map object
     Map(){
-
     }
 
     //This method is used on start up to create the map
@@ -46,7 +41,6 @@ class Map {
         //Loop through the entire tile set and add a random value from 0 to 2 to the given tile to set the tile type
         for (int i = 0; i < mapSize; i++) {
             for (int j = 0; j < mapSize; j++) {
-
                 do {
                     //The random number is obtained first using the Random class
                     tileNum = random.nextInt(3);
@@ -84,7 +78,6 @@ class Map {
                                 //This check is set to false since this tile set is not full
                                 tileSetFull = false;
                             }
-
                             break;
 
                         //Treasure tile
@@ -103,17 +96,14 @@ class Map {
 
                                 //This check is set to false since this tile set is not full
                                 tileSetFull = false;
-
                             }
-
                             break;
 
                         default:
                             //This case is accessed only when a random number which is not 0,1 or 2 is obtained
                             System.err.println("Invalid random number obtained");
+                            break;
                     }
-
-
                 }
                 //The loop keeps on iterating until a valid tile type can be assigned to the tile
                 while (tileSetFull);
