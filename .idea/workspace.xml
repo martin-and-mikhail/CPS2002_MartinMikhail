@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e9f6fb8f-a2a2-4fa8-894d-77361c58593c" name="Default Changelist" comment="Added main method to Game class, &#10;cleaned up game class, &#10;changed player.png, &#10;removed GUI code text file.">
-      <change afterPath="$PROJECT_DIR$/src/test/java/MapTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Map.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Map.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Player.java" afterDir="false" />
-    </list>
+    <list default="true" id="e9f6fb8f-a2a2-4fa8-894d-77361c58593c" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -21,15 +15,14 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/Game.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="247">
-              <caret line="68" column="41" lean-forward="true" selection-start-line="68" selection-start-column="41" selection-end-line="68" selection-end-column="41" />
+            <state relative-caret-position="298">
+              <caret line="606" selection-start-line="606" selection-end-line="606" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#20530#20531#0" expanded="true" />
-                <element signature="e#20598#20599#0" expanded="true" />
+                <element signature="method#checkOutOfBounds#0;class#Game#0" />
               </folding>
             </state>
           </provider>
@@ -38,28 +31,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Map.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-80">
-              <caret line="169" column="34" lean-forward="true" selection-start-line="169" selection-start-column="9" selection-end-line="169" selection-end-column="34" />
-              <folding>
-                <element signature="e#5870#5871#0" expanded="true" />
-                <element signature="e#5907#5908#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/test/java/MapTest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="251">
-              <caret line="150" column="80" selection-start-line="150" selection-start-column="80" selection-end-line="150" selection-end-column="80" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#182#183#0" expanded="true" />
-                <element signature="e#215#216#0" expanded="true" />
-                <element signature="e#255#256#0" expanded="true" />
-                <element signature="e#282#283#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="2006">
+              <caret line="129" column="9" lean-forward="true" selection-start-line="129" selection-start-column="9" selection-end-line="129" selection-end-column="9" />
             </state>
           </provider>
         </entry>
@@ -67,7 +40,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Player.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
+            <state relative-caret-position="-97">
               <caret line="20" column="4" selection-start-line="20" selection-start-column="4" selection-end-line="20" selection-end-column="4" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -126,9 +99,9 @@
         <option value="$PROJECT_DIR$/src/main/java/Main.java" />
         <option value="$PROJECT_DIR$/src/test/java/GameTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/Player.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Game.java" />
         <option value="$PROJECT_DIR$/src/main/java/Map.java" />
         <option value="$PROJECT_DIR$/src/test/java/MapTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Game.java" />
       </list>
     </option>
   </component>
@@ -140,9 +113,10 @@
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-7" />
-    <option name="width" value="974" />
-    <option name="height" value="1047" />
+    <option name="x" value="54" />
+    <option name="y" value="-8" />
+    <option name="width" value="652" />
+    <option name="height" value="728" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -150,49 +124,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="CPS2002_MartinMikhail" type="b2602c69:ProjectViewProjectNode" />
-              <item name="CPS2002_MartinMikhail" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="CPS2002_MartinMikhail" type="b2602c69:ProjectViewProjectNode" />
-              <item name="CPS2002_MartinMikhail" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="CPS2002_MartinMikhail" type="b2602c69:ProjectViewProjectNode" />
-              <item name="CPS2002_MartinMikhail" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="CPS2002_MartinMikhail" type="b2602c69:ProjectViewProjectNode" />
-              <item name="CPS2002_MartinMikhail" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="CPS2002_MartinMikhail" type="b2602c69:ProjectViewProjectNode" />
-              <item name="CPS2002_MartinMikhail" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="CPS2002_MartinMikhail" type="b2602c69:ProjectViewProjectNode" />
-              <item name="CPS2002_MartinMikhail" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="PackagesPane" />
       <pane id="Scope">
         <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
           <expand>
@@ -240,13 +171,56 @@
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="CPS2002_MartinMikhail" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CPS2002_MartinMikhail" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="CPS2002_MartinMikhail" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CPS2002_MartinMikhail" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="CPS2002_MartinMikhail" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CPS2002_MartinMikhail" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="CPS2002_MartinMikhail" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CPS2002_MartinMikhail" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="CPS2002_MartinMikhail" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CPS2002_MartinMikhail" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="CPS2002_MartinMikhail" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CPS2002_MartinMikhail" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1555629874470" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1555847932795" />
     <property name="last_opened_file_path" value="$USER_HOME$/Downloads/OOPAssignment/Java" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="SDKs" />
@@ -266,12 +240,18 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.MapTest">
+  <component name="RunManager" selected="Application.Game">
+    <configuration name="Game" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Game" />
+      <module name="CPS2002_MartinMikhail" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="MapTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="CPS2002_MartinMikhail" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="MapTest" />
-      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -301,16 +281,6 @@
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="MapTest" />
       <option name="METHOD_NAME" value="TestGetGrassTiles_testSomeGrass_oneElementShouldHaveGrassValue" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="MapTest.TestMapGenerate_shouldGenerateMapWithoutErrorsAndDisplayIt" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="CPS2002_MartinMikhail" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="MapTest" />
-      <option name="METHOD_NAME" value="TestMapGenerate_shouldGenerateMapWithoutErrorsAndDisplayIt" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -365,11 +335,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Game" />
         <item itemvalue="JUnit.MapTest" />
         <item itemvalue="JUnit.MapTest.TestEvaluateCurrentPlayerTile_testWaterTile_shouldMoveBackToStartingPosition" />
         <item itemvalue="JUnit.MapTest.TestEvaluateCurrentPlayerTile_testGrassTile_shouldDoNothing" />
         <item itemvalue="JUnit.MapTest.TestGetGrassTiles_testSomeGrass_oneElementShouldHaveGrassValue" />
-        <item itemvalue="JUnit.MapTest.TestMapGenerate_shouldGenerateMapWithoutErrorsAndDisplayIt" />
       </list>
     </recent_temporary>
   </component>
@@ -387,6 +357,7 @@
       <workItem from="1555523418346" duration="187000" />
       <workItem from="1555605144791" duration="17302000" />
       <workItem from="1555627285627" duration="2585000" />
+      <workItem from="1555839605689" duration="8277000" />
     </task>
     <task id="LOCAL-00001" summary="Jenkins Building Test">
       <created>1554399195622</created>
@@ -423,13 +394,17 @@
       <option name="project" value="LOCAL" />
       <updated>1555629903286</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Added function to delete html files,&#10;Added function to display previous n moves.">
+      <created>1555848097217</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1555848097217</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="MapTest_TestGetGrassTiles_testSomeGrass_oneElementShouldHaveGrassValue - 2019.04.20 at 17h 14m 49s.xml">
-      <configuration name="MapTest.TestGetGrassTiles_testSomeGrass_oneElementShouldHaveGrassValue" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="MapTest_TestGetGrassTiles_testSomeGrass_oneElementShouldHaveGrassValue - 2019.04.20 at 17h 15m 47s.xml">
       <configuration name="MapTest.TestGetGrassTiles_testSomeGrass_oneElementShouldHaveGrassValue" configurationId="JUnit" />
     </history-entry>
@@ -457,15 +432,17 @@
     <history-entry file="MapTest_TestEvaluateCurrentPlayerTile_testWaterTile_shouldMoveBackToStartingPosition - 2019.04.20 at 17h 40m 09s.xml">
       <configuration name="MapTest.TestEvaluateCurrentPlayerTile_testWaterTile_shouldMoveBackToStartingPosition" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="MapTest - 2019.04.21 at 11h 45m 34s.xml">
+      <configuration name="MapTest" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="47438000" />
+    <option name="totallyTimeSpent" value="55715000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
+    <frame x="54" y="-8" width="1320" height="784" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25586355" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.13174604" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -474,8 +451,8 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32936078" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.46045503" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.437788" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32872504" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.41474655" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -484,7 +461,7 @@
       <window_info anchor="bottom" id="Terminal" order="9" weight="0.32936078" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" weight="0.32872504" />
       <window_info anchor="bottom" id="Version Control" order="11" />
-      <window_info anchor="bottom" id="Messages" order="12" weight="0.32827735" />
+      <window_info anchor="bottom" id="Messages" order="12" weight="0.32718894" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -537,7 +514,20 @@
     <MESSAGE value="Finished a lot of changes to create the html files" />
     <MESSAGE value="The game is working as expected :)" />
     <MESSAGE value="Added main method to Game class, &#10;cleaned up game class, &#10;changed player.png, &#10;removed GUI code text file." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added main method to Game class, &#10;cleaned up game class, &#10;changed player.png, &#10;removed GUI code text file." />
+    <MESSAGE value="Added function to delete html files,&#10;Added function to display previous n moves." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added function to delete html files,&#10;Added function to display previous n moves." />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/Game.java</url>
+          <line>603</line>
+          <properties />
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="evaluateExpression">
@@ -582,13 +572,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/ map_player_1.html" />
     <entry file="file://$PROJECT_DIR$/src/main/java/Main.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/Position.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" selection-start-line="15" selection-end-line="15" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/GameTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
@@ -599,21 +582,33 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Game.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/Position.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="68" column="41" lean-forward="true" selection-start-line="68" selection-start-column="41" selection-end-line="68" selection-end-column="41" />
+        <state relative-caret-position="255">
+          <caret line="15" selection-start-line="15" selection-end-line="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/MapTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2482">
+          <caret line="150" column="47" selection-start-line="150" selection-start-column="47" selection-end-line="150" selection-end-column="47" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#20530#20531#0" expanded="true" />
-            <element signature="e#20598#20599#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Map.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2006">
+          <caret line="129" column="9" lean-forward="true" selection-start-line="129" selection-start-column="9" selection-end-line="129" selection-end-column="9" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Player.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
+        <state relative-caret-position="-97">
           <caret line="20" column="4" selection-start-line="20" selection-start-column="4" selection-end-line="20" selection-end-column="4" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -622,27 +617,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Map.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/Game.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-80">
-          <caret line="169" column="34" lean-forward="true" selection-start-line="169" selection-start-column="9" selection-end-line="169" selection-end-column="34" />
-          <folding>
-            <element signature="e#5870#5871#0" expanded="true" />
-            <element signature="e#5907#5908#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/MapTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="251">
-          <caret line="150" column="80" selection-start-line="150" selection-start-column="80" selection-end-line="150" selection-end-column="80" />
+        <state relative-caret-position="298">
+          <caret line="606" selection-start-line="606" selection-end-line="606" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#182#183#0" expanded="true" />
-            <element signature="e#215#216#0" expanded="true" />
-            <element signature="e#255#256#0" expanded="true" />
-            <element signature="e#282#283#0" expanded="true" />
+            <element signature="method#checkOutOfBounds#0;class#Game#0" />
           </folding>
         </state>
       </provider>
