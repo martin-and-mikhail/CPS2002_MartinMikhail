@@ -2,7 +2,12 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.io.File;
+import java.io.IOException;
 import java.util.Scanner;
+
+import static junit.framework.TestCase.fail;
 
 public class GameTest {
     private Game game;
@@ -228,6 +233,8 @@ public class GameTest {
         Player player = new Player(position);
         game.players.add(player);
         Assert.assertEquals(1, game.generateHtmlFile(0,game.map.mapSize, " "));
+
+        game.deleteHtmlFiles(1);
     }
 
     @Test
@@ -237,6 +244,8 @@ public class GameTest {
         Player player = new Player(position);
         game.players.add(player);
         Assert.assertEquals(1, game.generateHtmlFile(0,game.map.mapSize, "u"));
+
+        game.deleteHtmlFiles(1);
     }
 
     @Test
@@ -251,5 +260,159 @@ public class GameTest {
 
         //check that overwriting file returns correct value
         Assert.assertEquals(2, game.generateHtmlFile(0,game.map.mapSize, " "));
+
+        game.deleteHtmlFiles(1);
+    }
+
+    //Testing HTML file deletion
+
+    @Test
+    public void TestDeleteHtmlFiles_testDeleteSingleFile_shouldCreateFileAndDeleteIt(){
+        //create the file
+        File file = new File("map_player_1.html");
+        try {
+            if(!file.createNewFile()){
+                fail("File could not be created");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        //make sure that the file exists
+        Assert.assertTrue(file.exists());
+
+        //delete the file
+        game.deleteHtmlFiles(1);
+
+        //make sure that the file no longer exists
+        Assert.assertFalse(file.exists());
+    }
+
+    @Test
+    public void TestDeleteHtmlFiles_testDeleteMultipleFiles_shouldCreateFilesAndDeleteThem(){
+        //create the files
+        File file = new File("map_player_1.html");
+        try {
+            if(!file.createNewFile()){
+                fail("File could not be created");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        File file2 = new File("map_player_2.html");
+        try {
+            if(!file2.createNewFile()){
+                fail("File could not be created");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        //make sure that the files exist
+        Assert.assertTrue(file.exists());
+        Assert.assertTrue(file2.exists());
+
+        //delete the file
+        game.deleteHtmlFiles(2);
+
+        //make sure that the files no longer exist
+        Assert.assertFalse(file.exists());
+        Assert.assertFalse(file2.exists());
+    }
+
+    //Testing validateExitChar
+
+    @Test
+    public void TestValidateExitChar_testNonCharInput_shouldCatchRuntimeErrorAndReturny(){
+        Scanner scanner = new Scanner("3");
+        Assert.assertEquals('y',game.validateExitChar(scanner));
+    }
+
+    @Test
+    public void TestExitChar_testTooLongInput_shouldCatchRuntimeErrorAndReturny(){
+        Scanner scanner = new Scanner("66bg");
+        Assert.assertEquals('y',game.validateExitChar(scanner));
+    }
+
+    @Test
+    public void TestExitChar_testIncorrectChar_shouldReturnx(){
+        Scanner scanner = new Scanner("t");
+        Assert.assertEquals('x',game.validateExitChar(scanner));
+    }
+
+    @Test
+    public void TestExitChar_testCorrectInput_shouldReturne(){
+        Scanner scanner = new Scanner("e");
+        Assert.assertEquals('e',game.validateExitChar(scanner));
+    }
+
+    //Testing getPreviousDirections
+
+    @Test
+    public void TestGetPreviousDirections_testNoDirections_shouldOutputNothing(){
+        //Add player to players Array List
+        Player player = new Player();
+        game.players.add(player);
+
+        //Player is not given any directions
+
+        //Ensure that an empty string is returned
+        Assert.assertEquals("", game.getPreviousDirections(0));
+    }
+
+    @Test
+    public void TestGetPreviousDirections_testSingleDirection_shouldOutputDirection(){
+        //Add player to players Array List
+        Player player = new Player();
+        game.players.add(player);
+
+        //Give player single direction
+        player.directions.add("right");
+
+        //Expected String to be returned by getPreviousDirection method
+        String expected = " right";
+
+        Assert.assertEquals(expected, game.getPreviousDirections(0));
+    }
+
+    @Test
+    public void TestGetPreviousDirections_testLessThan6Directions_shouldOutputDirections(){
+        //Add player to players Array List
+        Player player = new Player();
+        game.players.add(player);
+
+        //Give player 4 directions
+        player.directions.add("right");
+        player.directions.add("left");
+        player.directions.add("up");
+        player.directions.add("down");
+
+        //Expected String to be returned by getPreviousDirection method
+        String expected = " down up left right";
+
+        Assert.assertEquals(expected, game.getPreviousDirections(0));
+    }
+
+    @Test
+    public void TestGetPreviousDirections_testOver6Directions_shouldOutputLast6Directions(){
+        //Add player to players Array List
+        Player player = new Player();
+        game.players.add(player);
+
+        //Give player 8 directions
+        player.directions.add("up");
+        player.directions.add("right");
+        player.directions.add("down");
+        player.directions.add("left");
+        player.directions.add("right");
+        player.directions.add("left");
+        player.directions.add("up");
+        player.directions.add("down");
+
+        //Expected String to be returned by getPreviousDirection method
+        String expected = " down up left right left down";
+
+        Assert.assertEquals(expected, game.getPreviousDirections(0));
     }
 }

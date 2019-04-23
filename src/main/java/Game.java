@@ -65,7 +65,7 @@ public class Game {
             for(int i = 0; i < game.players.size(); i++){
 
                 //Obtaining the last 4 directions of each player
-                directions = game.getPreviousDirections(i, 4);
+                directions = game.getPreviousDirections(i);
 
                 if(game.generateHtmlFile(i, game.map.mapSize, directions) == 0){
                     System.err.println("Could not generate HTML files");
@@ -100,7 +100,7 @@ public class Game {
         System.out.println("------------------------------------------------------------------------\n");
 
         //After a player wins the game the user is able to prompted to exit the game
-        game.exitGame();
+        game.exitGame(game);
     }
 
 
@@ -238,11 +238,12 @@ public class Game {
 
             validMove = false;
             while (!validMove) {
-                //Get user input
-                scanner = new Scanner(System.in);
-
+                direction = 'x';
                 //Make sure that user input is valid (i.e. one of u, d, l or r)
-                direction = validateDirectionInput(scanner);
+                while(direction == 'x' || direction == 'y') {
+                    scanner = new Scanner(System.in);
+                    direction = validateDirectionInput(scanner);
+                }
 
                 //Check if move is within map and execute if it is
                 if (checkOutOfBounds(direction, player, map.mapSize) == 1) {
@@ -374,7 +375,7 @@ public class Game {
         boolean playerHere;
 
         //A file object is being created where the name is given depending on the number of the player
-        File file = new File(" map_player_" + (playerIndex +1)+ ".html");
+        File file = new File("map_player_" + (playerIndex +1)+ ".html");
 
         //The actual file is created here
         try {
@@ -567,23 +568,26 @@ public class Game {
     }
 
     //Method used to get the last n directions
-    private String getPreviousDirections(int playerIndex, int numberOfDirections){
+    String getPreviousDirections(int playerIndex){
         String directions;
         StringBuilder stringBuilder = new StringBuilder();
 
         int directionSize = players.get(playerIndex).directions.size();
 
-        stringBuilder.append(" " + players.get(playerIndex).directions.get(directionSize - 1));
-
-        //Checking that the directionSize - n element exists in the array list
-        //If not the string is set to a default value
-        for(int i = 1; i <= numberOfDirections; i++){
-            if((directionSize - 1) - i < 0){
-                //index does not exists
-                stringBuilder.append(" ");
-            }else{
-                // index exists
-                stringBuilder.append(" " + players.get(playerIndex).directions.get(directionSize - i));
+        //Loop for the last 6 directions the player has moved
+        for(int i = 1; i <= 6; i++){
+            //If only one direction has been entered
+            if(directionSize == 1){
+                stringBuilder.append(" ").append(players.get(playerIndex).directions.get(directionSize - 1));
+                break;
+            }
+            //If more than 1 directions have been entered
+            else if (directionSize >1){
+                //Add direction unless there are less than 6 total directions
+                if(directionSize - i <0){
+                    break;
+                }
+                stringBuilder.append(" ").append(players.get(playerIndex).directions.get(directionSize - i));
             }
         }
 
@@ -592,52 +596,90 @@ public class Game {
         return directions;
     }
 
-    private void deleteHtmlFiles(int playerNum){
+    //Method to delete Html files
+    void deleteHtmlFiles(int playerNum){
 
+        //Loops through all player files
         for(int i = 1; i <= playerNum ; i++){
-
+            //Delete each file iteratively
             try{
+                File file = new File("map_player_" + i + ".html");
 
-                File file = new File("/map_player_" + i + ".html");
-
-                System.out.println(file.getAbsolutePath());
-
-                if(file.delete()){
-                    System.out.println(file.getName() + " is deleted!");
-                }else{
-                    System.out.println("Delete operation failed.");
+                if(!file.delete()) {
+                    System.out.println("File does not exist");
                 }
-
             }catch(Exception e){
-
                 e.printStackTrace();
-
             }
-
         }
-
     }
 
-    private void exitGame(){
+    //Method to exit the game
+    private void exitGame(Game game){
+        if(getExitChar() == 'e'){
+            //Delete all Html Files
+            deleteHtmlFiles(game.playerNum);
+            System.out.println("Thank you for playing!");
+        }
+    }
 
-        char exit;
+    //Method to get the user to input e to exit the program
+    private char getExitChar(){
+        char exit = 'x';
 
         System.out.println("Press e if you would like to exit the program");
-        exit = scanner.next().charAt(0);
 
-        //Keep on looping until the user enters e to exit
-        while(exit != 'e'){
-
-            System.out.println("Press e if you would like to exit the program");
-            exit = scanner.next().charAt(0);
-
+        //Make sure that user input is valid
+        while(exit == 'x' || exit == 'y') {
+            scanner = new Scanner(System.in);
+            exit = validateExitChar(scanner);
         }
 
-        //Here the user has exited the while loop
-        //All the files created will be deleted and the user exits the porgram
+        return exit;
+    }
 
-        deleteHtmlFiles(playerNum);
+    //Method to validate user input from getExitChar()
+    char validateExitChar(Scanner scanner){
+        String input;//User input
+        char c;//User input after it being converted into a character
 
+        try {
+            //Set to user input from getDirections
+            input = scanner.next();
+
+            //Ensure that inputted string is of length 1
+            if (input.length() > 1) {
+                throw new RuntimeException("Input too long. Please enter e to exit");
+            }
+
+            //Convert input string to char
+            c = input.charAt(0);
+
+            //Ensure that character is a letter
+            if (!Character.isLetter(c)) {
+                throw new RuntimeException("Input is not a character. Please enter e to exit");
+            }
+        }
+
+        //If an error is thrown in the try block
+        catch (RuntimeException e) {
+            System.err.println(e.getMessage());
+            return 'y';//Return an error value which we will associate with an exception when testing
+        }
+
+        //Change char input to lowercase to allow U, D, L and R
+        c = Character.toLowerCase(c);
+
+        //If input is a char but not one of the directions
+        if (c != 'e') {
+            System.err.println("Invalid input. Please enter e to exit");
+            return 'x';//Return an error value which we will associate with an invalid character when testing
+        }
+
+        //If input is correct
+        else {
+            return c;//Return valid user inputted character
+        }
     }
 }
 
