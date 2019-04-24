@@ -26,11 +26,15 @@ class Map {
 
         Random random = new Random();
 
-        //This value holds the tile type (grass, water, treasure)which corresponds to a random number from 0 to 2
-        int tileNum;
+        //Holds the current random tile obtained
+        int[] randomPair = new int[2];
 
-        //This check is used to make sure that no tileSet is full
-        boolean tileSetFull = false;
+        //Holds a boolean value which determines if the [i][j] tile has already been generated for the map
+        boolean[][][] generatedTiles = new boolean[mapSize][mapSize][1];
+
+        //This value holds the tile type (grass, water, treasure)which corresponds to a random number from 0 to 2
+        int tileType;
+
 
         //The maximum number of water tiles in a map is set to one less than mapSize
         double waterMaxTiles = Math.ceil(mapSize-1);
@@ -38,77 +42,110 @@ class Map {
         //The maximum number of treasure tiles is one
         int treasureMaxTiles = 1;
 
-        //Loop through the entire tile set and add a random value from 0 to 2 to the given tile to set the tile type
-        for (int i = 0; i < mapSize; i++) {
+        //Initialising the generatedTiles array
+        for(int i = 0; i < mapSize; i++) {
             for (int j = 0; j < mapSize; j++) {
-                do {
-                    //The random number is obtained first using the Random class
-                    tileNum = random.nextInt(3);
-
-                    //A switch statement is used to go through each of the possible tile types
-                    switch(tileNum){
-
-                        //Grass tile
-                        case 0:
-                            tiles[i][j][0] = 0;
-
-                            //The counter is updated since another grass tile has been added to the map
-                            grassCount += 1;
-
-                            //This check is set to false since this tile set is not full
-                            tileSetFull = false;
-
-                            break;
-
-                        //Water tile
-                        case 1:
-                            if (waterCount == waterMaxTiles) {
-                                //When the maximum number of water tiles is reached the check is set to true
-                                //This is so that the while loop will continue until a random number is obtained which
-                                //is not full
-                                tileSetFull = true;
-                            }
-
-                            else {
-                                tiles[i][j][0] = 1;
-
-                                //The counter is updated since another water tile has been added to the map
-                                waterCount += 1;
-
-                                //This check is set to false since this tile set is not full
-                                tileSetFull = false;
-                            }
-                            break;
-
-                        //Treasure tile
-                        case 2:
-
-                            if (treasureCount == treasureMaxTiles) {
-                                //When a treasure tile is already placed the check is set to true
-                                tileSetFull = true;
-                            }
-
-                            else {
-                                tiles[i][j][0] = 2;
-
-                                //The counter is updated since a treasure tile has been added to the map
-                                treasureCount += 1;
-
-                                //This check is set to false since this tile set is not full
-                                tileSetFull = false;
-                            }
-                            break;
-
-                        default:
-                            //This case is accessed only when a random number which is not 0,1 or 2 is obtained
-                            System.err.println("Invalid random number obtained");
-                            break;
-                    }
-                }
-                //The loop keeps on iterating until a valid tile type can be assigned to the tile
-                while (tileSetFull);
+                generatedTiles[i][j][0] = false;
             }
         }
+
+        //Keep on looping until all tiles are randomly generated
+        while(generatedTilesNum(generatedTiles) != mapSize*mapSize){
+
+            //Randomly generate a pair of tiles
+            //Numbers generated will be from 0 to mapSize-1
+            randomPair[0] = random.nextInt(mapSize);
+            randomPair[1] = random.nextInt(mapSize);
+
+            //Now checking if the tile has already been obtained in the generated tiles
+            //This is done by checking if the boolean value of the tile is true
+            if(generatedTiles[randomPair[0]][randomPair[1]][0]){
+                //Tile has already been generated
+                //So the user must get another tile which has not already been generated
+
+                //Keeps on looping until a new tile is generated
+                while(generatedTiles[randomPair[0]][randomPair[1]][0]){
+
+                    randomPair[0] = random.nextInt(mapSize);
+                    randomPair[1] = random.nextInt(mapSize);
+
+                }
+            }
+
+            //Keep on looping until the current tile is given a tile type
+            do {
+
+                //Set the tile type for the newly generated tile
+                //A random number from 0 to 2 is obtained which correspond to a tile type
+                tileType = random.nextInt(3);
+
+                //A switch statement is used to go through each of the possible tile types
+                switch (tileType) {
+
+                    //Grass tile
+                    case 0:
+                        tiles[randomPair[0]][randomPair[1]][0] = 0;
+
+                        //The counter is updated since another grass tile has been added to the map
+                        grassCount += 1;
+
+                        break;
+
+                    //Water tile
+                    case 1:
+                        if (waterCount == waterMaxTiles) {
+                            //When the maximum number of water tiles is reached the check is set to true
+                            //This is so that the while loop will continue until a random number is obtained which
+                            //is not full
+                            continue;
+
+                        } else {
+                            tiles[randomPair[0]][randomPair[1]][0] = 1;
+
+                            //The counter is updated since another water tile has been added to the map
+                            waterCount += 1;
+                        }
+                        break;
+
+                    //Treasure tile
+                    case 2:
+
+                        if (treasureCount == treasureMaxTiles) {
+                            //When a treasure tile is already placed the check is set to true
+                            continue;
+                        } else {
+                            tiles[randomPair[0]][randomPair[1]][0] = 2;
+                            //The counter is updated since a teasure tile has been added to the map
+                            treasureCount += 1;
+                        }
+                        break;
+
+                    default:
+                        //This case is accessed only when a random number which is not 0,1 or 2 is obtained
+                        System.err.println("Invalid random number obtained");
+                        break;
+
+                }
+
+                //add the the tile to the generatedTiles array
+                generatedTiles[randomPair[0]][randomPair[1]][0] = true;
+            }while( tiles[randomPair[0]][randomPair[1]][0] != 0 && tiles[randomPair[0]][randomPair[1]][0] != 1 && tiles[randomPair[0]][randomPair[1]][0] != 2);
+        }
+    }
+
+    //Method to obtain the current number of elements in the generatedTiles array
+    int generatedTilesNum(boolean[][][] array){
+        int count = 0;
+
+        for(int i = 0; i < mapSize; i++){
+            for(int j = 0; j < mapSize; j++){
+                if(array[i][j][0]){
+                    count++;
+                }
+            }
+        }
+
+        return count;
     }
 
     //Method used to show the map

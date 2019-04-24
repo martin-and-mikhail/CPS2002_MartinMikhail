@@ -176,4 +176,18 @@ public class MapTest {
 
         Assert.assertTrue(player.foundTreasure);
     }
+
+    //Test generatedTilesNum
+
+    @Test
+    public void TestGeneratedTilesNum_shouldReturnNumberOfTiles(){
+        //simulate map with 4 tiles
+        map.mapSize = 2;
+
+        //create map with 2 grass tiles, a water tile and a treasure tile
+        boolean [][][] testArray = new boolean[][][]{{{true},{false}},{{false},{true}}};
+
+        //Make sure that the 2 trues are read and counted
+        Assert.assertEquals(2,map.generatedTilesNum(testArray));
+    }
 }
