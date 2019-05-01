@@ -2,11 +2,9 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
-
 import static junit.framework.TestCase.fail;
 
 public class GameTest {
@@ -90,70 +88,192 @@ public class GameTest {
         Assert.assertEquals(20,game.validateMapSize(scanner));
     }
 
+    //testing validateMapType
+
+    @Test
+    public void TestMapType_testStringInput_shouldCatchInputMismatchExceptionAndReturn0(){
+        Scanner scanner = new Scanner("testString");
+        Assert.assertEquals(0,game.validateMapType(scanner));
+    }
+
+    @Test
+    public void TestMapType_testInvalidNumber_shouldReturn3(){
+        Scanner scanner = new Scanner("52");
+        Assert.assertEquals(3,game.validateMapType(scanner));
+    }
+
+    @Test
+    public void TestMapType_test1_shouldReturn1(){
+        Scanner scanner = new Scanner("1");
+        Assert.assertEquals(1,game.validateMapType(scanner));
+    }
+
+    @Test
+    public void TestMapType_test2_shouldReturn2(){
+        Scanner scanner = new Scanner("2");
+        Assert.assertEquals(2,game.validateMapType(scanner));
+    }
+
     // testing checkOutOfBounds
 
     @Test
-    public void TestDirectionBounds_testMovingUpOutOfBounds_shouldReturn0(){
-        game.map.mapSize = 5;
+    public void TestDirectionBounds_testMovingUpOutOfBoundsSafeMap_shouldReturn0(){
+        MapCreator creator = new MapCreator();
+        game.map = creator.createMap("safe", 5);
+
         Position position = new Position(4,0);
         Player player = new Player(position);
-        Assert.assertEquals(0,game.checkOutOfBounds('u',player, game.map.mapSize));
+        Assert.assertEquals(0,game.checkOutOfBounds('u',player, game.map.getMapSizeVar()));
     }
 
     @Test
-    public void TestDirectionBounds_testMovingLeftOutOfBounds_shouldReturn0(){
-        game.map.mapSize = 5;
+    public void TestDirectionBounds_testMovingLeftOutOfBoundsSafeMap_shouldReturn0(){
+        MapCreator creator = new MapCreator();
+        game.map = creator.createMap("safe", 5);
+
         Position position = new Position(0,3);
         Player player = new Player(position);
-        Assert.assertEquals(0,game.checkOutOfBounds('l',player, game.map.mapSize));
+        Assert.assertEquals(0,game.checkOutOfBounds('l',player, game.map.getMapSizeVar()));
     }
 
     @Test
-    public void TestDirectionBounds_testMovingRightOutOfBounds_shouldReturn0(){
-        game.map.mapSize = 5;
-        Position position = new Position(game.map.mapSize-1,2);
+    public void TestDirectionBounds_testMovingRightOutOfBoundsSafeMap_shouldReturn0(){
+        MapCreator creator = new MapCreator();
+        game.map = creator.createMap("safe", 5);
+
+        Position position = new Position(game.map.getMapSizeVar()-1,2);
         Player player = new Player(position);
-        Assert.assertEquals(0,game.checkOutOfBounds('r',player, game.map.mapSize));
+        Assert.assertEquals(0,game.checkOutOfBounds('r',player, game.map.getMapSizeVar()));
     }
 
     @Test
-    public void TestDirectionBounds_testMovingDownOutOfBounds_shouldReturn0(){
-        game.map.mapSize = 5;
-        Position position = new Position(2,(game.map.mapSize-1));
+    public void TestDirectionBounds_testMovingDownOutOfBoundsSafeMap_shouldReturn0(){
+        MapCreator creator = new MapCreator();
+        game.map = creator.createMap("safe", 5);
+
+        Position position = new Position(2,(game.map.getMapSizeVar()-1));
         Player player = new Player(position);
-        Assert.assertEquals(0,game.checkOutOfBounds('d',player, game.map.mapSize));
+        Assert.assertEquals(0,game.checkOutOfBounds('d',player, game.map.getMapSizeVar()));
     }
 
     @Test
-    public void TestDirectionBounds_testMovingUpCorrectly_shouldReturn1(){
-        game.map.mapSize = 5;
+    public void TestDirectionBounds_testMovingUpCorrectlySafeMap_shouldReturn1(){
+        MapCreator creator = new MapCreator();
+        game.map = creator.createMap("safe", 5);
+
         Position position = new Position(0,3);
         Player player = new Player(position);
-        Assert.assertEquals(1,game.checkOutOfBounds('u',player, game.map.mapSize));
+        Assert.assertEquals(1,game.checkOutOfBounds('u',player, game.map.getMapSizeVar()));
     }
 
     @Test
-    public void TestDirectionBounds_testMovingLeftCorrectly_shouldReturn1(){
-        game.map.mapSize = 5;
+    public void TestDirectionBounds_testMovingLeftCorrectlySafeMap_shouldReturn1(){
+        MapCreator creator = new MapCreator();
+        game.map = creator.createMap("safe", 5);
+
         Position position = new Position(2,3);
         Player player = new Player(position);
-        Assert.assertEquals(1,game.checkOutOfBounds('l',player, game.map.mapSize));
+        Assert.assertEquals(1,game.checkOutOfBounds('l',player, game.map.getMapSizeVar()));
     }
 
     @Test
-    public void TestDirectionBounds_testMovingRightCorrectly_shouldReturn1(){
-        game.map.mapSize = 5;
+    public void TestDirectionBounds_testMovingRightCorrectlySafeMap_shouldReturn1(){
+        MapCreator creator = new MapCreator();
+        game.map = creator.createMap("safe", 5);
+
         Position position = new Position(1,3);
         Player player = new Player(position);
-        Assert.assertEquals(1,game.checkOutOfBounds('r',player, game.map.mapSize));
+        Assert.assertEquals(1,game.checkOutOfBounds('r',player, game.map.getMapSizeVar()));
     }
 
     @Test
-    public void TestDirectionBounds_testMovingDownCorrectly_shouldReturn1(){
-        game.map.mapSize = 5;
+    public void TestDirectionBounds_testMovingDownCorrectlySafeMap_shouldReturn1(){
+        MapCreator creator = new MapCreator();
+        game.map = creator.createMap("safe", 5);
+
         Position position = new Position(4,3);
         Player player = new Player(position);
-        Assert.assertEquals(1,game.checkOutOfBounds('d',player, game.map.mapSize));
+        Assert.assertEquals(1,game.checkOutOfBounds('d',player, game.map.getMapSizeVar()));
+    }
+
+    @Test
+    public void TestDirectionBounds_testMovingUpOutOfBoundsHazardousMap_shouldReturn0(){
+        MapCreator creator = new MapCreator();
+        game.map = creator.createMap("hazardous", 5);
+
+        Position position = new Position(4,0);
+        Player player = new Player(position);
+        Assert.assertEquals(0,game.checkOutOfBounds('u',player, game.map.getMapSizeVar()));
+    }
+
+    @Test
+    public void TestDirectionBounds_testMovingLeftOutOfBoundsHazardousMap_shouldReturn0(){
+        MapCreator creator = new MapCreator();
+        game.map = creator.createMap("hazardous", 5);
+
+        Position position = new Position(0,3);
+        Player player = new Player(position);
+        Assert.assertEquals(0,game.checkOutOfBounds('l',player, game.map.getMapSizeVar()));
+    }
+
+    @Test
+    public void TestDirectionBounds_testMovingRightOutOfBoundsHazardousMap_shouldReturn0(){
+        MapCreator creator = new MapCreator();
+        game.map = creator.createMap("hazardous", 5);
+
+        Position position = new Position(game.map.getMapSizeVar()-1,2);
+        Player player = new Player(position);
+        Assert.assertEquals(0,game.checkOutOfBounds('r',player, game.map.getMapSizeVar()));
+    }
+
+    @Test
+    public void TestDirectionBounds_testMovingDownOutOfBoundsHazardousMap_shouldReturn0(){
+        MapCreator creator = new MapCreator();
+        game.map = creator.createMap("hazardous", 5);
+
+        Position position = new Position(2,(game.map.getMapSizeVar()-1));
+        Player player = new Player(position);
+        Assert.assertEquals(0,game.checkOutOfBounds('d',player, game.map.getMapSizeVar()));
+    }
+
+    @Test
+    public void TestDirectionBounds_testMovingUpCorrectlyHazardousMap_shouldReturn1(){
+        MapCreator creator = new MapCreator();
+        game.map = creator.createMap("hazardous", 5);
+
+        Position position = new Position(0,3);
+        Player player = new Player(position);
+        Assert.assertEquals(1,game.checkOutOfBounds('u',player, game.map.getMapSizeVar()));
+    }
+
+    @Test
+    public void TestDirectionBounds_testMovingLeftCorrectlyHazardousMap_shouldReturn1(){
+        MapCreator creator = new MapCreator();
+        game.map = creator.createMap("hazardous", 5);
+
+        Position position = new Position(2,3);
+        Player player = new Player(position);
+        Assert.assertEquals(1,game.checkOutOfBounds('l',player, game.map.getMapSizeVar()));
+    }
+
+    @Test
+    public void TestDirectionBounds_testMovingRightCorrectlyHazardousMap_shouldReturn1(){
+        MapCreator creator = new MapCreator();
+        game.map = creator.createMap("hazardous", 5);
+
+        Position position = new Position(1,3);
+        Player player = new Player(position);
+        Assert.assertEquals(1,game.checkOutOfBounds('r',player, game.map.getMapSizeVar()));
+    }
+
+    @Test
+    public void TestDirectionBounds_testMovingDownCorrectlyHazardousMap_shouldReturn1(){
+        MapCreator creator = new MapCreator();
+        game.map = creator.createMap("hazardous", 5);
+
+        Position position = new Position(4,3);
+        Player player = new Player(position);
+        Assert.assertEquals(1,game.checkOutOfBounds('d',player, game.map.getMapSizeVar()));
     }
 
     // testing validateDirectionInput
@@ -227,39 +347,89 @@ public class GameTest {
     //Testing generateHtmlFiles
 
     @Test
-    public void TestGenerateHtmlFiles_testNewFile_shouldCreateFileAndReturn1(){
-        game.map.mapSize = 5;
+    public void TestGenerateHtmlFiles_testNewFileSafeMap_shouldCreateFileAndReturn1(){
+        MapCreator creator = new MapCreator();
+        game.map = creator.createMap("safe", 5);
+
         Position position = new Position(4,3);
         Player player = new Player(position);
         game.players.add(player);
-        Assert.assertEquals(1, game.generateHtmlFile(0,game.map.mapSize, " "));
+        Assert.assertEquals(1, game.generateHtmlFile(0,game.map.getMapSizeVar(), " "));
 
         game.deleteHtmlFiles(1);
     }
 
     @Test
-    public void TestGenerateHtmlFiles_testNewFileWithDirection_shouldCreateFileAndReturn1(){
-        game.map.mapSize = 5;
+    public void TestGenerateHtmlFiles_testNewFileWithDirectionSafeMap_shouldCreateFileAndReturn1(){
+        MapCreator creator = new MapCreator();
+        game.map = creator.createMap("safe", 5);
+
         Position position = new Position(4,3);
         Player player = new Player(position);
         game.players.add(player);
-        Assert.assertEquals(1, game.generateHtmlFile(0,game.map.mapSize, "u"));
+        Assert.assertEquals(1, game.generateHtmlFile(0,game.map.getMapSizeVar(), "u"));
 
         game.deleteHtmlFiles(1);
     }
 
     @Test
-    public void TestGenerateHtmlFiles_testOverwriteFile_shouldOverwriteExistingFileAndReturn2(){
-        game.map.mapSize = 5;
+    public void TestGenerateHtmlFiles_testOverwriteFileSafeMap_shouldOverwriteExistingFileAndReturn2(){
+        MapCreator creator = new MapCreator();
+        game.map = creator.createMap("safe", 5);
+
         Position position = new Position(4,3);
         Player player = new Player(position);
         game.players.add(player);
 
         //create file
-        game.generateHtmlFile(0,game.map.mapSize, " ");
+        game.generateHtmlFile(0,game.map.getMapSizeVar(), " ");
 
         //check that overwriting file returns correct value
-        Assert.assertEquals(2, game.generateHtmlFile(0,game.map.mapSize, " "));
+        Assert.assertEquals(2, game.generateHtmlFile(0,game.map.getMapSizeVar(), " "));
+
+        game.deleteHtmlFiles(1);
+    }
+
+    @Test
+    public void TestGenerateHtmlFiles_testNewFileHazardousMap_shouldCreateFileAndReturn1(){
+        MapCreator creator = new MapCreator();
+        game.map = creator.createMap("hazardous", 5);
+
+        Position position = new Position(4,3);
+        Player player = new Player(position);
+        game.players.add(player);
+        Assert.assertEquals(1, game.generateHtmlFile(0,game.map.getMapSizeVar(), " "));
+
+        game.deleteHtmlFiles(1);
+    }
+
+    @Test
+    public void TestGenerateHtmlFiles_testNewFileWithDirectionHazardousMap_shouldCreateFileAndReturn1(){
+        MapCreator creator = new MapCreator();
+        game.map = creator.createMap("hazardous", 5);
+
+        Position position = new Position(4,3);
+        Player player = new Player(position);
+        game.players.add(player);
+        Assert.assertEquals(1, game.generateHtmlFile(0,game.map.getMapSizeVar(), "u"));
+
+        game.deleteHtmlFiles(1);
+    }
+
+    @Test
+    public void TestGenerateHtmlFiles_testOverwriteFileHazardousMap_shouldOverwriteExistingFileAndReturn2(){
+        MapCreator creator = new MapCreator();
+        game.map = creator.createMap("hazardous", 5);
+
+        Position position = new Position(4,3);
+        Player player = new Player(position);
+        game.players.add(player);
+
+        //create file
+        game.generateHtmlFile(0,game.map.getMapSizeVar(), " ");
+
+        //check that overwriting file returns correct value
+        Assert.assertEquals(2, game.generateHtmlFile(0,game.map.getMapSizeVar(), " "));
 
         game.deleteHtmlFiles(1);
     }

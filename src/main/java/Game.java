@@ -10,7 +10,8 @@ public class Game {
 
     ArrayList<Player> players = new ArrayList<Player>();// ArrayList of players
 
-    Map map = new Map();// map object
+    // map object
+    Map map;
 
     final private int minPlayers = 2;
     final private int maxPlayersFirstRange = 4;
@@ -47,7 +48,7 @@ public class Game {
         //Generating an html file for each player in the game
         for(int i = 0; i < game.players.size(); i++){
 
-            if(game.generateHtmlFile(i, game.map.mapSize, " ") == 0){
+            if(game.generateHtmlFile(i, game.map.getMapSizeVar(), " ") == 0){
                 System.err.println("Could not generate HTML files");
             }
         }
@@ -67,7 +68,7 @@ public class Game {
                 //Obtaining the last 4 directions of each player
                 directions = game.getPreviousDirections(i);
 
-                if(game.generateHtmlFile(i, game.map.mapSize, directions) == 0){
+                if(game.generateHtmlFile(i, game.map.getMapSizeVar(), directions) == 0){
                     System.err.println("Could not generate HTML files");
                 }
             }
@@ -107,10 +108,20 @@ public class Game {
 
     //Method to initialise map along with players and their starting positions
     private void startGame(Game game) {
+        //get number of players from user
         game.playerNum = getPlayerNum();
 
-        map.mapSize = getMapSize();
-        map.generate();// Generate map
+        //get map size from user
+        int mapSize = getMapSize();
+
+        //get map type from user
+        String type = getMapType();
+
+        //create instance of map creator
+        MapCreator creator = new MapCreator();
+
+        //create map of chosen type and size using the creator classes
+        map = creator.createMap(type, mapSize);
 
         //In this loop all the Player objects are created along with their starting position in the map
         for (int i = 0; i < game.playerNum; i++) {
@@ -123,6 +134,52 @@ public class Game {
 
             //The created player is added to the ArrayList of players
             players.add(player);
+        }
+    }
+
+    // Method to get the map type from the user
+    private String getMapType() {
+        int num;
+
+        System.out.println("Would you like to play in\n 1) a safe map with 10% water squares\n 2) a hazardous map with 25%-35% water squares");
+
+        while(true){
+            //Get user input
+            scanner = new Scanner(System.in);
+
+            //Validate user input
+            num = validateMapType(scanner);
+
+            if(num == 1){
+                return "safe";
+            }
+            else if(num == 2){
+                return "hazardous";
+            }
+        }
+    }
+
+    // Method to validate the user's input for the map type
+    int validateMapType(Scanner scanner) {
+        int num;
+
+        try {
+            //Set to user input from getMapType
+            num = scanner.nextInt();
+        }
+        //If input is not an integer
+        catch (InputMismatchException e) {
+            System.err.println("Invalid input. Please enter 1 or 2");
+            return 0;//Return error value of 0
+        }
+        //If input is correct
+        if (num == 1 || num == 2) {
+            return num;//Return value entered by the user
+        }
+        //If input is not within required range
+        else {
+            System.err.println("Please enter 1 or 2");
+            return 3;//Return error value of 1
         }
     }
 
@@ -246,7 +303,7 @@ public class Game {
                 }
 
                 //Check if move is within map and execute if it is
-                if (checkOutOfBounds(direction, player, map.mapSize) == 1) {
+                if (checkOutOfBounds(direction, player, map.getMapSizeVar()) == 1) {
                     validMove = true;
 
                     //Change player's position variables to new position

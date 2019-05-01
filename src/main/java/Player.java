@@ -6,6 +6,14 @@ class Player {
     //Player's current position
     Position position;
 
+    //Player toString
+    @Override
+    public String toString() {
+        return "Player{" +
+                "position=" + position +
+                '}';
+    }
+
     //This array list is used to hold the previous positions the player
     ArrayList<Position> positions = new ArrayList<Position>();
 

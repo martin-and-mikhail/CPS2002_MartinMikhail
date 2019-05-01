@@ -20,6 +20,15 @@ public class PlayerTest {
         player = null;
     }
 
+    //Testing creating a player with a position and toString
+    @Test
+    public void TestCreatePlayerWithPosition_shouldCreatePlayer(){
+        Position position = new Position(0,0);
+        player = new Player(position);
+
+        Assert.assertEquals("Player{position=Position{x=0, y=0}}", player.toString());
+    }
+
     // Testing AddToPositions
 
     @Test
@@ -128,7 +137,7 @@ public class PlayerTest {
         int[][] grassTiles = new int[][]{{0,0},{0,1}};
 
         //Check that the method returns a position
-        Assert.assertThat(player.setStartingPosition(grassTiles), instanceOf(Position.class));
+        Assert.assertNotNull(player.setStartingPosition(grassTiles));
     }
 
     //Testing ifTileExists
