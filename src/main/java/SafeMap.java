@@ -49,9 +49,19 @@ public class SafeMap implements Map{
         return treasureCount;
     }
 
+    private static SafeMap map = null;
+
     //Constructor for SafeMap
-    SafeMap(int mapSize){
-        this.mapSize = mapSize;
+    private SafeMap(){
+    }
+
+    //This method is used to obtain the static instance of the object
+    public static SafeMap getInstance(){
+            if(map == null){
+                map = new SafeMap();
+            }
+
+            return map;
     }
 
     //Method to generate a safe map

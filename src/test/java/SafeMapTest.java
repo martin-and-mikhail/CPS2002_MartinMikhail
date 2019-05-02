@@ -70,6 +70,25 @@ public class SafeMapTest{
         Assert.assertEquals(32,i);
     }
 
+    //Testing getInstance
+
+    @Test
+    public void TestGetInstance_testNullInstance_shouldReturnNewSafeMap(){
+
+        //A new SafeMap instance is made
+        SafeMap map = null;
+
+        Assert.assertEquals(SafeMap.getInstance() , map.getInstance());
+    }
+
+    @Test
+    public void TestGetInstance_testNotNullInstance_shouldReturnTheSameSafeMap(){
+
+        //An already defined Safemap instance is made
+        SafeMap map = SafeMap.getInstance();
+
+        Assert.assertEquals(SafeMap.getInstance(), map.getInstance());
+    }
 
     //Testing getTileType
 

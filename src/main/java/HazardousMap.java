@@ -48,9 +48,21 @@ public class HazardousMap implements Map{
         return treasureCount;
     }
 
+    //A static instance is created to implement the singleton design pattern
+    private static HazardousMap map = null;
+
     //constructor for HazardousMap
-    HazardousMap(int pmapSize){
-        mapSize = pmapSize;
+    //Constructor is set to private to implement the singleton design pattern
+    private HazardousMap(){
+    }
+
+    //This method is used to obtain the static instance of the object
+    public static HazardousMap getInstance(){
+        if(map == null){
+            map = new HazardousMap();
+        }
+
+        return map;
     }
 
     //Method to generate a hazardous map

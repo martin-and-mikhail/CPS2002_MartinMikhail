@@ -159,4 +159,87 @@ public class PlayerTest {
         //Check that the method returns a position
         Assert.assertFalse(player.ifTileExists(1,1));
     }
+
+    //Testing getPreviousDirections
+
+    @Test
+    public void TestGetPreviousDirections_testNoDirections_shouldOutputNothing(){
+        //Player is not given any directions
+
+        //Ensure that an empty string is returned
+        Assert.assertEquals("", player.getPreviousDirections());
+    }
+
+    @Test
+    public void TestGetPreviousDirections_testSingleDirection_shouldOutputDirection(){
+        //Give player single direction
+        player.directions.add("right");
+
+        //Expected String to be returned by getPreviousDirection method
+        String expected = " right";
+
+        Assert.assertEquals(expected, player.getPreviousDirections());
+    }
+
+    @Test
+    public void TestGetPreviousDirections_testLessThan6Directions_shouldOutputDirections(){
+
+        //Give player 4 directions
+        player.directions.add("right");
+        player.directions.add("left");
+        player.directions.add("up");
+        player.directions.add("down");
+
+        //Expected String to be returned by getPreviousDirection method
+        String expected = " down up left right";
+
+        Assert.assertEquals(expected, player.getPreviousDirections());
+    }
+
+    @Test
+    public void TestGetPreviousDirections_testOver6Directions_shouldOutputLast6Directions(){
+
+        //Give player 8 directions
+        player.directions.add("up");
+        player.directions.add("right");
+        player.directions.add("down");
+        player.directions.add("left");
+        player.directions.add("right");
+        player.directions.add("left");
+        player.directions.add("up");
+        player.directions.add("down");
+
+        //Expected String to be returned by getPreviousDirection method
+        String expected = " down up left right left down";
+
+        Assert.assertEquals(expected, player.getPreviousDirections());
+    }
+
+    @Test
+    public void TestChangeHtmlFile_testOverwriteFileSafeMap_shouldChangeFileAndReturn1(){
+
+        //Creating a new game with a safe map
+        Game game = new Game();
+        MapCreator creator = new MapCreator();
+        game.map = creator.createMap("safe", 5);
+        game.generateHtmlFile(5);
+
+        //When the current player changes the map a return value of 1 shoudl be obtained
+        Assert.assertEquals(1 , player.getPreviousDirections());
+    }
+
+    @Test
+    public void TestChangeHtmlFile_testOverwriteFileHazardousMap_shouldChangeFileAndReturn1(){
+
+        //Creating a new game with a safe map
+        Game game = new Game();
+        MapCreator creator = new MapCreator();
+        game.map = creator.createMap("hazardous", 5);
+        game.generateHtmlFile(5);
+
+        //When the current player changes the map a return value of 1 shoudl be obtained
+        Assert.assertEquals(1 , player.getPreviousDirections());
+    }
+
 }
+

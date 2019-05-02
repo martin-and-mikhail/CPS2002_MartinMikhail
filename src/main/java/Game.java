@@ -29,8 +29,6 @@ public class Game {
     }
 
     public static void main(String[] args) {
-        //This variable is used to hold the previous directions taken by a given player
-        String directions;
 
         System.out.println("Welcome to the Treasure Map Game by Martin Bartolo and Mikhail Cassar");
         Game game = new Game();
@@ -44,13 +42,9 @@ public class Game {
         //This is just in case more than one player finds it on the same turn
         boolean[] winners = new boolean[game.players.size()];
 
-        //Generating the initial html files here before there are any moves
-        //Generating an html file for each player in the game
-        for(int i = 0; i < game.players.size(); i++){
-
-            if(game.generateHtmlFile(i, game.map.getMapSizeVar(), " ") == 0){
-                System.err.println("Could not generate HTML files");
-            }
+        //Generating the initial html file here before there are any moves
+        if(game.generateHtmlFile(game.map.getMapSizeVar()) == 0) {
+            System.err.println("Could not generate HTML files");
         }
 
         //Main game loop
@@ -61,17 +55,6 @@ public class Game {
 
             //Get each players desired direction of movement for the current turn
             game.directionsLoop();
-
-            //Generating an html file for each player's current state
-            for(int i = 0; i < game.players.size(); i++){
-
-                //Obtaining the last 4 directions of each player
-                directions = game.getPreviousDirections(i);
-
-                if(game.generateHtmlFile(i, game.map.getMapSizeVar(), directions) == 0){
-                    System.err.println("Could not generate HTML files");
-                }
-            }
 
             //Go through each player in the game and check if they found the treasure
             //Mark the players who have found the treasure
@@ -313,6 +296,11 @@ public class Game {
                     map.evaluateCurrentPlayerTile(player);
                 }
             }
+
+            //At the end of the current player's turn the main html file is changed
+            player.changeHtmlFile(players.indexOf(player), map);
+
+            System.out.println("Player " + (players.indexOf(player) + 1) + ", your map is currently available\n");
         }
     }
 
@@ -418,9 +406,9 @@ public class Game {
         }
     }
 
+    //This method is used to generate a main HTML file
+    int generateHtmlFile(int mapSize){
 
-    // This method is used to generate the HTML files so that they can be opened in browser
-    int generateHtmlFile(int playerIndex, int mapSize, String direction) {
         //Value to return to mark if method has run successfully or not
         //Set to 1 by default. This will change to 0 if an error is encountered
         int returnValue = 1;
@@ -432,13 +420,12 @@ public class Game {
         boolean playerHere;
 
         //A file object is being created where the name is given depending on the number of the player
-        File file = new File("map_player_" + (playerIndex +1)+ ".html");
+        File file = new File("map.html");
 
         //The actual file is created here
         try {
             //If file already exists set return value to 2 to mark that it is being overwritten
             if(!file.createNewFile()){
-                returnValue = 2;
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -514,9 +501,9 @@ public class Game {
 
         htmlText.append("<div>\n" + "    <div class=\"header\"> \n" + "    \n" +
                 //First we need to set a header for each game map which each player sees
-                "     <p> Player ").append(playerIndex + 1)
+                "     <p> Player ")
                 .append("</p>\n")
-                .append("     <p> Moves: ").append(direction).append(" </p> \n")
+                .append("     <p> Moves: ").append(" </p> \n")
                 .append("    </div>\n")
                 .append("    \n");
 
@@ -526,85 +513,8 @@ public class Game {
         for (int j = 0; j < mapSize; j++) {
             for (int i = 0; i < mapSize; i++) {
 
-                //playerHere is set to false at each iteration
-                playerHere = false;
+                htmlText.append("<div class=\"cellGray\"></div>\n");
 
-                //Check if the player went on this tile already
-                if(players.get(playerIndex).ifTileExists(i, j)){
-
-                    //If the tile exists then the player must be on one of these tiles
-                    //Checking if the current tile is the players current position on the map
-                    if(players.get(playerIndex).position.x == i && players.get(playerIndex).position.y == j){
-                        playerHere = true;
-                    }
-
-                    //Obtain the tile type of the current tile
-                    tileType = map.getTileType(i,j);
-                }
-
-                else{
-                    //If not the tile has a default tile type
-                    tileType = 3;
-                }
-
-                switch(tileType){
-                    //Grass tile
-                    case 0:
-
-                        if(playerHere){
-
-                            htmlText.append("<div class=\"cellGreen\">" +
-                                    "<img src=\"player.png\" alt=\"player\">" +
-                                    "</div>\n");
-                        }
-
-                        else{
-
-                            htmlText.append("<div class=\"cellGreen\"></div>\n");
-
-                        }
-                        break;
-
-                    //Water tile
-                    case 1:
-
-                        if(playerHere){
-
-                            htmlText.append("<div class=\"cellBlue\">" +
-                                    "<img src=\"player.png\" alt=\"player\">" +
-                                    "</div>\n");
-                        }
-
-                        else{
-
-                            htmlText.append("<div class=\"cellBlue\"></div>\n");
-
-                        }
-                        break;
-
-                    //Treasure Tile
-                    case 2:
-
-                        if(playerHere){
-
-                            htmlText.append("<div class=\"cellYellow\">" +
-                                    "<img src=\"player.png\" alt=\"player\">" +
-                                    "</div>\n");
-
-                        }
-
-                        else{
-
-                            htmlText.append("<div class=\"cellYellow\"></div>\n");
-
-                        }
-                        break;
-
-                    default:
-                        //No need to check for player here as a player can never be on a gray tile
-                        htmlText.append("<div class=\"cellGray\"></div>\n");
-                        break;
-                }
             }
         }
 
@@ -619,63 +529,33 @@ public class Game {
         }catch(IOException io){
             io.printStackTrace();
             returnValue = 0;
-        }
-
-        return returnValue;
     }
 
-    //Method used to get the last n directions
-    String getPreviousDirections(int playerIndex){
-        String directions;
-        StringBuilder stringBuilder = new StringBuilder();
+        return returnValue;
 
-        int directionSize = players.get(playerIndex).directions.size();
-
-        //Loop for the last 6 directions the player has moved
-        for(int i = 1; i <= 6; i++){
-            //If only one direction has been entered
-            if(directionSize == 1){
-                stringBuilder.append(" ").append(players.get(playerIndex).directions.get(directionSize - 1));
-                break;
-            }
-            //If more than 1 directions have been entered
-            else if (directionSize >1){
-                //Add direction unless there are less than 6 total directions
-                if(directionSize - i <0){
-                    break;
-                }
-                stringBuilder.append(" ").append(players.get(playerIndex).directions.get(directionSize - i));
-            }
-        }
-
-        directions = stringBuilder.toString();
-
-        return directions;
     }
 
     //Method to delete Html files
-    void deleteHtmlFiles(int playerNum){
+    void deleteHtmlFile(){
 
-        //Loops through all player files
-        for(int i = 1; i <= playerNum ; i++){
-            //Delete each file iteratively
-            try{
-                File file = new File("map_player_" + i + ".html");
+        //Deleting the only file used in the game
+        try{
+            File file = new File("map.html");
 
-                if(!file.delete()) {
-                    System.out.println("File does not exist");
-                }
-            }catch(Exception e){
-                e.printStackTrace();
+            if(!file.delete()) {
+                System.out.println("File does not exist");
             }
+        }catch(Exception e){
+            e.printStackTrace();
         }
+
     }
 
     //Method to exit the game
     private void exitGame(Game game){
         if(getExitChar() == 'e'){
             //Delete all Html Files
-            deleteHtmlFiles(game.playerNum);
+            deleteHtmlFile();
             System.out.println("Thank you for playing!");
         }
     }

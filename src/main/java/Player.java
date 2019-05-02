@@ -1,3 +1,7 @@
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -127,5 +131,242 @@ class Player {
             }
         }
         return false;
+    }
+
+    //Method used to get the last n directions
+    String getPreviousDirections(){
+        String directions;
+        StringBuilder stringBuilder = new StringBuilder();
+
+        //Get the size of the players previous directions
+        int directionSize = this.directions.size();
+
+        //Loop for the last 6 directions the player has moved
+        for(int i = 1; i <= 6; i++){
+            //If only one direction has been entered
+            if(directionSize == 1){
+                stringBuilder.append(" ").append(this.directions.get(directionSize - 1));
+                break;
+            }
+            //If more than 1 directions have been entered
+            else if (directionSize >1){
+                //Add direction unless there are less than 6 total directions
+                if(directionSize - i <0){
+                    break;
+                }
+                stringBuilder.append(" ").append(this.directions.get(directionSize - i));
+            }
+        }
+
+        directions = stringBuilder.toString();
+
+        return directions;
+    }
+
+    //Method used to change the main html file
+    int changeHtmlFile(int playerIndex, Map map){
+        //Value to return to mark if method has run successfully or not
+        //Set to 1 by default. This will change to 0 if an error is encountered
+        int returnValue = 1;
+
+        String direction = getPreviousDirections();
+
+        //This variable is used to hold the type of tile which the player has landed on
+        int tileType;
+
+        //This variable checks if the player is currently on this tile
+        boolean playerHere;
+
+        //A file object is being created where the name is given depending on the number of the player
+        File file = new File("map.html");
+
+        //The actual file is created here
+        try {
+            //If file already exists set return value to 2 to mark that it is being overwritten
+            if(!file.createNewFile()){
+                returnValue = 2;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            returnValue = 0;//Set return value to error
+        }
+
+        //This object is used to be able to add to the string easily
+        StringBuilder htmlText = new StringBuilder();
+
+        //This is the html code which is going to be placed in each file
+        htmlText.append( "<!doctype html>\n" );
+        htmlText.append( "<html>\n" );
+
+        htmlText.append( "<head>\n" );
+        htmlText.append( "<style>\n" );
+
+        htmlText.append("div {\n" +
+                //The width of the grid is set depending on the inputted map size
+                //The height is larger than the width since we are also goign to have to count the header which is above the grid
+                "    width: ").append(map.getMapSizeVar()).append("00px;\n")
+                .append("    height: ").append(map.getMapSizeVar() + 1).append("00px;\n")
+                .append("}\n")
+                .append("\n")
+                .append(".header {\n").append(
+                //The width of the header is changed depending on the size of the map
+                "  width: ").append(map.getMapSizeVar()).append("00px;\n")
+                .append("  height: 100px;\n")
+                .append("  outline: 1px solid;\n")
+                .append("  float: left;\n")
+                .append("  text-align: center;\n")
+                .append("  background-color: #1f599a;\n")
+                .append("  font-family: Arial, sans-serif;\n")
+                .append("  font-size: 20px;\n")
+                .append("  color: white;\n")
+                .append("}\n")
+                .append("\n")
+                .append(".cellGray {\n")
+                .append("    width: 100px;\n")
+                .append("    height: 100px;\n")
+                .append("    outline: 1px solid;\n")
+                .append("    float: left;\n")
+                .append("    background-color: Gray;\n")
+                .append("}\n")
+                .append("\n")
+                .append(".cellGreen {\n")
+                .append("  width: 100px;\n")
+                .append("    height: 100px;\n")
+                .append("    outline: 1px solid;\n")
+                .append("    float: left;\n")
+                .append("    background-color: Green;\n")
+                .append("}\n")
+                .append("\n")
+                .append(".cellBlue {\n")
+                .append("  width: 100px;\n")
+                .append("    height: 100px;\n")
+                .append("    outline: 1px solid;\n")
+                .append("    float: left;\n")
+                .append("    background-color: Blue;\n")
+                .append("}\n")
+                .append("\n")
+                .append(".cellYellow {\n")
+                .append("  width: 100px;\n")
+                .append("    height: 100px;\n")
+                .append("    outline: 1px solid;\n")
+                .append("    float: left;\n")
+                .append("    background-color: Yellow;\n")
+                .append("}\n");
+
+        htmlText.append( "</style>\n" );
+        htmlText.append( "</head>\n\n" );
+
+        htmlText.append( "<body>\n" );
+
+        htmlText.append("<div>\n" + "    <div class=\"header\"> \n" + "    \n" +
+                //First we need to set a header for each game map which each player sees
+                "     <p> Player ").append(playerIndex + 1)
+                .append("</p>\n")
+                .append("     <p> Moves: ").append(direction).append(" </p> \n")
+                .append("    </div>\n")
+                .append("    \n");
+
+        //Now we will build the current map depending on the players current position
+        //We will change colours of new tiles that have been stepped on and mark the player's current position
+        //For loop used to loop through each grid
+        for (int j = 0; j < map.getMapSizeVar(); j++) {
+            for (int i = 0; i < map.getMapSizeVar(); i++) {
+
+                //playerHere is set to false at each iteration
+                playerHere = false;
+
+                //Check if the player went on this tile already
+                if(ifTileExists(i, j)){
+
+                    //If the tile exists then the player must be on one of these tiles
+                    //Checking if the current tile is the players current position on the map
+                    if(position.x == i && position.y == j){
+                        playerHere = true;
+                    }
+
+                    //Obtain the tile type of the current tile
+                    tileType = map.getTileType(i,j);
+                }
+
+                else{
+                    //If not the tile has a default tile type
+                    tileType = 3;
+                }
+
+                switch(tileType){
+                    //Grass tile
+                    case 0:
+
+                        if(playerHere){
+
+                            htmlText.append("<div class=\"cellGreen\">" +
+                                    "<img src=\"player.png\" alt=\"player\">" +
+                                    "</div>\n");
+                        }
+
+                        else{
+
+                            htmlText.append("<div class=\"cellGreen\"></div>\n");
+
+                        }
+                        break;
+
+                    //Water tile
+                    case 1:
+
+                        if(playerHere){
+
+                            htmlText.append("<div class=\"cellBlue\">" +
+                                    "<img src=\"player.png\" alt=\"player\">" +
+                                    "</div>\n");
+                        }
+
+                        else{
+
+                            htmlText.append("<div class=\"cellBlue\"></div>\n");
+
+                        }
+                        break;
+
+                    //Treasure Tile
+                    case 2:
+
+                        if(playerHere){
+
+                            htmlText.append("<div class=\"cellYellow\">" +
+                                    "<img src=\"player.png\" alt=\"player\">" +
+                                    "</div>\n");
+
+                        }
+
+                        else{
+
+                            htmlText.append("<div class=\"cellYellow\"></div>\n");
+
+                        }
+                        break;
+
+                    default:
+                        //No need to check for player here as a player can never be on a gray tile
+                        htmlText.append("<div class=\"cellGray\"></div>\n");
+                        break;
+                }
+            }
+        }
+
+        htmlText.append("\n</div>");
+        htmlText.append( "</body>\n" );
+        htmlText.append( "</html>\n" );
+
+        try{
+            BufferedWriter bw = new BufferedWriter(new FileWriter(file));
+            bw.write(htmlText.toString());
+            bw.close();
+        }catch(IOException io){
+            io.printStackTrace();
+            returnValue = 0;
+        }
+
+        return returnValue;
     }
 }

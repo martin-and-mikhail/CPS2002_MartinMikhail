@@ -1,6 +1,8 @@
 public class SafeMapCreator extends MapCreator{
     private int mapSize;
 
+    //A static method of the map creator is made
+
     //Constructor for SafeMapCreator
     SafeMapCreator(int pmapSize){
         mapSize = pmapSize;
@@ -9,7 +11,9 @@ public class SafeMapCreator extends MapCreator{
     //Method to create and return a safe map
     @Override
     public Map create(){
-        SafeMap map = new SafeMap(mapSize);
+        //getInstance method used here to obtain a static instance of the hazardous map
+        SafeMap map =  SafeMap.getInstance();
+        map.setMapSize(mapSize);
         map.generate();
         return map;
     }

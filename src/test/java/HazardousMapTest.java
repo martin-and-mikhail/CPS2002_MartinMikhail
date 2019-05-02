@@ -52,6 +52,7 @@ public class HazardousMapTest{
 
     @Test
     public void TestCounts_shouldSetCorrectAmountofEachTile(){
+
         Assert.assertEquals(9, map.getWaterCount());
         Assert.assertEquals(1, map.getTreasureCount());
         Assert.assertEquals(26, map.getGrassCount());
@@ -66,8 +67,28 @@ public class HazardousMapTest{
             i++;
         }
 
-        //ensure that 32 grass tiles have been found
+        //ensure that 26 grass tiles have been found
         Assert.assertEquals(26,i);
+    }
+
+    //Testing getInstance
+
+    @Test
+    public void TestGetInstance_testNullInstance_shouldReturnNewHazardousMap(){
+
+        //A new HazardousMap instance is made
+        HazardousMap map = null;
+
+        Assert.assertEquals(HazardousMap.getInstance() , map.getInstance());
+    }
+
+    @Test
+    public void TestGetInstance_testNotNullInstance_shouldReturnTheSameHazardousMap(){
+
+        //An already defined Hazardous map instance is made
+        HazardousMap map = HazardousMap.getInstance();
+
+        Assert.assertEquals(HazardousMap.getInstance(), map.getInstance());
     }
 
 
