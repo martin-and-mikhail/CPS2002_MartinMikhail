@@ -61,6 +61,7 @@ public class SafeMapTest{
 
     @Test
     public void TestGetGrassTiles_thereShouldBe32GrassTiles(){
+        System.out.println(Arrays.deepToString(map.getGrassTiles()));
         int i=0;
         for(int[] array : map.getGrassTiles()) {
             i++;

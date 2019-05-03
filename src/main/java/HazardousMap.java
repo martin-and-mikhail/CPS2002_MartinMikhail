@@ -29,9 +29,9 @@ public class HazardousMap implements Map{
 
     //Below are counters used to hold the current number of tiles with the corresponding tile type
     //The use of these is so that the program does not have more than one treasure or a large amount of water tiles
-    private int grassCount = 0;
-    private int waterCount = 0;
-    private int treasureCount = 0;
+    private int grassCount;
+    private int waterCount;
+    private int treasureCount;
 
     //getter for grassCount
     public int getGrassCount() {
@@ -57,7 +57,7 @@ public class HazardousMap implements Map{
     }
 
     //This method is used to obtain the static instance of the object
-    public static HazardousMap getInstance(){
+    static HazardousMap getInstance(){
         if(map == null){
             map = new HazardousMap();
         }
@@ -67,6 +67,9 @@ public class HazardousMap implements Map{
 
     //Method to generate a hazardous map
     public void generate(){
+        grassCount = 0;
+        waterCount = 0;
+        treasureCount = 0;
 
         tiles = new int[mapSize][mapSize][1];
 

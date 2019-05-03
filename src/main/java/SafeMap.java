@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Random;
 
 public class SafeMap implements Map{
@@ -30,9 +31,9 @@ public class SafeMap implements Map{
 
     //Below are counters used to hold the current number of tiles with the corresponding tile type
     //The use of these is so that the program does not have more than one treasure or a large amount of water tiles
-    private int grassCount = 0;
-    private int waterCount = 0;
-    private int treasureCount = 0;
+    private int grassCount;
+    private int waterCount;
+    private int treasureCount;
 
     //getter for grassCount
     public int getGrassCount() {
@@ -56,7 +57,7 @@ public class SafeMap implements Map{
     }
 
     //This method is used to obtain the static instance of the object
-    public static SafeMap getInstance(){
+    static SafeMap getInstance(){
             if(map == null){
                 map = new SafeMap();
             }
@@ -66,6 +67,9 @@ public class SafeMap implements Map{
 
     //Method to generate a safe map
     public void generate(){
+        grassCount = 0;
+        waterCount = 0;
+        treasureCount = 0;
 
         tiles = new int[mapSize][mapSize][1];
 
@@ -132,7 +136,6 @@ public class SafeMap implements Map{
 
                         //The counter is updated since another grass tile has been added to the map
                         grassCount += 1;
-
                         break;
 
                     //Water tile
@@ -173,7 +176,7 @@ public class SafeMap implements Map{
 
                 //add the the tile to the generatedTiles array
                 generatedTiles[randomPair[0]][randomPair[1]][0] = true;
-            }while( tiles[randomPair[0]][randomPair[1]][0] != 0 && tiles[randomPair[0]][randomPair[1]][0] != 1 && tiles[randomPair[0]][randomPair[1]][0] != 2);
+            }while(tiles[randomPair[0]][randomPair[1]][0] != 0 && tiles[randomPair[0]][randomPair[1]][0] != 1 && tiles[randomPair[0]][randomPair[1]][0] != 2);
         }
     }
 
@@ -204,7 +207,6 @@ public class SafeMap implements Map{
         //Loop through all the tiles
         for (int x = 0; x < mapSize; x++) {
             for (int y = 0; y < mapSize; y++) {
-
                 //To obtain which tiles are grass just check the tile type indicated by a 0
 
                 //If the current tile has a grass tile type
