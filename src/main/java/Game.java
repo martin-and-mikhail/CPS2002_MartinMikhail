@@ -118,6 +118,61 @@ public class Game {
             //The created player is added to the ArrayList of players
             players.add(player);
         }
+
+        //Now all the player objects are assigned their corresponding teams
+        for (int i = 0; i < game.teamNum; i++) {
+
+            //Holds the new players which will be added to the team
+            ArrayList<Player> addedPlayers = new ArrayList<Player>();
+
+            //Holds the random player index
+            int rand;
+
+            //A new team is created
+            Team team = new Team();
+
+            //Now to randomly add all the players to a team
+            //Get playerInTeamNum random players from the players array list
+            for (int j = 0; j < playersInTeamNum; j++) {
+
+                //At each iteration this check is always initialised to true
+                //If there is no matching value in the array list then the while loop breaks
+                playerIsInTeam = true;
+
+                do {
+                    //A random index is obtained
+                    rand = random.nextInt(playerNum);
+
+                    //Check if any player has already been added
+                    if (addedPlayers.size() == 0) {
+
+                        //An initial player has been added
+                        addedPlayers.add(players.get(rand));
+                    } else {
+
+                        //Keep on looping until a new player index is obtained
+                        for (Player player : addedPlayers) {
+
+                            //If the current player has already been obtained
+                            if (players.get(rand) == player) {
+
+                                //The check is set to false and the loop is broken
+                                playerIsInTeam = false;
+                                break;
+                            }
+                        }
+                    }
+
+                    //Keep on looping while the current player being obtained has already been obtained
+                } while (!playerIsInTeam);
+
+                addedPlayers.add(players.get(rand));
+                //The player is added to the team
+                team.addPlayer(players.get(rand));
+
+            }
+        }
+
     }
 
     // Method to get the map type from the user
