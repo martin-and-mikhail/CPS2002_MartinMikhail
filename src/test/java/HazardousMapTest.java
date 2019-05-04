@@ -6,16 +6,18 @@ import java.util.Arrays;
 
 public class HazardousMapTest{
     private Map map;
+    private MapCreator creator;
 
     @Before
     public void setup(){
-        MapCreator creator = new MapCreator();
+        creator = new MapCreator();
         map = creator.createMap("hazardous", 6);
     }
 
     @After
     public void teardown(){
         map = null;
+        creator = null;
     }
 
     //Testing mapSize getter
@@ -52,7 +54,6 @@ public class HazardousMapTest{
 
     @Test
     public void TestCounts_shouldSetCorrectAmountofEachTile(){
-
         Assert.assertEquals(9, map.getWaterCount());
         Assert.assertEquals(1, map.getTreasureCount());
         Assert.assertEquals(26, map.getGrassCount());

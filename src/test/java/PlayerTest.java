@@ -215,30 +215,33 @@ public class PlayerTest {
         Assert.assertEquals(expected, player.getPreviousDirections());
     }
 
+    //Testing changeHtmlFile method
     @Test
-    public void TestChangeHtmlFile_testOverwriteFileSafeMap_shouldChangeFileAndReturn1(){
+    public void TestChangeHtmlFile_testOverwriteFileSafeMap_shouldChangeFileAndReturn2(){
 
         //Creating a new game with a safe map
         Game game = new Game();
+        game.players.add(player);
         MapCreator creator = new MapCreator();
         game.map = creator.createMap("safe", 5);
         game.generateHtmlFile(5);
 
-        //When the current player changes the map a return value of 1 shoudl be obtained
-        Assert.assertEquals(1 , player.getPreviousDirections());
+        //When the current player changes the map a return value of 1 should be obtained
+        Assert.assertEquals(2, player.changeHtmlFile(0, game.map));
     }
 
     @Test
-    public void TestChangeHtmlFile_testOverwriteFileHazardousMap_shouldChangeFileAndReturn1(){
+    public void TestChangeHtmlFile_testOverwriteFileHazardousMap_shouldChangeFileAndReturn2(){
 
         //Creating a new game with a safe map
         Game game = new Game();
+        game.players.add(player);
         MapCreator creator = new MapCreator();
         game.map = creator.createMap("hazardous", 5);
         game.generateHtmlFile(5);
 
-        //When the current player changes the map a return value of 1 shoudl be obtained
-        Assert.assertEquals(1 , player.getPreviousDirections());
+        //When the current player changes the map a return value of 1 should be obtained
+        Assert.assertEquals(2, player.changeHtmlFile(0, game.map));
     }
 
 }

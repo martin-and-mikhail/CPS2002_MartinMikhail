@@ -358,24 +358,6 @@ public class GameTest {
     }
 
     @Test
-    public void TestGenerateHtmlFile_testOverwriteFileSafeMap_shouldOverwriteExistingFileAndReturn2() {
-        MapCreator creator = new MapCreator();
-        game.map = creator.createMap("safe", 5);
-
-        Position position = new Position(4, 3);
-        Player player = new Player(position);
-        game.players.add(player);
-
-        //create file
-        game.generateHtmlFile(game.map.getMapSizeVar());
-
-        //check that overwriting file returns correct value
-        Assert.assertEquals(2, game.generateHtmlFile(game.map.getMapSizeVar()));
-
-        game.deleteHtmlFile();
-    }
-
-    @Test
     public void TestGenerateHtmlFile_testNewFileHazardousMap_shouldCreateFileAndReturn1() {
         MapCreator creator = new MapCreator();
         game.map = creator.createMap("hazardous", 5);
@@ -387,25 +369,6 @@ public class GameTest {
 
         game.deleteHtmlFile();
     }
-
-    //This method is only generated once in the game so there is no need for an overwrite test
-//    @Test
-//    public void TestGenerateHtmlFile_testOverwriteFileHazardousMap_shouldOverwriteExistingFileAndReturn2() {
-//        MapCreator creator = new MapCreator();
-//        game.map = creator.createMap("hazardous", 5);
-//
-//        Position position = new Position(4, 3);
-//        Player player = new Player(position);
-//        game.players.add(player);
-//
-//        //create file
-//        game.generateHtmlFile(game.map.getMapSizeVar());
-//
-//        //check that overwriting file returns correct value
-//        Assert.assertEquals(2, game.generateHtmlFile(game.map.getMapSizeVar()));
-//
-//        game.deleteHtmlFile();
-//    }
 
     //Testing HTML file deletion
 
@@ -430,40 +393,6 @@ public class GameTest {
         //make sure that the file no longer exists
         Assert.assertFalse(file.exists());
     }
-
-    //No need for this test since only one file
-//    @Test
-//    public void TestDeleteHtmlFile_testDeleteMultipleFiles_shouldCreateFilesAndDeleteThem() {
-//        //create the files
-//        File file = new File("map_player_1.html");
-//        try {
-//            if (!file.createNewFile()) {
-//                fail("File could not be created");
-//            }
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//
-//        File file2 = new File("map_player_2.html");
-//        try {
-//            if (!file2.createNewFile()) {
-//                fail("File could not be created");
-//            }
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//
-//        //make sure that the files exist
-//        Assert.assertTrue(file.exists());
-//        Assert.assertTrue(file2.exists());
-//
-//        //delete the file
-//        game.deleteHtmlFile();
-//
-//        //make sure that the files no longer exist
-//        Assert.assertFalse(file.exists());
-//        Assert.assertFalse(file2.exists());
-//    }
 
     //Testing validateExitChar
 
