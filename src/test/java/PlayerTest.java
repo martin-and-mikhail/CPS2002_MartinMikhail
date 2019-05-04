@@ -142,23 +142,23 @@ public class PlayerTest {
 
     //Testing ifTileExists
 
-    @Test
-    public void TestIfTileExists_testingTileWhichPlayerHasSteppedOn_shouldReturnTrue(){
-        player.addToPositions(0,0);
-        player.addToPositions(0,1);
-
-        //Check that the method returns a position
-        Assert.assertTrue(player.ifTileExists(0,1));
-    }
-
-    @Test
-    public void TestIfTileExists_testingTileWhichPlayerHasNotSteppedOn_shouldReturnFalse(){
-        player.addToPositions(0,0);
-        player.addToPositions(0,1);
-
-        //Check that the method returns a position
-        Assert.assertFalse(player.ifTileExists(1,1));
-    }
+//    @Test
+//    public void TestIfTileExists_testingTileWhichPlayerHasSteppedOn_shouldReturnTrue(){
+//        player.addToPositions(0,0);
+//        player.addToPositions(0,1);
+//
+//        //Check that the method returns a position
+//        Assert.assertTrue(player.ifTileExists(0,1));
+//    }
+//
+//    @Test
+//    public void TestIfTileExists_testingTileWhichPlayerHasNotSteppedOn_shouldReturnFalse(){
+//        player.addToPositions(0,0);
+//        player.addToPositions(0,1);
+//
+//        //Check that the method returns a position
+//        Assert.assertFalse(player.ifTileExists(1,1));
+//    }
 
     //Testing getPreviousDirections
 

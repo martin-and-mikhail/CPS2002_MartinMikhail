@@ -406,7 +406,7 @@ public class Game {
         for (Player player : players) {
 
             //At the end of the current player's turn the main html file is changed
-            player.changeHtmlFile(players.indexOf(player), map);
+            teams.get(getTeamIndex(player)).changeHtmlFile(players.indexOf(player), map, player);
 
             System.out.println("Player " + (players.indexOf(player) + 1) + ", your map is currently available until end of turn");
 
