@@ -1,11 +1,7 @@
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 
-class Player {
+class Player implements User{
 
     //Player's current position
     Position position;
@@ -17,9 +13,6 @@ class Player {
                 "position=" + position +
                 '}';
     }
-
-    //This array list is used to hold the previous positions the player
-    ArrayList<Position> positions = new ArrayList<Position>();
 
     //This array list is used to hold the previous directions of the player
     ArrayList<String> directions = new ArrayList<String>();
@@ -37,7 +30,7 @@ class Player {
     }
 
     //Method used to add a position to the positions ArrayList using the x and y values
-    void addToPositions(int posx, int posy){
+    public void addToPositions(int posx, int posy){
         Position position = new Position(posx, posy);
         positions.add(position);
     }

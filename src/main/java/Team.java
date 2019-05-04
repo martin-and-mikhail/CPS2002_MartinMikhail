@@ -5,22 +5,14 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 //This class is a composite class of Player objects
-public class Team {
+public class Team implements User{
 
     //Stores all the players of each team
     ArrayList<Player> players = new ArrayList<Player>();// ArrayList of players
 
-    //Stores the positions of each player at each turn
-    //This can be done by maybe storing the first five elements of each player at each turn
-    //In an array list of position array size playerNum
-    //Each player needs to have access to this so that these tiles can become available
-
-    //create a tile map here and update it
-    //each player has access to this tile map
-
-    //Stores the position which all the players occupy
+    //Stores the position which all the players in the team occupy
     //This array list is updated between turns
-    ArrayList<Position> teamPositions = new ArrayList<Position>();
+    ArrayList<Position> positions = new ArrayList<Position>();
 
     //Constructor for team
     Team(){
@@ -32,23 +24,24 @@ public class Team {
         players.add(player);
     }
 
-    //A remove player function is not made since there is no need to remove a player
+    //Method used to add a position to the positions ArrayList using the x and y values
+    public void addToPositions(int posx, int posy){
+        Position position = new Position(posx, posy);
+        positions.add(position);
 
-    //Gets a specific player from the team
-    Player getPlayer(int index){
-        return players.get(index);
     }
+
+    //A remove player function is not made since there is no need to remove a player
 
     //Adding a given player position to the teamPositions array list
     void updateTeamPositions(Player player){
 
         //If a player has not already went over the current tile then add the tile
         if(!positionExists(player.position)){
-            addToTeamPositions(player.position.x, player.position.y);
+            addToPositions(player.position.x, player.position.y);
         }
 
     }
-
 
     //Adding the player positions to the playerPositions array
     void updateAllTeamPositions(){
@@ -58,7 +51,7 @@ public class Team {
 
             //If a player has not already went over the current tile then add the tile
             if(!positionExists(player.position)){
-                addToTeamPositions(player.position.x, player.position.y);
+                addToPositions(player.position.x, player.position.y);
             }
         }
     }
@@ -69,7 +62,7 @@ public class Team {
         boolean positionExists = false;
 
         //Loop through each player in the team
-        for(Position teamPosition: teamPositions){
+        for(Position teamPosition: positions){
 
             //If the position inputted is equal to a position in the team
             if(position == teamPosition){
@@ -299,7 +292,7 @@ public class Team {
         Position positionUse = new Position(x,y);
 
         //Looping through element in the positions array list
-        for (Position position : teamPositions) {
+        for (Position position : positions) {
 
             //Comparing the x and y values of the current Position object in the array list and the positionUse object
             if(positionUse.x == position.x && positionUse.y == position.y){
@@ -310,13 +303,4 @@ public class Team {
         }
         return false;
     }
-
-    //Method used to add a position to the positions ArrayList using the x and y values
-    void addToTeamPositions(int posx, int posy){
-        Position position = new Position(posx, posy);
-        teamPositions.add(position);
-
-    }
-
-
 }

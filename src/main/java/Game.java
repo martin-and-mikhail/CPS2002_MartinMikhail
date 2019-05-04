@@ -45,10 +45,10 @@ public class Game {
         //This is just in case more than one player finds it on the same turn
         boolean[] winners = new boolean[game.players.size()];
 
-        //Generating the initial html file here before there are any moves
-        if (game.generateHtmlFile(game.map.getMapSizeVar()) == 0) {
-            System.err.println("Could not generate HTML files");
-        }
+//        //Generating the initial html file here before there are any moves
+//        if (game.generateHtmlFile(game.map.getMapSizeVar()) == 0) {
+//            System.err.println("Could not generate HTML files");
+//        }
 
         //The position array lists of each team are initialised with the starting position of the corresponding players
         for(Team team: game.teams){
@@ -552,135 +552,6 @@ public class Game {
         else {
             return c;//Return valid user inputted character
         }
-    }
-
-    //This method is used to generate a main HTML file
-    int generateHtmlFile(int mapSize){
-
-        //Value to return to mark if method has run successfully or not
-        //Set to 1 by default. This will change to 0 if an error is encountered
-        int returnValue = 1;
-
-        //This variable is used to hold the type of tile which the player has landed on
-        int tileType;
-
-        //This variable checks if the player is currently on this tile
-        boolean playerHere;
-
-        //A file object is being created where the name is given depending on the number of the player
-        File file = new File("map.html");
-
-        //The actual file is created here
-        try {
-            //If file already exists set return value to 2 to mark that it is being overwritten
-            if(!file.createNewFile()){
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-            returnValue = 0;//Set return value to error
-        }
-
-        //This object is used to be able to add to the string easily
-        StringBuilder htmlText = new StringBuilder();
-
-        //This is the html code which is going to be placed in each file
-        htmlText.append( "<!doctype html>\n" );
-        htmlText.append( "<html>\n" );
-
-        htmlText.append( "<head>\n" );
-        htmlText.append( "<style>\n" );
-
-        htmlText.append("div {\n" +
-                //The width of the grid is set depending on the inputted map size
-                //The height is larger than the width since we are also goign to have to count the header which is above the grid
-                "    width: ").append(mapSize).append("00px;\n")
-                .append("    height: ").append(mapSize + 1).append("00px;\n")
-                .append("}\n")
-                .append("\n")
-                .append(".header {\n").append(
-                //The width of the header is changed depending on the size of the map
-                "  width: ").append(mapSize).append("00px;\n")
-                .append("  height: 100px;\n")
-                .append("  outline: 1px solid;\n")
-                .append("  float: left;\n")
-                .append("  text-align: center;\n")
-                .append("  background-color: #1f599a;\n")
-                .append("  font-family: Arial, sans-serif;\n")
-                .append("  font-size: 20px;\n")
-                .append("  color: white;\n")
-                .append("}\n")
-                .append("\n")
-                .append(".cellGray {\n")
-                .append("    width: 100px;\n")
-                .append("    height: 100px;\n")
-                .append("    outline: 1px solid;\n")
-                .append("    float: left;\n")
-                .append("    background-color: Gray;\n")
-                .append("}\n")
-                .append("\n")
-                .append(".cellGreen {\n")
-                .append("  width: 100px;\n")
-                .append("    height: 100px;\n")
-                .append("    outline: 1px solid;\n")
-                .append("    float: left;\n")
-                .append("    background-color: Green;\n")
-                .append("}\n")
-                .append("\n")
-                .append(".cellBlue {\n")
-                .append("  width: 100px;\n")
-                .append("    height: 100px;\n")
-                .append("    outline: 1px solid;\n")
-                .append("    float: left;\n")
-                .append("    background-color: Blue;\n")
-                .append("}\n")
-                .append("\n")
-                .append(".cellYellow {\n")
-                .append("  width: 100px;\n")
-                .append("    height: 100px;\n")
-                .append("    outline: 1px solid;\n")
-                .append("    float: left;\n")
-                .append("    background-color: Yellow;\n")
-                .append("}\n");
-
-        htmlText.append( "</style>\n" );
-        htmlText.append( "</head>\n\n" );
-
-        htmlText.append( "<body>\n" );
-
-        htmlText.append("<div>\n" + "    <div class=\"header\"> \n" + "    \n" +
-                //First we need to set a header for each game map which each player sees
-                "     <p> Player ")
-                .append("</p>\n")
-                .append("     <p> Moves: ").append(" </p> \n")
-                .append("    </div>\n")
-                .append("    \n");
-
-        //Now we will build the current map depending on the players current position
-        //We will change colours of new tiles that have been stepped on and mark the player's current position
-        //For loop used to loop through each grid
-        for (int j = 0; j < mapSize; j++) {
-            for (int i = 0; i < mapSize; i++) {
-
-                htmlText.append("<div class=\"cellGray\"></div>\n");
-
-            }
-        }
-
-        htmlText.append("\n</div>");
-        htmlText.append( "</body>\n" );
-        htmlText.append( "</html>\n" );
-
-        try{
-            BufferedWriter bw = new BufferedWriter(new FileWriter(file));
-            bw.write(htmlText.toString());
-            bw.close();
-        }catch(IOException io){
-            io.printStackTrace();
-            returnValue = 0;
-    }
-
-        return returnValue;
-
     }
 
     //Method to delete Html files
