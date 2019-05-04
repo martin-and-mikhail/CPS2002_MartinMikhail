@@ -133,6 +133,11 @@ class Player {
         return false;
     }
 
+    //Method used to obtain the last position the player moved
+    Position getLatPosition(){
+        return positions.get(positions.size() - 1);
+    }
+
     //Method used to get the last n directions
     String getPreviousDirections(){
         String directions;
