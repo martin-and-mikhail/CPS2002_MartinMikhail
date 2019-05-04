@@ -6,8 +6,10 @@ import java.util.Scanner;
 public class Game {
 
     private int turns = 0;// Amount of turns which have been played
+    int teamNum;// Amount of teams
     int playerNum;// Amount of players
 
+    ArrayList<Team> teams = new ArrayList<Team>();// ArrayList for teams
     ArrayList<Player> players = new ArrayList<Player>();// ArrayList of players
 
     // map object
