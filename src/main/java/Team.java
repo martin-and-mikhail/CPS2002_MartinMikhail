@@ -14,11 +14,9 @@ public class Team {
     //create a tile map here and update it
     //each player has access to this tile map
 
-    //Stores the positions of each player at each turn
-    ArrayList<Position[]> teamPositions = new ArrayList<Position[]>();
-
-    //Stores the current position of each player in the team
-    Position[] playerPositions = new Position[players.size()];
+    //Stores the position which all the players occupy
+    //This array list is updated between turns
+    ArrayList<Position> teamPositions = new ArrayList<Position>();
 
     //Constructor for team
     Team(){
@@ -37,16 +35,46 @@ public class Team {
         return players.get(index);
     }
 
+    //Adding a given player position to the teamPositions array list
+    void updateTeamPositions(Player player){
+
+        //If a player has not already went over the current tile then add the tile
+        if(!positionExists(player.position)){
+            teamPositions.add(player.position);
+        }
+
+    }
+
+
     //Adding the player positions to the playerPositions array
-    void gettingCurrentPositonOfEachPlayer(){
-        for(int i = 0; i < players.size(); i++){
-            playerPositions[i] = players.get(i).getLatPosition();
+    void updateAllTeamPositions(){
+
+        //Adding all the positions of the player in the team
+        for(Player player: players){
+
+            //If a player has not already went over the current tile then add the tile
+            if(!positionExists(player.position)){
+                teamPositions.add(player.position);
+            }
         }
     }
 
-    //The current player positions are added to the total team positions
-    void updateTeamPositions(){
-        teamPositions.add(playerPositions);
+    //Method to check if the position exists in the team positions
+    boolean positionExists(Position position){
+
+        boolean positionExists = false;
+
+        //Loop through each player in the team
+        for(Position teamPosition: teamPositions){
+
+            //If the position inputted is equal to a position in the team
+            if(position == teamPosition){
+                //The check is set to high
+                positionExists = true;
+            }
+        }
+
+        return positionExists;
     }
 
     //The current position of each player is added to a tile map within a team class

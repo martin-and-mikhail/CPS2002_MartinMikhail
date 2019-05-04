@@ -1,6 +1,7 @@
 import java.io.*;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
+import java.util.Random;
 import java.util.Scanner;
 
 public class Game {
@@ -45,8 +46,13 @@ public class Game {
         boolean[] winners = new boolean[game.players.size()];
 
         //Generating the initial html file here before there are any moves
-        if(game.generateHtmlFile(game.map.getMapSizeVar()) == 0) {
+        if (game.generateHtmlFile(game.map.getMapSizeVar()) == 0) {
             System.err.println("Could not generate HTML files");
+        }
+
+        //The position array lists of each team are initialised with the starting position of the corresponding players
+        for(Team team: game.teams){
+            team.updateAllTeamPositions();
         }
 
         //Main game loop
@@ -58,12 +64,14 @@ public class Game {
             //Get each players desired direction of movement for the current turn
             game.directionsLoop();
 
+            //After the main directions loop and each player has moved the map is updated
+
             //Go through each player in the game and check if they found the treasure
             //Mark the players who have found the treasure
             int i = 0;
-            for(Player player: game.players){
+            for (Player player : game.players) {
 
-                if(player.foundTreasure){
+                if (player.foundTreasure) {
                     foundTreasure = true;
                     winners[i] = true;
                 }
@@ -73,10 +81,10 @@ public class Game {
             //If the treasure has been found by one of the players
             if (foundTreasure) {
 
-                for(i = 0; i < winners.length; i++){
+                for (i = 0; i < winners.length; i++) {
 
-                    if (winners[i]){
-                        System.out.println("Congratualtions player " + (i+1) + ", you have found the treasure in " + game.turns + " turns!");
+                    if (winners[i]) {
+                        System.out.println("Congratualtions player " + (i + 1) + ", you have found the treasure in " + game.turns + " turns!");
                     }
                 }
                 break;
@@ -89,12 +97,23 @@ public class Game {
         game.exitGame(game);
     }
 
-
-
     //Method to initialise map along with players and their starting positions
     private void startGame(Game game) {
+
+        //get number of teams from user
+        //game.teamNum = getTeamNum();
+        game.teamNum = 2;
+
         //get number of players from user
         game.playerNum = getPlayerNum();
+
+        //Can make a function which returns the extra players and the players in each team without the ectra players
+
+        //The remainder of the total number of players divided by the total number of teams is obtained
+        int extraPlayersNum = playerNum % teamNum;
+
+        //The total number of player per team is obtained excluding the extra players
+        int playersInTeamNum = (playerNum - extraPlayersNum)/teamNum;
 
         //get map size from user
         int mapSize = getMapSize();
@@ -121,60 +140,114 @@ public class Game {
             players.add(player);
         }
 
-        //Now all the player objects are assigned their corresponding teams
+        //Holds the players which have been added to a team
+        ArrayList<Player> addedPlayers = new ArrayList<Player>();
+
+        //Now to assign all the player objects to a random team
         for (int i = 0; i < game.teamNum; i++) {
 
-            //Holds the new players which will be added to the team
-            ArrayList<Player> addedPlayers = new ArrayList<Player>();
-
-            //Holds the random player index
-            int rand;
-
             //A new team is created
-            Team team = new Team();
+            Team team;
 
-            //Now to randomly add all the players to a team
+            //Generate the team
+            team = generateTeam(addedPlayers, playersInTeamNum);
+
+            //Add the team to all the teams of the game
+            teams.add(team);
+
+            System.out.println("size is " + teams.size());
+
+            System.out.println(addedPlayers.size());
+
+        }
+
+        for( Team team: teams){
+            for(Player player: team.players){
+                System.out.println(player.getLastPosition());
+            }
+
+            System.out.println("-----");
+        }
+    }
+
+    //Takes as input a set of players
+    Team generateTeam(ArrayList<Player> addedPlayers, int playersInTeamNum){
+
+        Random random = new Random();
+
+        //Check if the current player exists in a team
+        boolean playerIsInATeam = false;
+
+        //Holds a random index of a player
+        int rand;
+
+        //A new team is created
+        Team team = new Team();
+
+            //Randomly add the specified amount of players to a team
             //Get playerInTeamNum random players from the players array list
             for (int j = 0; j < playersInTeamNum; j++) {
 
                 //At each iteration this check is always initialised to true
                 //If there is no matching value in the array list then the while loop breaks
-                playerIsInTeam = true;
+                playerIsInATeam = false;
 
+                //Keep on looping until a new player index is obtained
                 do {
                     //A random index is obtained
                     rand = random.nextInt(playerNum);
 
-                    //Check if any player has already been added
-                    if (addedPlayers.size() == 0) {
+                    //If no player has currently been added to a team
+                    if(addedPlayers.size() == 0){
+
+                        //A random index is obtained
+                        rand = random.nextInt(playerNum);
 
                         //An initial player has been added
+                        team.addPlayer(players.get(rand));
+
                         addedPlayers.add(players.get(rand));
-                    } else {
 
-                        //Keep on looping until a new player index is obtained
-                        for (Player player : addedPlayers) {
-
-                            //If the current player has already been obtained
-                            if (players.get(rand) == player) {
-
-                                //The check is set to false and the loop is broken
-                                playerIsInTeam = false;
-                                break;
-                            }
+                        //If the size of a team is only one player then this team is full
+                        //If not then continue adding players until the maximum is reached
+                        if(playersInTeamNum== 1){
+                            playerIsInATeam = false;
                         }
                     }
 
-                    //Keep on looping while the current player being obtained has already been obtained
-                } while (!playerIsInTeam);
+                    //If a player has been added to a team
+                    else {
 
-                addedPlayers.add(players.get(rand));
-                //The player is added to the team
-                team.addPlayer(players.get(rand));
+                        //Initialised to false since we are checking if the current player is already in a team
+                        playerIsInATeam = false;
 
+                        //Loops through all the players which are already in a team
+                        //Ends when a player which is not in a team is obtained
+                        for (Player player : addedPlayers) {
+
+                            //If the current player has already been generated
+                            if (players.get(rand) == player) {
+                                playerIsInATeam = true;
+                            }
+                        }
+
+                        if(!playerIsInATeam){
+                            //Add the player to the team
+                            team.addPlayer(players.get(rand));
+
+                            addedPlayers.add(players.get(rand));
+
+                            //The check is set to false and the loop is broken
+                            break;
+                        }
+                    }
+
+                    //Keep on looping while the current player being obtained is already in a team
+                    } while (playerIsInATeam);
             }
-        }
 
+        //Returns a team with the player
+        return team;
     }
 
     // Method to get the map type from the user
@@ -331,6 +404,12 @@ public class Game {
 
         //Loop through each player in ArrayList
         for (Player player : players) {
+
+            //At the end of the current player's turn the main html file is changed
+            player.changeHtmlFile(players.indexOf(player), map);
+
+            System.out.println("Player " + (players.indexOf(player) + 1) + ", your map is currently available until end of turn");
+
             System.out.println("Player " + (players.indexOf(player) + 1) + ", please choose a direction (u, d, l or r).");
 
             validMove = false;
@@ -349,16 +428,28 @@ public class Game {
                     //Change player's position variables to new position
                     player.move(direction);
 
+                    //Adding the new direction to the corresponding team
+                    teams.get(getTeamIndex(player)).updateTeamPositions(player);
+
                     //Triggers event for corresponding tile type
                     map.evaluateCurrentPlayerTile(player);
                 }
             }
-
-            //At the end of the current player's turn the main html file is changed
-            player.changeHtmlFile(players.indexOf(player), map);
-
-            System.out.println("Player " + (players.indexOf(player) + 1) + ", your map is currently available\n");
         }
+    }
+
+    //Gets the index of the team the current player is in
+    int getTeamIndex(Player player){
+
+        for(Team team: teams){
+            for(Player usePlayer: team.players){
+                if(player == usePlayer){
+                    return teams.indexOf(team);
+                }
+            }
+        }
+
+        return 0;
     }
 
     // Method to check whether a move is within the map boundaries
@@ -373,7 +464,7 @@ public class Game {
 
                 //If move is within map
                 else {
-                    System.out.println("Player moved to the left");
+                    System.out.println("Player moved to the left\n");
                     return 1;//Return correct value 1 to indicate that move is valid
                 }
 
@@ -385,7 +476,7 @@ public class Game {
                 }
                 //If move is within map
                 else {
-                    System.out.println("Player moved to the right");
+                    System.out.println("Player moved to the right\n");
                     return 1;//Return correct value 1 to indicate that move is valid
                 }
 
@@ -397,7 +488,7 @@ public class Game {
                 }
                 //If move is within map
                 else {
-                    System.out.println("Player moved up");
+                    System.out.println("Player moved up\n");
                     return 1;//Return correct value 1 to indicate that move is valid
                 }
 
@@ -409,7 +500,7 @@ public class Game {
                 }
                 //If move is within map
                 else {
-                    System.out.println("Player moved down");
+                    System.out.println("Player moved down\n");
                     return 1;//Return correct value 1 to indicate that move is valid
                 }
 

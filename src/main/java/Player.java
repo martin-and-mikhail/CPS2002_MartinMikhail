@@ -42,6 +42,7 @@ class Player {
         positions.add(position);
     }
 
+
     //Method to move the player's position according to a given direction
     void move(char direction){
 
@@ -134,7 +135,7 @@ class Player {
     }
 
     //Method used to obtain the last position the player moved
-    Position getLatPosition(){
+    Position getLastPosition(){
         return positions.get(positions.size() - 1);
     }
 
