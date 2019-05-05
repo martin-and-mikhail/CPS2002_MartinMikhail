@@ -148,6 +148,10 @@ public class Game {
             teams.add(team);
         }
 
+        //If the players are not all evenly distributed among the teams
+        if(extraPlayersNum != 0){
+            distributeRemainder(addedPlayers, extraPlayersNum);
+        }
 
         //List teams and their players
         int i = 1;
@@ -268,7 +272,7 @@ public class Game {
 
                             addedPlayers.add(players.get(rand));
 
-                            //The check is set to false and the loop is broken
+                            //The check is false and the loop is broken
                             break;
                         }
                     }
@@ -279,6 +283,93 @@ public class Game {
 
         //Returns a team with the player
         return team;
+    }
+
+    // Method to distribute the remaining player if the players are not evenly distrubted among the teams
+    void distributeRemainder(ArrayList<Player> addedPlayers, int extraPlayersNum){
+
+        Random random = new Random();
+
+        //Array list which holds the teams which have already been generated
+        ArrayList<Team> obtainedTeams = new ArrayList<Team>();
+
+        //Check if the current player exists in a team
+        boolean playerIsInATeam = false;
+
+        //check if an extra player is already added to the team
+        boolean teamIsFull = false;
+
+        //Holds a random index for the player and the team respectively
+        int playerIndex;
+        int teamIndex;
+
+        //Obtain a player which is not in a team for extraPlayerNum times
+        for(int i = 0; i < extraPlayersNum; i++){
+
+            //First obtain a random unique team
+            //This is so only one extra player is added to a team so there would not be much of a disadvantage to the other players
+
+            //Keep on looping until a new team index is obtained
+            do {
+
+                teamIsFull = false;
+
+                //A random index is obtained
+                teamIndex = random.nextInt(teamNum);
+
+                //This is used so as to set up the obtainedTeams array list
+                if(obtainedTeams.size() == 0){
+
+                    obtainedTeams.add(teams.get(teamIndex));
+
+                }
+
+                else{
+
+                    for (Team team : obtainedTeams) {
+
+                        //If the current player has already been generated
+                        if (teams.get(teamIndex) == team) {
+                            teamIsFull = true;
+                        }
+                    }
+
+                }
+
+            }while(teamIsFull);
+
+            //Now a new team is obtained with every iteration
+
+            //Keep on looping until a new player index is obtained
+            do {
+                //At each iteration the checks are set to false
+                playerIsInATeam = false;
+
+                //A random index is obtained
+                playerIndex = random.nextInt(playerNum);
+
+                for (Player player : addedPlayers) {
+
+                    //If the current player has already been generated
+                    if (players.get(playerIndex) == player) {
+                        playerIsInATeam = true;
+                    }
+                }
+
+                if(!playerIsInATeam){
+                    //Add the player to the team
+                    teams.get(teamIndex).addPlayer(players.get(playerIndex));
+
+                    addedPlayers.add(players.get(playerIndex));
+
+                    //The check is set to false and the loop is broken
+                    break;
+                }
+
+
+            }while(playerIsInATeam);
+
+        }
     }
 
     // Method to get the map type from the user
