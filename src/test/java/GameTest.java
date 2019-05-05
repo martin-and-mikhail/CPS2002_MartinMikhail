@@ -47,6 +47,36 @@ public class GameTest {
         Assert.assertEquals(5, game.validatePlayerNum(scanner));
     }
 
+    // testing validateTeamNum
+
+    @Test
+    public void TestTeamNum_testStringInput_shouldCatchInputMismatchExceptionAndReturn0() {
+        // simulate user input
+        Scanner scanner = new Scanner("testString");
+        // check if correct error value is thrown
+        Assert.assertEquals(0, game.validateTeamNum(scanner));
+    }
+
+    @Test
+    public void TestTeamNum_testBelowMinTeamNum_shouldReturn1() {
+        Scanner scanner = new Scanner("1");
+        Assert.assertEquals(1, game.validateTeamNum(scanner));
+    }
+
+    @Test
+    public void TestTeamNum_testAboveMaxTeamNum_shouldReturn1() {
+        game.playerNum = 5;
+        Scanner scanner = new Scanner("10");
+        Assert.assertEquals(1, game.validateTeamNum(scanner));
+    }
+
+    @Test
+    public void TestTeamNum_testCorrectTeamNum_shouldReturnNum() {
+        game.playerNum = 5;
+        Scanner scanner = new Scanner("3");
+        Assert.assertEquals(3, game.validateTeamNum(scanner));
+    }
+
     // testing validateMapSize
     @Test
     public void TestMapSize_testStringInput_shouldCatchInputMismatchExceptionAndReturn0() {
@@ -344,7 +374,7 @@ public class GameTest {
         Assert.assertEquals('r', game.validateDirectionInput(scanner));
     }
 
-
+/*
     //Testing generateHtmlFiles
 
     @Test
@@ -369,6 +399,7 @@ public class GameTest {
 
         game.deleteHtmlFile();
     }
+    */
 
     //Testing HTML file deletion
 

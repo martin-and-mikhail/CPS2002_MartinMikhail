@@ -8,10 +8,9 @@ import java.util.ArrayList;
 public class Team implements User{
 
     //Stores all the players of each team
-    ArrayList<Player> players = new ArrayList<Player>();// ArrayList of players
+    ArrayList<Player> players = new ArrayList<Player>();
 
-    //Stores the position which all the players in the team occupy
-    //This array list is updated between turns
+    //Stores the position which all the players in the team have discovered
     ArrayList<Position> positions = new ArrayList<Position>();
 
     //Constructor for team
@@ -37,7 +36,7 @@ public class Team implements User{
     void updateTeamPositions(Player player){
 
         //If a player has not already went over the current tile then add the tile
-        if(!positionExists(player.position)){
+        if(positionDoesNotExist(player.position)){
             addToPositions(player.position.x, player.position.y);
         }
 
@@ -50,16 +49,16 @@ public class Team implements User{
         for(Player player: players){
 
             //If a player has not already went over the current tile then add the tile
-            if(!positionExists(player.position)){
+            if(positionDoesNotExist(player.position)){
                 addToPositions(player.position.x, player.position.y);
             }
         }
     }
 
     //Method to check if the position exists in the team positions
-    boolean positionExists(Position position){
+    boolean positionDoesNotExist(Position position){
 
-        boolean positionExists = false;
+        boolean positionDoesNotExist = true;
 
         //Loop through each player in the team
         for(Position teamPosition: positions){
@@ -67,11 +66,11 @@ public class Team implements User{
             //If the position inputted is equal to a position in the team
             if(position == teamPosition){
                 //The check is set to high
-                positionExists = true;
+                positionDoesNotExist = false;
             }
         }
 
-        return positionExists;
+        return positionDoesNotExist;
     }
 
     //The current position of each player is added to a tile map within a team class

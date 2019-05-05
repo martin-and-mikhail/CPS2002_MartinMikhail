@@ -3,7 +3,6 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import java.util.Arrays;
-import static org.hamcrest.CoreMatchers.instanceOf;
 
 
 public class PlayerTest {
@@ -37,6 +36,7 @@ public class PlayerTest {
 
         //Expected list of positions after we have added position (0,0)
         Position[] expectedPositions = new Position[]{position1};
+        System.out.println(Arrays.toString(expectedPositions));
 
         //Adding position (0,0) to list of positions
         player.addToPositions(0,0);
@@ -165,7 +165,6 @@ public class PlayerTest {
     @Test
     public void TestGetPreviousDirections_testNoDirections_shouldOutputNothing(){
         //Player is not given any directions
-
         //Ensure that an empty string is returned
         Assert.assertEquals("", player.getPreviousDirections());
     }
@@ -215,6 +214,7 @@ public class PlayerTest {
         Assert.assertEquals(expected, player.getPreviousDirections());
     }
 
+    /*
     //Testing changeHtmlFile method
     @Test
     public void TestChangeHtmlFile_testOverwriteFileSafeMap_shouldChangeFileAndReturn2(){
@@ -243,6 +243,8 @@ public class PlayerTest {
         //When the current player changes the map a return value of 1 should be obtained
         Assert.assertEquals(2, player.changeHtmlFile(0, game.map));
     }
+
+     */
 
 }
 

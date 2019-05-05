@@ -10,8 +10,8 @@ public class Game {
     int teamNum;// Amount of teams
     int playerNum;// Amount of players
 
-    ArrayList<Team> teams = new ArrayList<Team>();// ArrayList for teams
-    ArrayList<Player> players = new ArrayList<Player>();// ArrayList of players
+    private ArrayList<Team> teams = new ArrayList<Team>();// ArrayList for teams
+    private ArrayList<Player> players = new ArrayList<Player>();// ArrayList of players
 
     // map object
     Map map;
@@ -44,11 +44,6 @@ public class Game {
         //An array which holds all the players who found the treasure on a given turn
         //This is just in case more than one player finds it on the same turn
         boolean[] winners = new boolean[game.players.size()];
-
-//        //Generating the initial html file here before there are any moves
-//        if (game.generateHtmlFile(game.map.getMapSizeVar()) == 0) {
-//            System.err.println("Could not generate HTML files");
-//        }
 
         //The position array lists of each team are initialised with the starting position of the corresponding players
         for(Team team: game.teams){
@@ -100,14 +95,11 @@ public class Game {
     //Method to initialise map along with players and their starting positions
     private void startGame(Game game) {
 
-        //get number of teams from user
-        //game.teamNum = getTeamNum();
-        game.teamNum = 2;
-
         //get number of players from user
         game.playerNum = getPlayerNum();
 
-        //Can make a function which returns the extra players and the players in each team without the ectra players
+        //get number of teams from user
+        game.teamNum = getTeamNum();
 
         //The remainder of the total number of players divided by the total number of teams is obtained
         int extraPlayersNum = playerNum % teamNum;
@@ -152,31 +144,70 @@ public class Game {
             //Generate the team
             team = generateTeam(addedPlayers, playersInTeamNum);
 
-            //Add the team to all the teams of the game
+            //Add the team to the list of teams in the game
             teams.add(team);
-
-            System.out.println("size is " + teams.size());
-
-            System.out.println(addedPlayers.size());
-
         }
 
-        for( Team team: teams){
-            for(Player player: team.players){
-                System.out.println(player.getLastPosition());
-            }
 
-            System.out.println("-----");
+        //List teams and their players
+        int i = 1;
+        for(Player player: players){
+            System.out.println("Player " + i + " is in Team "+ (getTeamIndex(player)+1));
+            i++;
         }
     }
 
-    //Takes as input a set of players
+    // Method to get the amount of teams from the user
+    private int getTeamNum() {
+        int num;
+        System.out.println("How many teams should the players be split into? (Pick a number between 2 and the amount of players in the game)");
+
+        while (true) {
+            //Get user input
+            scanner = new Scanner(System.in);
+
+            //Validate user input
+            num = validateTeamNum(scanner);
+
+            //Return value if it is valid (not an error value)
+            if (num > 1) {
+                return num;
+            }
+        }
+
+    }
+
+    // Method to validate the user's input for the team number
+    int validateTeamNum(Scanner scanner) {
+
+        int num;
+        try {
+            //Set to user input from getPlayerNum
+            num = scanner.nextInt();
+        }
+        //If input is not an integer
+        catch (InputMismatchException e) {
+            System.err.println("Invalid input. Please enter a number between 1 and the amount of players in the game");
+            return 0;//Return error value of 0
+        }
+        //If input is correct
+        if (num > 1 && num <= playerNum) {
+            return num;//Return value entered by the user
+        }
+        //If input is not within required range
+        else {
+            System.err.println("Please enter a number between 1 and the amount of players in the game");
+            return 1;//Return error value of 1
+        }
+    }
+
+    //Method to generate the teams
     Team generateTeam(ArrayList<Player> addedPlayers, int playersInTeamNum){
 
         Random random = new Random();
 
         //Check if the current player exists in a team
-        boolean playerIsInATeam = false;
+        boolean playerIsInATeam;
 
         //Holds a random index of a player
         int rand;
@@ -401,14 +432,15 @@ public class Game {
     private void directionsLoop() {
         char direction;//(u, d, l or r) depending on user's desired direction of movement
         boolean validMove;//Condition to break out of while loop when a valid direction is entered
+        boolean foundTreasure = false;//Condition to check if a player has found the treasure
 
         //Loop through each player in ArrayList
         for (Player player : players) {
 
-            //At the end of the current player's turn the main html file is changed
-            teams.get(getTeamIndex(player)).changeHtmlFile(players.indexOf(player), map, player);
-
-            System.out.println("Player " + (players.indexOf(player) + 1) + ", your map is currently available until end of turn");
+            if(!foundTreasure) {
+                //At the end of the current player's turn the main html file is changed
+                teams.get(getTeamIndex(player)).changeHtmlFile(players.indexOf(player), map, player);
+            }
 
             System.out.println("Player " + (players.indexOf(player) + 1) + ", please choose a direction (u, d, l or r).");
 
@@ -433,6 +465,10 @@ public class Game {
 
                     //Triggers event for corresponding tile type
                     map.evaluateCurrentPlayerTile(player);
+
+                    if(player.foundTreasure){
+                        foundTreasure = true;
+                    }
                 }
             }
         }

@@ -6,6 +6,9 @@ class Player implements User{
     //Player's current position
     Position position;
 
+    //Stores all the positions of each player
+    ArrayList<Position> positions = new ArrayList<Position>();
+
     //Player toString
     @Override
     public String toString() {
@@ -106,12 +109,6 @@ class Player implements User{
         addToPositions(position.x, position.y);
 
         return position;
-    }
-
-
-    //Method used to obtain the last position the player moved
-    Position getLastPosition(){
-        return positions.get(positions.size() - 1);
     }
 
     //Method used to get the last n directions
