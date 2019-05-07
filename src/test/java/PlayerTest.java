@@ -41,7 +41,7 @@ public class PlayerTest {
         //Adding position (0,0) to list of positions
         player.addToPositions(0,0);
 
-        Assert.assertEquals(player.positions.toString(), Arrays.toString(expectedPositions));
+        Assert.assertEquals(Arrays.toString(expectedPositions), player.positions.toString());
     }
 
     @Test
@@ -55,7 +55,7 @@ public class PlayerTest {
         player.addToPositions(0,0);
         player.addToPositions(1,1);
 
-        Assert.assertEquals(player.positions.toString(), Arrays.toString(expectedPositions));
+        Assert.assertEquals(Arrays.toString(expectedPositions), player.positions.toString());
     }
 
     // Testing Move

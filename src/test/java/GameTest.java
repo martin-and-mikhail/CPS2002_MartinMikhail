@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
 import static junit.framework.TestCase.fail;
 
@@ -374,33 +375,6 @@ public class GameTest {
         Assert.assertEquals('r', game.validateDirectionInput(scanner));
     }
 
-/*
-    //Testing generateHtmlFiles
-
-    @Test
-    public void TestGenerateHtmlFile_testNewFileSafeMap_shouldCreateFileAndReturn1() {
-        MapCreator creator = new MapCreator();
-        game.map = creator.createMap("safe", 5);
-
-        Assert.assertEquals(1, game.generateHtmlFile(game.map.getMapSizeVar()));
-
-        game.deleteHtmlFile();
-    }
-
-    @Test
-    public void TestGenerateHtmlFile_testNewFileHazardousMap_shouldCreateFileAndReturn1() {
-        MapCreator creator = new MapCreator();
-        game.map = creator.createMap("hazardous", 5);
-
-        Position position = new Position(4, 3);
-        Player player = new Player(position);
-        game.players.add(player);
-        Assert.assertEquals(1, game.generateHtmlFile(game.map.getMapSizeVar()));
-
-        game.deleteHtmlFile();
-    }
-    */
-
     //Testing HTML file deletion
 
     @Test
@@ -451,4 +425,149 @@ public class GameTest {
         Assert.assertEquals('e', game.validateExitChar(scanner));
     }
 
+    // testing generateTeam
+
+    @Test
+    public void TestGenerateTeam_testPlayersCanBeSortedEqually_specificallyTest6PlayersInto3Teams_shouldCreate3TeamsEachWith2Players() {
+        //create instance of map creator
+        MapCreator creator = new MapCreator();
+
+        //create map of chosen type and size using the creator classes
+        Map map = creator.createMap("safe", 8);
+
+        game.playerNum = 6;
+        game.teamNum = 3;
+
+        //The remainder of the total number of players divided by the total number of teams is obtained
+        int extraPlayersNum = game.playerNum % game.teamNum;
+
+        //The total number of player per team is obtained excluding the extra players
+        int playersInTeamNum = (game.playerNum - extraPlayersNum)/game.teamNum;
+
+        //In this loop all the Player objects are created along with their starting position in the map
+        for (int i = 0; i < game.playerNum; i++) {
+
+            //A new player object is made
+            Player player = new Player();
+
+            //The random position of the player is set to a grass tile
+            player.position = player.setStartingPosition(map.getGrassTiles());
+
+            //The created player is added to the ArrayList of players
+            game.players.add(player);
+        }
+
+        //Holds the players which have been added to a team
+        ArrayList<Player> addedPlayers = new ArrayList<Player>();
+
+        //Now to assign all the player objects to a random team
+        for (int i = 0; i < game.teamNum; i++) {
+
+            //A new team is created
+            Team team;
+
+            //Generate the team
+            team = game.generateTeam(addedPlayers, playersInTeamNum);
+
+            //Add the team to the list of teams in the game
+            game.teams.add(team);
+        }
+
+        //ensure that 3 teams have been created
+        Assert.assertEquals(3, game.teams.size());
+
+        //ensure that all 3 teams have 2 players each
+        for(Team team: game.teams){
+            Assert.assertEquals(2, team.players.size());
+        }
+    }
+
+    @Test
+    public void TestGenerateTeam_testPlayersCannotBeSortedEqually_specificallyTest5PlayersInto3Teams_shouldCreate3TeamsWith2Or1Players() {
+        //create instance of map creator
+        MapCreator creator = new MapCreator();
+
+        //create map of chosen type and size using the creator classes
+        Map map = creator.createMap("safe", 8);
+
+        game.playerNum = 5;
+        game.teamNum = 3;
+
+        //The remainder of the total number of players divided by the total number of teams is obtained
+        int extraPlayersNum = game.playerNum % game.teamNum;
+
+        //The total number of player per team is obtained excluding the extra players
+        int playersInTeamNum = (game.playerNum - extraPlayersNum)/game.teamNum;
+
+        //In this loop all the Player objects are created along with their starting position in the map
+        for (int i = 0; i < game.playerNum; i++) {
+
+            //A new player object is made
+            Player player = new Player();
+
+            //The random position of the player is set to a grass tile
+            player.position = player.setStartingPosition(map.getGrassTiles());
+
+            //The created player is added to the ArrayList of players
+            game.players.add(player);
+        }
+
+        //Holds the players which have been added to a team
+        ArrayList<Player> addedPlayers = new ArrayList<Player>();
+
+        //Now to assign all the player objects to a random team
+        for (int i = 0; i < game.teamNum; i++) {
+
+            //A new team is created
+            Team team;
+
+            //Generate the team
+            team = game.generateTeam(addedPlayers, playersInTeamNum);
+
+            //Add the team to the list of teams in the game
+            game.teams.add(team);
+        }
+
+        //Since the players are not all evenly distributed among the teams
+        game.distributeRemainder(addedPlayers, extraPlayersNum);
+
+        //ensure that 3 teams have been created
+        Assert.assertEquals(3, game.teams.size());
+
+        //ensure that from the 2 teams, 2 have 2 players and 1 has 1
+        int twoPlayers = 0;
+        int onePlayer = 0;
+
+        for(Team team: game.teams){
+            if(team.players.size() == 2){
+                twoPlayers++;
+            }
+            else if(team.players.size() == 1){
+                onePlayer++;
+            }
+        }
+
+        Assert.assertEquals(2, twoPlayers);
+        Assert.assertEquals(1, onePlayer);
+    }
+
+    //Testing getTeamIndex
+    @Test
+    public void TestGetTeamIndex_testPlayerInTeam1_shouldReturn1() {
+        Position position = new Position(0,0);
+        Player player = new Player(position);
+        Team team = new Team();
+        game.teams.add(team);
+        team.players.add(player);
+
+        Assert.assertEquals(0, game.getTeamIndex(player));
+    }
+
+    @Test
+    public void TestGetTeamIndex_testPlayerNotInATeam_shouldReturnNegative1() {
+        Position position = new Position(0,0);
+        Player player = new Player(position);
+
+        Assert.assertEquals(-1, game.getTeamIndex(player));
+    }
 }

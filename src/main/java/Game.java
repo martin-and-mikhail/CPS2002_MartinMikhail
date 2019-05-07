@@ -10,8 +10,8 @@ public class Game {
     int teamNum;// Amount of teams
     int playerNum;// Amount of players
 
-    private ArrayList<Team> teams = new ArrayList<Team>();// ArrayList for teams
-    private ArrayList<Player> players = new ArrayList<Player>();// ArrayList of players
+    ArrayList<Team> teams = new ArrayList<Team>();// ArrayList for teams
+    ArrayList<Player> players = new ArrayList<Player>();// ArrayList of players
 
     // map object
     Map map;
@@ -294,10 +294,10 @@ public class Game {
         ArrayList<Team> obtainedTeams = new ArrayList<Team>();
 
         //Check if the current player exists in a team
-        boolean playerIsInATeam = false;
+        boolean playerIsInATeam;
 
         //check if an extra player is already added to the team
-        boolean teamIsFull = false;
+        boolean teamIsFull;
 
         //Holds a random index for the player and the team respectively
         int playerIndex;
@@ -567,7 +567,6 @@ public class Game {
 
     //Gets the index of the team the current player is in
     int getTeamIndex(Player player){
-
         for(Team team: teams){
             for(Player usePlayer: team.players){
                 if(player == usePlayer){
@@ -575,8 +574,7 @@ public class Game {
                 }
             }
         }
-
-        return 0;
+        return -1;
     }
 
     // Method to check whether a move is within the map boundaries

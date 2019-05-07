@@ -27,27 +27,20 @@ public class Team implements User{
     public void addToPositions(int posx, int posy){
         Position position = new Position(posx, posy);
         positions.add(position);
-
     }
-
-    //A remove player function is not made since there is no need to remove a player
 
     //Adding a given player position to the teamPositions array list
     void updateTeamPositions(Player player){
-
         //If a player has not already went over the current tile then add the tile
         if(positionDoesNotExist(player.position)){
             addToPositions(player.position.x, player.position.y);
         }
-
     }
 
     //Adding the player positions to the playerPositions array
     void updateAllTeamPositions(){
-
         //Adding all the positions of the player in the team
         for(Player player: players){
-
             //If a player has not already went over the current tile then add the tile
             if(positionDoesNotExist(player.position)){
                 addToPositions(player.position.x, player.position.y);
@@ -62,11 +55,11 @@ public class Team implements User{
 
         //Loop through each player in the team
         for(Position teamPosition: positions){
-
             //If the position inputted is equal to a position in the team
-            if(position == teamPosition){
+            if(position.toString().equals(teamPosition.toString())){
                 //The check is set to high
                 positionDoesNotExist = false;
+
             }
         }
 
@@ -188,9 +181,10 @@ public class Team implements User{
 
                 //playerHere is set to false at each iteration
                 playerHere = false;
+                Position position = new Position(i, j);
 
                 //Check if a player in the team went on this tile
-                if(ifTileExists(i, j)){
+                if(!positionDoesNotExist(position)){
 
                     //If the tile exists then the player must be on one of these tiles
                     //Checking if the current tile is the players current position on the map
@@ -282,24 +276,5 @@ public class Team implements User{
         }
 
         return returnValue;
-    }
-
-    //This method is used in the game class to check if a player in the team already went on this tile
-    boolean ifTileExists(int x, int y){
-
-        //Create the Position object to use to compare
-        Position positionUse = new Position(x,y);
-
-        //Looping through element in the positions array list
-        for (Position position : positions) {
-
-            //Comparing the x and y values of the current Position object in the array list and the positionUse object
-            if(positionUse.x == position.x && positionUse.y == position.y){
-
-                //If one of the obejct in the array list matched then it exists in the array list
-                return true;
-            }
-        }
-        return false;
     }
 }
