@@ -1,0 +1,66 @@
+\documentclass[a4paper,12pt]{extarticle}
+\usepackage[top=3cm]{geometry}
+
+\usepackage{titling}
+\setlength{\droptitle}{14em}
+
+\usepackage[scaled]{helvet}
+\renewcommand\familydefault{\sfdefault} 
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{hyperref}
+
+\usepackage[usenames, dvipsnames]{color}
+\definecolor{mygray}{rgb}{0.5, 0.5, 0.5}
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{myblue}{RGB}{57, 135, 189}
+
+\usepackage{listings}
+\lstset{ 
+    language=java,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{myblue},
+    commentstyle=\color{mygray},
+    stringstyle=\color{mygreen},
+    frame=single,
+    showstringspaces=false,
+}
+
+\title{\textbf{Software Engineering\\\vspace{5mm} CPS2002\\\vspace{5mm}  Assignment Report}}
+
+\author{\LARGE Martin Bartolo - 0218300L\vspace{1mm}\\ \LARGE Mikhail Cassar - 0319599M\vspace{3mm}\\ \large BSc (Hons) Computing Science and Mathematics}
+
+\date{Assignment due 27\textsuperscript{th} May 2019}
+
+\setcounter{secnumdepth}{0}
+
+\begin{document}
+
+\setlength{\parindent}{0pt}
+\setlength{\footskip}{50pt}
+\pagenumbering{arabic}
+
+\maketitle
+\thispagestyle{empty}
+\newpage
+
+\tableofcontents
+\newpage
+
+\section{Diagram Example}
+\begin{center}
+\includegraphics[width=\textwidth]{FigureExample.png}
+\end{center}
+
+\section{Code Snippet}
+\begin{lstlisting}
+public class Main{
+  public static void main (String args[]){
+    System.out.println("Hello World!");
+  }
+}
+\end{lstlisting}
+
+\section{Introduction}
+
+\end{document}
