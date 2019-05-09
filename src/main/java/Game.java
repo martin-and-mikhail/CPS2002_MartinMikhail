@@ -64,11 +64,23 @@ public class Game {
             //Go through each player in the game and check if they found the treasure
             //Mark the players who have found the treasure
             int i = 0;
+
             for (Player player : game.players) {
 
                 if (player.foundTreasure) {
+
                     foundTreasure = true;
                     winners[i] = true;
+
+//                    //Check which team contains the player
+//                    for(Team team : game.teams){
+//                        //If the player is in the team
+//                        if(team.players.indexOf(player) >= 0){
+//                            //The html file is changed to the last player which won
+//                            team.changeHtmlFile(team.players.indexOf(player), game.map , player);
+//                        }
+//                    }
+
                 }
                 i++;
             }
@@ -79,9 +91,11 @@ public class Game {
                 for (i = 0; i < winners.length; i++) {
 
                     if (winners[i]) {
+
                         System.out.println("Congratualtions player " + (i + 1) + ", you have found the treasure in " + game.turns + " turns!");
                     }
                 }
+
                 break;
             }
         }
@@ -516,8 +530,6 @@ public class Game {
             return size;//Return value entered by the user
         }
     }
-
-
 
     // Method to get direction which each player would like to move in for the current turn
     private void directionsLoop() {
