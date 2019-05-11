@@ -85,7 +85,7 @@ public class HazardousMap implements Map{
         int tileType;
 
 
-        //The maximum number of water tiles in a map is set to one less than mapSize
+        //The maximum number of water tiles in a map is set to 25% of the total tiles
         int waterMaxTiles = (int) Math.ceil((mapSize*mapSize) * 0.25);
 
         //The maximum number of treasure tiles is one

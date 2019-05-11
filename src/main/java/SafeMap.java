@@ -84,7 +84,7 @@ public class SafeMap implements Map{
         //This value holds the tile type (grass, water, treasure)which corresponds to a random number from 0 to 2
         int tileType;
 
-        //The maximum number of water tiles in a map is set to one less than mapSize
+        //The maximum number of water tiles in a map is set to 10% of the total tiles
         int waterMaxTiles = (int) Math.floor((mapSize*mapSize) * 0.1);
 
         //The maximum number of treasure tiles is one
