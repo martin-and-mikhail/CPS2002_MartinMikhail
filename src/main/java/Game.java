@@ -72,14 +72,14 @@ public class Game {
                     foundTreasure = true;
                     winners[i] = true;
 
-//                    //Check which team contains the player
-//                    for(Team team : game.teams){
-//                        //If the player is in the team
-//                        if(team.players.indexOf(player) >= 0){
-//                            //The html file is changed to the last player which won
-//                            team.changeHtmlFile(team.players.indexOf(player), game.map , player);
-//                        }
-//                    }
+                    //Check which team contains the player
+                    for(Team team : game.teams){
+                        //If the player is in the team
+                        if(team.players.indexOf(player) >= 0){
+                            //The html file is changed to the last player which won
+                            team.changeHtmlFile(game.players.indexOf(player), game.map , player);
+                        }
+                    }
 
                 }
                 i++;
