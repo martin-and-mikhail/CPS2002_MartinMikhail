@@ -1,5 +1,12 @@
 \contentsline {section}{Diagram Example}{3}{section*.2}
 \contentsline {section}{Code Snippet}{3}{section*.3}
 \contentsline {section}{Introduction}{3}{section*.4}
-\contentsline {section}{Enhancements}{4}{section*.5}
-\contentsline {subsection}{Different Map Types}{4}{section*.6}
+\contentsline {section}{Game Design}{4}{section*.5}
+\contentsline {section}{Enhancements}{4}{section*.6}
+\contentsline {subsection}{Different Map Types}{4}{section*.7}
+\contentsline {section}{Enhancements}{4}{section*.8}
+\contentsline {subsection}{Different Map Types}{4}{section*.9}
+\contentsline {subsection}{Class Diagram}{12}{section*.10}
+\contentsline {section}{Game Enhancements}{12}{section*.11}
+\contentsline {section}{Code Coverage Statistics}{12}{section*.12}
+\contentsline {section}{Running The Game}{12}{section*.13}

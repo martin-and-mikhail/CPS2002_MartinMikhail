@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="e9f6fb8f-a2a2-4fa8-894d-77361c58593c" name="Default Changelist" comment="Added Testing for team class">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-<<<<<<< HEAD
-=======
       <change beforePath="$PROJECT_DIR$/WriteUp/AssignmentReport.aux" beforeDir="false" afterPath="$PROJECT_DIR$/WriteUp/AssignmentReport.aux" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WriteUp/AssignmentReport.out" beforeDir="false" afterPath="$PROJECT_DIR$/WriteUp/AssignmentReport.out" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WriteUp/AssignmentReport.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/WriteUp/AssignmentReport.pdf" afterDir="false" />
@@ -14,7 +12,6 @@
       <change beforePath="$PROJECT_DIR$/WriteUp/AssignmentReport.toc" beforeDir="false" afterPath="$PROJECT_DIR$/WriteUp/AssignmentReport.toc" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/HazardousMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/HazardousMap.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/SafeMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SafeMap.java" afterDir="false" />
->>>>>>> 2dc758a53f46e6abe8ec17aa067f8a7bdc40e5f4
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -38,13 +35,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Game.java">
           <provider selected="true" editor-type-id="text-editor">
-<<<<<<< HEAD
-            <state relative-caret-position="-697">
-              <caret line="79" column="52" selection-start-line="79" selection-start-column="52" selection-end-line="79" selection-end-column="52" />
-=======
             <state relative-caret-position="9741">
               <caret line="589" column="5" selection-start-line="589" selection-start-column="5" selection-end-line="589" selection-end-column="5" />
->>>>>>> 2dc758a53f46e6abe8ec17aa067f8a7bdc40e5f4
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -53,24 +45,6 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-<<<<<<< HEAD
-        <entry file="file://$PROJECT_DIR$/src/main/java/SafeMap.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1241">
-              <caret line="87" column="49" selection-start-line="87" selection-start-column="46" selection-end-line="87" selection-end-column="49" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/SafeMapCreator.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
-=======
         <entry file="file://$PROJECT_DIR$/src/test/java/GameTest.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="328">
@@ -78,18 +52,11 @@
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
->>>>>>> 2dc758a53f46e6abe8ec17aa067f8a7bdc40e5f4
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-<<<<<<< HEAD
-        <entry file="file://$PROJECT_DIR$/src/main/java/HazardousMap.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-=======
         <entry file="file://$PROJECT_DIR$/src/main/java/SafeMapCreator.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="68">
@@ -98,28 +65,17 @@
                 <element signature="e#193#194#0" expanded="true" />
                 <element signature="e#227#228#0" expanded="true" />
               </folding>
->>>>>>> 2dc758a53f46e6abe8ec17aa067f8a7bdc40e5f4
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-<<<<<<< HEAD
-        <entry file="file://$PROJECT_DIR$/src/main/java/HazardousMapCreator.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="52" lean-forward="true" selection-start-column="52" selection-end-column="52" />
-              <folding>
-                <element signature="e#159#160#0" expanded="true" />
-                <element signature="e#193#194#0" expanded="true" />
-=======
         <entry file="file://$PROJECT_DIR$/src/main/java/SafeMap.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="316">
               <caret line="87" column="70" lean-forward="true" selection-start-line="86" selection-start-column="8" selection-end-line="87" selection-end-column="70" />
               <folding>
                 <element signature="imports" expanded="true" />
->>>>>>> 2dc758a53f46e6abe8ec17aa067f8a7bdc40e5f4
               </folding>
             </state>
           </provider>
@@ -177,11 +133,7 @@
       <find>add</find>
       <find>Tile</find>
       <find>exist</find>
-<<<<<<< HEAD
-      <find>map</find>
-=======
       <find>instan</find>
->>>>>>> 2dc758a53f46e6abe8ec17aa067f8a7bdc40e5f4
     </findStrings>
     <replaceStrings>
       <replace>getMapSize</replace>
@@ -334,7 +286,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1557583665835" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1557574000539" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/CPS2002_MartinMikhail.iml" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Modules" />
@@ -366,7 +318,6 @@
       <module name="CPS2002_MartinMikhail" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="GameTest" />
-      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -395,7 +346,6 @@
       <module name="CPS2002_MartinMikhail" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="TeamTest" />
-      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -523,7 +473,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="25390000" />
+    <option name="totallyTimeSpent" value="23310000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -535,12 +485,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-<<<<<<< HEAD
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
-=======
     <frame x="-7" y="0" width="974" height="1047" extended-state="0" />
->>>>>>> 2dc758a53f46e6abe8ec17aa067f8a7bdc40e5f4
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.285558" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -593,7 +538,7 @@
       <window_info anchor="bottom" id="Terminal" order="9" weight="0.32827735" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" weight="0.32872504" />
       <window_info anchor="bottom" id="Version Control" order="11" weight="0.32936078" />
-      <window_info anchor="bottom" id="Messages" order="12" weight="0.31914893" />
+      <window_info anchor="bottom" id="Messages" order="12" visible="true" weight="0.31914893" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -690,8 +635,6 @@
         </state>
       </provider>
     </entry>
-<<<<<<< HEAD
-=======
     <entry file="file://$PROJECT_DIR$/src/main/java/HazardousMapCreator.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
@@ -703,7 +646,6 @@
         </state>
       </provider>
     </entry>
->>>>>>> 2dc758a53f46e6abe8ec17aa067f8a7bdc40e5f4
     <entry file="file://$PROJECT_DIR$/src/main/java/User.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
@@ -785,12 +727,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/map.html" />
     <entry file="file://$PROJECT_DIR$/src/test/java/MapTest.java" />
-<<<<<<< HEAD
-    <entry file="file://$PROJECT_DIR$/src/test/java/GameTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="334">
-          <caret line="385" selection-start-line="385" selection-end-line="385" />
-=======
     <entry file="file://$PROJECT_DIR$/src/main/java/Position.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
@@ -802,18 +738,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="9741">
           <caret line="589" column="5" selection-start-line="589" selection-start-column="5" selection-end-line="589" selection-end-column="5" />
->>>>>>> 2dc758a53f46e6abe8ec17aa067f8a7bdc40e5f4
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-<<<<<<< HEAD
-    <entry file="file://$PROJECT_DIR$/src/main/java/Position.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="34" selection-start-line="15" selection-start-column="34" selection-end-line="15" selection-end-column="34" />
         </state>
       </provider>
     </entry>
@@ -821,25 +748,8 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
           <caret line="3" column="6" selection-start-line="3" selection-start-column="6" selection-end-line="3" selection-end-column="6" />
-=======
-    <entry file="file://$PROJECT_DIR$/src/main/java/Player.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="6" selection-start-line="3" selection-start-column="6" selection-end-line="3" selection-end-column="6" />
           <folding>
             <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Team.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3094">
-          <caret line="186" column="52" selection-start-line="186" selection-start-column="52" selection-end-line="186" selection-end-column="52" />
->>>>>>> 2dc758a53f46e6abe8ec17aa067f8a7bdc40e5f4
-          <folding>
-            <element signature="e#576#577#0" expanded="true" />
-            <element signature="e#611#612#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -855,65 +765,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/SafeMap.java">
-      <provider selected="true" editor-type-id="text-editor">
-<<<<<<< HEAD
-        <state relative-caret-position="1241">
-          <caret line="87" column="49" selection-start-line="87" selection-start-column="46" selection-end-line="87" selection-end-column="49" />
-=======
-        <state relative-caret-position="408">
-          <caret line="24" column="5" lean-forward="true" selection-start-line="2" selection-start-column="4" selection-end-line="24" selection-end-column="5" />
->>>>>>> 2dc758a53f46e6abe8ec17aa067f8a7bdc40e5f4
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/src/main/java/Map.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
           <caret line="18" column="8" selection-start-line="18" selection-start-column="8" selection-end-line="18" selection-end-column="8" />
-=======
-    <entry file="file://$PROJECT_DIR$/src/test/java/GameTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="328">
-          <caret line="559" column="29" lean-forward="true" selection-start-line="559" selection-start-column="29" selection-end-line="559" selection-end-column="29" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
->>>>>>> 2dc758a53f46e6abe8ec17aa067f8a7bdc40e5f4
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/SafeMapCreator.java">
-      <provider selected="true" editor-type-id="text-editor">
-<<<<<<< HEAD
-        <state relative-caret-position="-697">
-          <caret line="79" column="52" selection-start-line="79" selection-start-column="52" selection-end-line="79" selection-end-column="52" />
-=======
-        <state relative-caret-position="68">
-          <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
->>>>>>> 2dc758a53f46e6abe8ec17aa067f8a7bdc40e5f4
-          <folding>
-            <element signature="e#193#194#0" expanded="true" />
-            <element signature="e#227#228#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/src/main/java/MapCreator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="27" column="16" selection-start-line="27" selection-start-column="16" selection-end-line="27" selection-end-column="16" />
-=======
-    <entry file="file://$PROJECT_DIR$/src/main/java/SafeMap.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="316">
-          <caret line="87" column="70" lean-forward="true" selection-start-line="86" selection-start-column="8" selection-end-line="87" selection-end-column="70" />
->>>>>>> 2dc758a53f46e6abe8ec17aa067f8a7bdc40e5f4
+        <state relative-caret-position="408">
+          <caret line="24" column="5" lean-forward="true" selection-start-line="2" selection-start-column="4" selection-end-line="24" selection-end-column="5" />
           <folding>
             <element signature="e#606#607#0" expanded="true" />
             <element signature="e#633#634#0" expanded="true" />
@@ -921,28 +783,13 @@
         </state>
       </provider>
     </entry>
-<<<<<<< HEAD
-    <entry file="file://$PROJECT_DIR$/src/main/java/HazardousMapCreator.java">
+    <entry file="file://$PROJECT_DIR$/src/test/java/GameTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="52" lean-forward="true" selection-start-column="52" selection-end-column="52" />
+        <state relative-caret-position="328">
+          <caret line="559" column="29" lean-forward="true" selection-start-line="559" selection-start-column="29" selection-end-line="559" selection-end-column="29" />
           <folding>
-            <element signature="e#159#160#0" expanded="true" />
-            <element signature="e#193#194#0" expanded="true" />
+            <element signature="imports" expanded="true" />
           </folding>
-=======
-    <entry file="file://$PROJECT_DIR$/src/main/java/HazardousMap.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-748">
-          <caret line="87" column="85" selection-start-line="87" selection-start-column="85" selection-end-line="87" selection-end-column="85" />
->>>>>>> 2dc758a53f46e6abe8ec17aa067f8a7bdc40e5f4
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/HazardousMap.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -950,6 +797,27 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
           <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
+          <folding>
+            <element signature="e#193#194#0" expanded="true" />
+            <element signature="e#227#228#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/SafeMap.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="316">
+          <caret line="87" column="70" lean-forward="true" selection-start-line="86" selection-start-column="8" selection-end-line="87" selection-end-column="70" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/HazardousMap.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-748">
+          <caret line="87" column="85" selection-start-line="87" selection-start-column="85" selection-end-line="87" selection-end-column="85" />
         </state>
       </provider>
     </entry>
