@@ -1,15 +1,16 @@
 \BOOKMARK [1][-]{section*.2}{Diagram Example}{}% 1
 \BOOKMARK [1][-]{section*.3}{Code Snippet}{}% 2
 \BOOKMARK [1][-]{section*.4}{Introduction}{}% 3
-\BOOKMARK [1][-]{section*.5}{Game Design}{}% 4
-\BOOKMARK [2][-]{section*.6}{The Initial Game Design}{section*.5}% 5
-\BOOKMARK [3][-]{section*.7}{Game Class}{section*.6}% 6
-\BOOKMARK [3][-]{section*.8}{Map Class}{section*.6}% 7
-\BOOKMARK [3][-]{section*.9}{Player Class}{section*.6}% 8
-\BOOKMARK [3][-]{section*.10}{Position Class}{section*.6}% 9
-\BOOKMARK [1][-]{section*.11}{Enhancements}{}% 10
-\BOOKMARK [2][-]{section*.12}{Different Map Types}{section*.11}% 11
-\BOOKMARK [2][-]{section*.13}{Single Map File}{section*.11}% 12
-\BOOKMARK [2][-]{section*.14}{Teams}{section*.11}% 13
-\BOOKMARK [1][-]{section*.15}{Code Coverage Statistics}{}% 14
-\BOOKMARK [1][-]{section*.16}{Running The Game}{}% 15
+\BOOKMARK [1][-]{section*.5}{InitialGame Design}{}% 4
+\BOOKMARK [2][-]{section*.6}{Game Class}{section*.5}% 5
+\BOOKMARK [2][-]{section*.7}{Map Class}{section*.5}% 6
+\BOOKMARK [2][-]{section*.8}{Player Class}{section*.5}% 7
+\BOOKMARK [2][-]{section*.9}{Position Class}{section*.5}% 8
+\BOOKMARK [1][-]{section*.10}{Enhancements}{}% 9
+\BOOKMARK [2][-]{section*.11}{Different Map Types}{section*.10}% 10
+\BOOKMARK [2][-]{section*.12}{Single Map File}{section*.10}% 11
+\BOOKMARK [2][-]{section*.13}{Teams}{section*.10}% 12
+\BOOKMARK [1][-]{section*.14}{Code Coverage}{}% 13
+\BOOKMARK [2][-]{section*.15}{Basic Version of the Game}{section*.14}% 14
+\BOOKMARK [2][-]{section*.16}{The Game After Enhancements}{section*.14}% 15
+\BOOKMARK [1][-]{section*.17}{Instructions to Run The Game}{}% 16

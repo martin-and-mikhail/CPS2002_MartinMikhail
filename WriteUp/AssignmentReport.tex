@@ -65,20 +65,13 @@ public class Main{
 The aim of this assignment was to collaboratively work on a software project, with the main focus being on rigorous software testing and the use of Git. Our first task was to set up our environments, namely our Git repository on Github and our Jenkins environment on the University Jenkins server. First, we initialised our Git repository and ensured that each team member could commit changes and push and pull them from Github. When this was ensured, we set up our Jenkins environment to work with Maven and scan for changes from Github every few minutes. Whenever changes are found, they are built and run with a detailed code coverage report and test results being displayed using the Emma plug-in. Our progress at this point can be seen by viewing the "Part1" tag on our Github repository. After completing our set-up, we were ready to start working on the two remaining tasks which will be discussed in detail throughout the remainder of this report.
 \newpage
 
-\section{Game Design}
+\section{InitialGame Design}
 The design of the game consists of sectioning the game into the classes, here we will talk about the contents of those classes while also explain how they all work together.
 
 The information provided will be regarding the basic version of the game i.e. before any enhancements to the game were made. The basic version of the game can be played by going to the tag "Part2".
 
-\subsection{The Initial Game Design}
-This is the code for the basic version of the game, thus this is the game before any enhancements were made.
-
-\subsubsection{Game Class}
+\subsection{Game Class}
 The Game class contains the main game loop and most of the logic regarding the game. The most important functions of the Game class include initialising the tiles and setting up the players, compute the directions of each player, generate the HTML map files for each player (This changes in the future generations of the game)and also exits the program.
-
-
-
-
 
 \begin{lstlisting}[caption=The initial code of the Game class, label=amb]
 
@@ -840,7 +833,7 @@ public class Game {
 }
 \end{lstlisting}
 
-\subsubsection{Map Class}
+\subsection{Map Class}
 The Map class is used to generate the tile map which the players use to play the game on. Also the tile events which occur are also taken care of by the Map class.
 
 
@@ -1084,7 +1077,7 @@ class Map {
 }
 \end{lstlisting}
 
-\subsubsection{Player Class}
+\subsection{Player Class}
 
 
 The Player class manages the individual properties of a player, such as the tile positions the player has moved on and the directions in which the player has moved.
@@ -1215,7 +1208,7 @@ class Player {
 }
 \end{lstlisting}
 
-\subsubsection{Position Class}
+\subsection{Position Class}
 
 The Position class is used to simplify the way in which the program interprets the player's location within the tile map.
 
@@ -1255,8 +1248,7 @@ The design pattern chosen for this enhancement was the \textbf{factory design pa
 The class diagram of the enhancement can be seen below.\\
 
 \begin{center}
-\includegraphics[scale=0.5]{Enhancement1CD.png}\\
-Ending screen of game using a hazardous map
+\includegraphics[width=\textwidth]{Enhancement1CD.png}\\
 \end{center}
 
 \newpage
@@ -1348,9 +1340,8 @@ Ending screen of game using a safe map
 Ending screen of game using a hazardous map
 \end{center}
 
-The information provided will be regarding the basic version of the game i.e. before any enhancements to the game were made. The basic version of the game can be played by going to the tag "Part2".
-
 \newpage
+
 \subsection{Single Map File}
 
 The design pattern chosen for this enhancement was the \textbf{singleton design pattern}. Since the problem involved the creation of only one map file it was clear that a creational design pattern was needed. The problem which needed to be solved here was that there was only one instance of a map file throughout the whole game. This could easily be taken care of using the Singleton design pattern.\\
@@ -1358,8 +1349,7 @@ The design pattern chosen for this enhancement was the \textbf{singleton design 
 The class diagram of the enhancement can be seen below.\\
 
 \begin{center}
-\includegraphics[scale=0.5]{Enhancement2CD.png}\\
-Ending screen of game using a hazardous map
+\includegraphics[width=\textwidth]{Enhancement2CD.png}\\
 \end{center}
 
 \noindent Given the first enhancement led to the creation of the \textit{safeMap} class and \textit{hazardousMap} class, a singleton design patter for each subclass has to be implemented since they produce different objects.\\
@@ -1370,7 +1360,7 @@ Ending screen of game using a hazardous map
 
 
 \begin{center}
-\includegraphics[scale=0.5]{Singleton1.png}\\
+\includegraphics[width=\textwidth]{Singleton1.png}\\
 Local repository containing a single map file
 \end{center}
 
@@ -1786,9 +1776,93 @@ MAYBE SHOW TILES IN HARD MODE
 OR SHOW DIFFERENT PRESEPECTIVES FOR THE SAME TEAM 
 
 \newpage 
-\section{Code Coverage Statistics}
+\section{Code Coverage}
+\subsection{Basic Version of the Game}
 
-\section{Running The Game}
+After finishing our development and testing of the basic version of the game, our code coverage statistics taken from Jenkins were as follows.
 
+\begin{center}
+\includegraphics[scale = 0.75]{Figure4.png}\\
+\end{center}
+
+\noindent Using the built in code coverage plug-in in IntelliJ, we were able to take note of which methods were not covered by our unit tests to ensure that each method which was not covered was left this way with good reason. The methods which were not tested are all in the \textbf{Game} class. An explanation of why these methods were not covered is given below.
+
+\begin{itemize}
+
+     \item \textit{Main} method:\\
+     This method simply calls other methods to initialise the game and run the main game loop. Each of 	  	 these methods are tested individually
+     
+     \item \textit{startGame} method:\\
+     Like the Main method, this method calls other methods to initialise the map and players. Each of    	 these methods are tested individually
+     
+     \item \textit{getPlayerNum} method:\\
+     This method simply receives a user input and passes it to the \textit{validatePlayerNum} method 	     	 which ensures that the input is an integer within the allowed range (2-8). All the testing for  	 	 this is therefore done in the \textit{validatePlayerNum} method.
+     
+     \item \textit{getMapSize} method:\\
+     This method simply receives a user input and passes it to the \textit{validateMapSize} method 	      	 which ensures that the input is an integer within the allowed range (5-50 depending on the number  	     of players). All the testing for this is therefore done in the \textit{validateMapSize} method.
+     
+     \item \textit{directionsLoop} method:\\
+     This method is a loop which asks each player for the direction they would like to move in and   	 	 then checks that this move is allowed with the \textit{checkOutOfBounds} and  	  	 					     \textit{validateDirectionInput} methods. If it is then the \textit{move} method in the 	 	  	 	 \textbf{Player} class is called upon to execute the desired move. The \textit{checkOutOfBounds}              	 and \textit{validateDirection} input methods are both tested to make sure that only a valid 	 	 	 direction is accepted and the \textit{move} method in the \textbf{Player} class is also tested to 	    	 make sure every move case can be properly handled by the program. Therefore, there is no need to 		     test the \textit{directionsLoop} method.
+     
+     \item \textit{endGame} method:\\
+     This method receives a character from the \textit{getExitChar} method. If this character is 'e' 		     then the map html files are deleted using the \textit{deleteHtmlFiles} method and the program is 		     exited. The \textit{getExitChar} method is tested individually using the 			 	 				 	 \textit{validateExitChar} method to ensure that only 'e' causes the program to exit. The 				 	 \textit{deleteHtmlFiles} method is also tested individually to ensure that the files are deleted 		 	 correctly every time. There is therefore no need to test the \textit{endGame} method.
+     
+     \item \textit{getExitChar} method:\\
+     This method receives a character user input from the user which is validated in the 					 	 \textit{validateExitChar} method. If this input is 'e' then it is returned to the 						 	 \textit{endGame} method which will delete the map html files and exit the program. Since it is 		 	 tested in the \textit{validateExitChar} method, \textit{getExitChar} does not need to be tested.
+     
+\end{itemize}
+\newpage
+
+\subsection{The Game After Enhancements}
+
+After we finished adding and testing the required enhancements to the game, our code coverage statistics taken from Jenkins were as follows.
+
+\begin{center}
+\includegraphics[scale = 0.75]{Figure5.png}\\
+\end{center}
+
+\noindent Again, using the built in code coverage plug-in in IntelliJ, we took note of which methods were not covered by our unit tests to ensure that each method which was not covered was left this way with good reason. The methods which were not tested in the basic version of the game are still not tested in this version for the same reasons and will therefore not be explained again. An explanation of why some of the new methods were not covered is given below.
+
+\renewcommand\labelitemii{$\triangleright$}
+\begin{itemize}
+    \item \textbf{Game} class:\\
+    \vspace{-5mm}
+    \begin{itemize}
+  		\item \textit{getTeamNum} method:\\
+  		This method simply receives a user input and passes it to the \textit{validateTeamNum} method 	     		which ensures that the input is an integer within the allowed range (between 2 and the amount of 		players). All the testing for this is therefore done in the \textit{validateTeamNum} method.
+  		
+  		\item \textit{getMapType} method:\\
+  		This method simply receives a user input and passes it to the \textit{validateMapType} method 	     		which ensures that the input is a string which is either "safe" or "hazardous". All the testing 			for this is therefore done in the \textit{validateMapType} method.
+  	\end{itemize}
+  	\newpage
+	
+	\item \textbf{MapCreator} class:\\
+	\vspace{-5mm}
+	\begin{itemize}
+		\item \textit{create} method:\\
+		This method is overridden in the \textbf{SafeMapCreator} and \textbf{HazardousMapCreator} 					classes and each of these override methods are tested individually. There is therefore no need 				to test this method.
+	\end{itemize}
+\end{itemize}
+\newpage 
+
+\section{Instructions to Run The Game}
+
+\begin{enumerate}
+	\item Download and extract the project from\\
+	\url{https://github.com/martin-and-mikhail/CPS2002_MartinMikhail}\\
+	Please note that the "Part1", "Part2" and "Part3" tags can be used to view the 
+	
+	\item Compile and run \textbf{Game.java} to run the game or run the \textbf{Game} class from an IDE
+	
+	\item Configure the game by choosing the amount of players, amount of teams, and the size and type 		 	of map. Each player will then be shown which team they are on. An example of this is shown below.
+	
+	\begin{center}
+	\includegraphics[scale=0.65]{Figure6.png}\\
+	\end{center}
+	
+	\item Open up the map.html file in a browser. Each player will be at a random starting position at 			this point in the game.
+	
+	\item The game will now start. In each round, each player will be prompted to enter their desired 			direction of movement. This can be done by entering u, d, l or r and then pressing enter to confirm 		the direction. If the player lands on a grass tile, they and their team members will have this tile 		changed to green on their map. If the player lands on a water tile, they will be notified and will 			be moved back to their starting position. This tile will also be marked on the player and their team 	mates' maps. If the player lands on the treasure tile then they will be marked as one of the game's 		winners, along with anyone else who lands on the treasure in the round, at the end of the round. 			Please note that the map is updated before each player must input a direction. Make sure to refresh 		the browser after every move is made.
+\end{enumerate}
 
 \end{document}
