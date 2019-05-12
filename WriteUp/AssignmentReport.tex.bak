@@ -1254,6 +1254,11 @@ The design pattern chosen for this enhancement was the \textbf{factory design pa
 
 The class diagram of the enhancement can be seen below.\\
 
+\begin{center}
+\includegraphics[scale=0.5]{Enhancement1CD.png}\\
+Ending screen of game using a hazardous map
+\end{center}
+
 \newpage
 
 \noindent Our implementation is centred around a \textit{Map} interface which contains each method which will be used by the different map types. Each type of map then has a class which implements this main \textit{Map} interface as can be seen in the class diagram above. This design allows for the easy implementation of additional map types in the future.\par
@@ -1343,136 +1348,140 @@ Ending screen of game using a safe map
 Ending screen of game using a hazardous map
 \end{center}
 
-The design pattern chosen for this enhancement was the \textbf{factory design pattern}. Since this enhancement was centred around the map's creation then it was clear that a creational design pattern had to be chosen. The main things which needed to be kept in mind were that 2 initial map types had to be implemented while more map types could easily be added to the future. Therefore, the Factory design pattern was the most suitable for the task.\\
-
-The class diagram of the enhancement can be seen below.\\
-
-****Add diagram here****\\
-\newpage
-
-\noindent Our implementation is centred around a \textit{Map} interface which contains each method which will be used by the different map types. Each type of map then has a class which implements this main \textit{Map} interface as can be seen in the class diagram above. This design allows for the easy implementation of additional map types in the future.\par
-
-A factory method is present in the \textit{MapCreator} class which is passed the map's type and its size. This class has a creator subclass for every map type, allowing for easy creation of additional map types in the future. An instance of the correct creator subclass will then be made and used to create the map. This can be seen in the code snippet below.
-
-\vspace{-1mm}
-\begin{lstlisting}
-//Factory Method
-Map createMap(String type, int mapSize){
-
-    MapCreator creator;
-
-    if(type.equals("safe")){
-        creator = new SafeMapCreator(mapSize);
-    }
-    else if(type.equals("hazardous")){
-        creator = new HazardousMapCreator(mapSize);
-    }
-    else{
-        creator = null;
-        System.err.println("Invalid map type");
-    }
-
-    if (creator != null) {
-        return creator.create();
-    }
-    else{
-        return null;
-    }
-}
-\end{lstlisting}
-\vspace{4mm}
-
-\noindent The map is then created in the appropriate creator subclass by setting the map size and calling the generate method in the map type's class (either the \textit{SafeMap} or \textit{HazardousMap} class in our implementation but more can easily be added). A code snippet of this create method for the "safe" map type is shown below
-
-\vspace{-1mm}
-\begin{lstlisting}
-//Method to create and return a safe map
-@Override
-public Map create(){
-    //getInstance method used here to obtain a 
-    //static instance of the safe map
-    SafeMap map =  SafeMap.getInstance();
-    map.setMapSize(mapSize);
-    map.generate();
-    return map;
-}
-\end{lstlisting}
-
-\noindent In the generate method for the safe map, the maximum amount of water tiles is set to 10\% and then rounded down to the nearest integer. This code snippet is shown below.
-
-\begin{lstlisting}
-//The maximum number of water tiles in a map is set to
-//10% of the total tiles
-int waterMaxTiles = (int) Math.floor((mapSize*mapSize) * 0.1);
-\end{lstlisting}
-\vspace{4mm}
-
-\noindent In the generate method for the hazardous map, the maximum amount of water tiles is set to 25\% and then rounded up to the nearest integer. This code snippet is shown below.
-
-\begin{lstlisting}
-//The maximum number of water tiles in a map is set to 
-//25% of the total tiles
-int waterMaxTiles = (int) Math.ceil((mapSize*mapSize) * 0.25);
-\end{lstlisting}
-\vspace{4mm}
-
-\noindent Apart than these changes, the map is generated as it was in the generate method in the basic version of the program before the enhancements.\\
-
-\noindent When running the program, the user is asked what map type they would like to play with. This can be seen below.
-
-\begin{center}
-\includegraphics[width=\textwidth]{Figure1.png}
-\end{center}
-
-\noindent After the user chooses the map type, the map is created as discussed on the previous page and then the game can be played. On the next page is a comparison between the ending screen of a game played by 4 players in 2 teams on a 6x6 safe map and a game played by the same players on a 6x6 hazardous map. Notice the different amounts of water tiles encountered between the 2 map types.
-\newpage
-
-\begin{center}
-\includegraphics[scale=0.5]{Figure2.png}\\
-Ending screen of game using a safe map
-\end{center}
-
-\begin{center}
-\includegraphics[scale=0.5]{Figure3.png}\\
-Ending screen of game using a hazardous map
-\end{center}
-
-
 The information provided will be regarding the basic version of the game i.e. before any enhancements to the game were made. The basic version of the game can be played by going to the tag "Part2".
 
+\newpage
 \subsection{Single Map File}
 
 The design pattern chosen for this enhancement was the \textbf{singleton design pattern}. Since the problem involved the creation of only one map file it was clear that a creational design pattern was needed. The problem which needed to be solved here was that there was only one instance of a map file throughout the whole game. This could easily be taken care of using the Singleton design pattern.\\
 
+The class diagram of the enhancement can be seen below.\\
+
+\begin{center}
+\includegraphics[scale=0.5]{Enhancement2CD.png}\\
+Ending screen of game using a hazardous map
+\end{center}
+
 \noindent Given the first enhancement led to the creation of the \textit{safeMap} class and \textit{hazardousMap} class, a singleton design patter for each subclass has to be implemented since they produce different objects.\\
 
-After the user chooses which map type they want, through the process previously defined in the first enhancement, the program goes to the corresponding \textit{Map} subclass through the \textit{MapCreator} class.\\ 
+\noindent After the user chooses which map type they want, through the process previously defined in the first enhancement, the program goes to the corresponding \textit{Map} subclass through the \textit{MapCreator} class.\\ 
 
-In the \textit{SafeMap} class and \textit{HazardousMap} class, a private static instance is initialised. By doing this the \textit{Map} object cannot be used in any other method and since it is static the object will be directly affected at every change which occurs throughout the lifetime of the program. This means that given only one map, and hence one map file, any change which occurs will affect that single map file and so there is only one map file which is being affected.\\
+\noindent In the \textit{SafeMap} class and \textit{HazardousMap} class, a private static instance is initialised. By doing this the \textit{Map} object cannot be used in any other method and since it is static the object will be directly affected at every change which occurs throughout the lifetime of the program. This means that given only one map, and hence one map file, any change which occurs will affect that single map file and so there is only one map file which is being affected. This can be seen in the screenshot below.\\
 
-A \textit{getInstance()} method is also created in the subclasses. This method declares the previously initialised static object created. However, the object is declared only if the object is null. This is so because it would lead to the creation of a new object and so this method takes care of that.\\
 
-//Code showing safe and hazardous maps with static objects and get instance methods\\
+\begin{center}
+\includegraphics[scale=0.5]{Singleton1.png}\\
+Local repository containing a single map file
+\end{center}
+
+
+\noindent A \textit{getInstance()} method is also created in the subclasses. This method declares the previously initialised static object created. However, the object is declared only if the object is null. This is so because it would lead to the creation of a new object and so this method takes care of that.\\
+
+\newpage
+\begin{lstlisting}
+
+    private static SafeMap map = null;
+
+    //Constructor for SafeMap
+    private SafeMap(){
+    }
+
+    //This method is used to obtain the static instance of the object
+    static SafeMap getInstance(){
+            if(map == null){
+                map = new SafeMap();
+            }
+
+            return map;
+    }
+    
+\end{lstlisting}
+\vspace{4mm}
+
+
+\begin{lstlisting}
+ //A static instance is created to implement the singleton design pattern
+    private static HazardousMap map = null;
+
+    //constructor for HazardousMap
+    //Constructor is set to private to implement the singleton design pattern
+    private HazardousMap(){
+    }
+
+    //This method is used to obtain the static instance of the object
+    static HazardousMap getInstance(){
+        if(map == null){
+            map = new HazardousMap();
+        }
+
+        return map;
+    }
+
+\end{lstlisting}
+\vspace{4mm}
 
 In the \textit{CreateMap} class, the \textit{getInstance()} method is used so as to create \textit{Map} object. This is the same for each map type. Hence now after going through this a map object is created which is able to be used by the game.\\
 
-//Show method of get instance method in use 
+\begin{lstlisting}
 
-In the initial idea of the game, a map file was created for each player and at the end of each turn the map file gets updated using the \textit{changeHtmlFile()} method.
+ //Method to create and return a safe map
+    @Override
+    public Map create(){
+        //getInstance method used here to obtain a static instance of the hazardous map
+        SafeMap map =  SafeMap.getInstance();
+        map.setMapSize(mapSize);
+        map.generate();
+        return map;
+    }
 
-//SHOW MAP FILE DEFINITON IN HTML CHANGE FILE METHOD
 
-Now instead we have only one file, and that file is changed to the corresponding player's map tile when it is the player's turn to choose their desired direction.
+\end{lstlisting}
+\vspace{4mm}
+
+
+
+\begin{lstlisting}
+
+   //Method to create and return a hazardous map
+    @Override
+    public Map create(){
+
+        //getInstance method used here to obtain a static instance of the hazardous map
+        HazardousMap map = HazardousMap.getInstance();
+        map.setMapSize(mapSize);
+        map.generate();
+        return map;
+    }
+
+
+\end{lstlisting}
+\vspace{4mm}
+
+In the initial idea of the game, a map file was created for each player and at the end of each turn the map file gets updated using the \textit{changeHtmlFile()} method.\\
+
+\begin{lstlisting}
+//A file object is being created where the name is given depending on the number of the player
+        File file = new File("map.html");
+
+        //The actual file is created here
+        try {
+            //If file already exists set return value to 2 to mark that it is being overwritten
+            if(!file.createNewFile()){
+                returnValue = 2;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            returnValue = 0;//Set return value to error
+        }
+\end{lstlisting}
+\vspace{4mm}
+
+Now instead we have only one file, and that file is changed to the corresponding player's map tile when it is the player's turn to choose their desired direction.\\
 
 HOWEVER SINCE THERE IS NOT METHOD IN PLACE FOR FILE STORAGE WE COULD NOT IMPLEMENT A METHOD TO ONLY SHOW THE FILE TO THE CURRENT PLAYER.
 
 \begin{lstlisting}
-    // Method to get direction which each player would like to move in for the current turn
-    private void directionsLoop() {
-        char direction;//(u, d, l or r) depending on user's desired direction of movement
-        boolean validMove;//Condition to break out of while loop when a valid direction is entered
-        boolean foundTreasure = false;//Condition to check if a player has found the treasure
-
+ 
         //Loop through each player in ArrayList
         for (Player player : players) {
 
@@ -1483,7 +1492,6 @@ HOWEVER SINCE THERE IS NOT METHOD IN PLACE FOR FILE STORAGE WE COULD NOT IMPLEME
 
             System.out.println("Player " + (players.indexOf(player) + 1) + ", please choose a direction (u, d, l or r).");
 \end{lstlisting}
-
 
 SHOW SCREENSHOT OF ADDING ONLY ONE FILE BEGIN PRESENT IN REPOSITORY
 
@@ -1497,68 +1505,14 @@ If full no more classes can be made so the there is only one static map currentl
 -Talk about when the map change occurs
 -Talk about them seeing the parts they discovered
 
-This section required us to implement a design pattern so as to only have one instance of a map running at all times. This way hundreds of users are able to play against each other without having hundreds of map files corresponding to each user.\\
-
-The best way which made sense to implement this was using the \textbf{Singleton} design pattern. The reason for this was that the singleton design pattern provides one static instance of a class, so when implementing this into out system we would end up having only one instance of a map in the main game which is always changed depending on which player is playing.\\
-
-Class diagram of singleton design pattern is displayed here
-
-The mapCreator sub-classes safeMapCreator and hazardousMapCreator which were developed in enhancement 2.1, were redesigned to create a static map object which can be accessed globally 
-
-\begin{lstlisting}
- public Map create(){
-        //getInstance method used here to obtain a static instance of the hazardous map
-        SafeMap map =  SafeMap.getInstance();
-        map.setMapSize(mapSize);
-        map.generate();
-        return map;
-    }
-\end{lstlisting}
-
-The Map sub-classes call on a method called getInstance(). This method and also the static defintion of the Map object is what gives the singleton design.
-
-\begin{lstlisting}
-    private static SafeMap map = null;
-    
-    //This method is used to obtain the static instance of the object
-    static SafeMap getInstance(){
-            if(map == null){
-                map = new SafeMap();
-            }
-
-            return map;
-    }
-\end{lstlisting}
-
-If the Map object created has already been defined then there cannot exist a new object of that type. Thus there is only one static instance of this object which can be changed globally.\\
-
-change the below paragraph a bit
-
-The singleton Map object here is changed to the current map which the corresponding player has, and the Map is changed after the player has chosen their direction, this is so they would be able to get reference when choosing their next direction.\\
-
-\begin{lstlisting}
-    // Method to get direction which each player would like to move in for the current turn
-    private void directionsLoop() {
-        char direction;//(u, d, l or r) depending on user's desired direction of movement
-        boolean validMove;//Condition to break out of while loop when a valid direction is entered
-        boolean foundTreasure = false;//Condition to check if a player has found the treasure
-
-        //Loop through each player in ArrayList
-        for (Player player : players) {
-
-            if(!foundTreasure) {
-                //At the end of the current player's turn the main html file is changed
-                teams.get(getTeamIndex(player)).changeHtmlFile(players.indexOf(player), map, player);
-            }
-
-            System.out.println("Player " + (players.indexOf(player) + 1) + ", please choose a direction (u, d, l or r).");
-\end{lstlisting}
-
+\newpage
 \subsection{Teams}
 The design pattern chosen for this enhancement was the \textbf{composite design pattern}. This enhancement required us to rethink the Player concept of the game. We needed to find a way how to add players randomly to a team, this problem was a structural one since this problem deals with the composition of different classes.\\
 
-//CLASS DIAGRAM FOR DESIGN PATTERN
-
+\begin{center}
+\includegraphics[scale=0.5]{Enhancement2CD.png}\\
+Ending screen of game using a hazardous map
+\end{center}
 
 \noindent The reason the composite design pattern was a good choice is because this design pattern structures classes into two types:\\
 
@@ -1569,9 +1523,9 @@ The design pattern chosen for this enhancement was the \textbf{composite design 
 
 \noindent In our case the Player object corresponds to the Leaf while the Team objects  corresponds to the Composite. The reason this works is because a Leaf can be though of as a unit while a composite contains various leaves, this is just like a team having multiple players in it. Thus a team can be seen as a complex object of multiple singular object.\\
 
-The composite design pattern goes further with this idea as it allows for composite objects to contain other composite objects, however in our case this would not make as much sense since a team containing a team would not really work well in our game. So our design pattern is a basic implementation of the composite design pattern.\\
+\noindent The composite design pattern goes further with this idea as it allows for composite objects to contain other composite objects, however in our case this would not make as much sense since a team containing a team would not really work well in our game. So our design pattern is a basic implementation of the composite design pattern.\\
 
-A User interface was implemented as the component within the composite design pattern. This interface is implemented by both the \textit{Player} class and the \textit{Team} class as they are both components with the design pattern.\\
+\noindent A User interface was implemented as the component within the composite design pattern. This interface is implemented by both the \textit{Player} class and the \textit{Team} class as they are both components with the design pattern.\\
 
 \vspace{-1mm}
 \begin{lstlisting}
@@ -1588,13 +1542,13 @@ public interface User {
 \end{lstlisting}
 \vspace{-1mm}
 
-Given this is a basic implementation of the composite design pattern, the component element of the design pattern is not as useful here, since the enhancement could easily be implemented by just using the \textit{Team} class. This is the reason for the \textit{User} interface not having as much common objects between the \textit{Player} subclass and the \textit{Team} subclass.\\
+\noindent Given this is a basic implementation of the composite design pattern, the component element of the design pattern is not as useful here, since the enhancement could easily be implemented by just using the \textit{Team} class. This is the reason for the \textit{User} interface not having as much common objects between the \textit{Player} subclass and the \textit{Team} subclass.\\
 
-When running the program, the user is asked how many teams they would like to play with. This can be seen below.
+\noindent When running the program, the user is asked how many teams they would like to play with. This can be seen below.
 
 **INPUT TEXT FROM PROGRAM ASKING USER FOR TEAM NUMBER**\\
 
-After the user chooses the number of teams within the game, the players are randomly distributed among the teams. All of this is done within \textit{startGame()} method, using the \textit{generateTeam()} method and the \textit{distributeRemainder()} method.//
+\noindent After the user chooses the number of teams within the game, the players are randomly distributed among the teams. All of this is done within \textit{startGame()} method, using the \textit{generateTeam()} method and the \textit{distributeRemainder()} method.//
 
 \begin{lstlisting}
 //Holds the players which have been added to a team
@@ -1615,7 +1569,7 @@ After the user chooses the number of teams within the game, the players are rand
 \end{lstlisting}
 \vspace{-1mm}
 
-All the \textit{Player} objects which have already been added to a team are taken into account, this is used so as to add a unique \textit{Player} object to each \textit{Team} object. The random distribution of players is taken care of in the \textit{generateTeam()} method which can be seen below.\\
+\noindent All the \textit{Player} objects which have already been added to a team are taken into account, this is used so as to add a unique \textit{Player} object to each \textit{Team} object. The random distribution of players is taken care of in the \textit{generateTeam()} method which can be seen below.\\
 
 \newpage
 \begin{lstlisting}
@@ -1700,9 +1654,9 @@ All the \textit{Player} objects which have already been added to a team are take
     }
 \end{lstlisting}
 
-This method works by first creating a \textit{Team} object, and then iterates for the total number of players to add to each team. A random index from the \textit{players} array list is obtained and compared to the indexes of the players within the \textit{addedPlayers} array list. If the random index does not match with any of those in \textit{addedPlayers}, then that player is not in any team and can be added to a team, the player is also added to \textit{addedPlayers}. This is repeated for each team.\\
+\noindent This method works by first creating a \textit{Team} object, and then iterates for the total number of players to add to each team. A random index from the \textit{players} array list is obtained and compared to the indexes of the players within the \textit{addedPlayers} array list. If the random index does not match with any of those in \textit{addedPlayers}, then that player is not in any team and can be added to a team, the player is also added to \textit{addedPlayers}. This is repeated for each team.\\
 
-At the beginning of each game in the \textit{startGame()} method, after obtaining the number of players and teams, two more values are obtained. The \textit{playersInTeamNum} variable is the total number of players in each team which can all be equally divided into a team. The \textit{extraPlayersNum} is the total number of players which are removed so as to be able to divide the number of players equally at first. 
+\noindent At the beginning of each game in the \textit{startGame()} method, after obtaining the number of players and teams, two more values are obtained. The \textit{playersInTeamNum} variable is the total number of players in each team which can all be equally divided into a team. The \textit{extraPlayersNum} is the total number of players which are removed so as to be able to divide the number of players equally at first. 
 
 \begin{lstlisting}
         //get number of players from user
@@ -1720,7 +1674,7 @@ At the beginning of each game in the \textit{startGame()} method, after obtainin
 
 \end{lstlisting}
 
-The extra players are then randomly inputted into random teams using the \textit{distributeRemainder} method.
+\noindent The extra players are then randomly inputted into random teams using the \textit{distributeRemainder} method.
 
 \begin{lstlisting}
 // Method to distribute the remaining player if the players are not evenly distrubted among the teams
@@ -1811,8 +1765,23 @@ The extra players are then randomly inputted into random teams using the \textit
     }
 \end{lstlisting}
 
-The method works by looping through each extra player, during iteration a unique team is obtained and after that a unique player is obtained. Code similar to that of the \textit{generateTeam()} method is used.
+\noindent The method works by looping through each extra player, during iteration a unique team is obtained and after that a unique player is obtained. Code similar to that of the \textit{generateTeam()} method is used.
 
+\noindent Below one can see the implementation of teams in the game compared to the game with only 2 players. The screens below show a safe map on an 8x8 tile map.
+
+\begin{center}
+\includegraphics[scale=0.5]{Team1.png}\\
+Late game screen 
+\end{center}
+
+\begin{center}
+\includegraphics[scale=0.5]{Team2.png}\\
+Ending screen of game using a hazardous map
+\end{center}
+
+
+
+\newpage 
 \section{Code Coverage Statistics}
 
 \section{Running The Game}

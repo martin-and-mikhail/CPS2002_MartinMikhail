@@ -9,7 +9,7 @@
 \contentsline {subsubsection}{Position Class}{25}{section*.10}
 \contentsline {section}{Enhancements}{27}{section*.11}
 \contentsline {subsection}{Different Map Types}{27}{section*.12}
-\contentsline {subsection}{Single Map File}{31}{section*.13}
-\contentsline {subsection}{Teams}{33}{section*.14}
-\contentsline {section}{Code Coverage Statistics}{39}{section*.15}
-\contentsline {section}{Running The Game}{39}{section*.16}
+\contentsline {subsection}{Single Map File}{32}{section*.13}
+\contentsline {subsection}{Teams}{37}{section*.14}
+\contentsline {section}{Code Coverage Statistics}{44}{section*.15}
+\contentsline {section}{Running The Game}{44}{section*.16}
