@@ -54,7 +54,7 @@ The aim of this assignment was to collaboratively work on a software project, wi
 \section{InitialGame Design}
 \noindent The design of the game consists of sectioning the game into the classes, here we will talk about the contents of those classes while also explain how they all work together.\\
 
-\noindent The information provided will be regarding the basic version of the game i.e. before any enhancements to the game were made. The basic version of the game can be played by going to the tag "Part2".
+\noindent The information provided will be regarding the basic version of the game i.e. before any enhancements to the game were made. The basic version of the game is found in the tag "Part2".
 
 \subsubsection{Game Class}
 
@@ -66,7 +66,8 @@ The aim of this assignment was to collaboratively work on a software project, wi
         //previous directions taken by a given player
         String directions;
 
-        System.out.print("Welcome to the Treasure Map Game by Martin") 		System.out.println("Bartolo and Mikhail Cassar");
+        System.out.print("Welcome to the Treasure Map Game by Martin 
+        Bartolo and Mikhail Cassar");
         Game game = new Game();
 
         //Run startGame method to initialise players and map
@@ -99,7 +100,7 @@ The aim of this assignment was to collaboratively work on a software project, wi
         //which have been played        
             game.turns++;
 
-            System.out.println("------------------------------------------------------------------------\n");
+            System.out.println("-------------------------------\n");
 
             //Get each players desired direction 
             //of movement for the current turn
@@ -112,8 +113,10 @@ The aim of this assignment was to collaboratively work on a software project, wi
                 //Obtaining the last 4 directions of each player
                 directions = game.getPreviousDirections(i);
 
-                if(game.generateHtmlFile(i, game.map.mapSize,directions) == 0){
-                    System.err.println("Could not generate HTML files");
+                if(game.generateHtmlFile(i, game.map.mapSize
+                ,directions) == 0){
+                    System.err.println("Could not generate 
+                    HTML files");
                 }
             }
 
@@ -136,7 +139,9 @@ The aim of this assignment was to collaboratively work on a software project, wi
                 for(i = 0; i < winners.length; i++){
 
                     if (winners[i]){
-                        System.out.println("Congratualtions player " + (i+1) + ", you have found the treasure in " + game.turns + " turns!");
+                        System.out.println("Congratualtions player "
+                         + (i+1) + ", you have found the treasure
+                          in " + game.turns + " turns!");
                     }
                 }
                 break;
@@ -145,7 +150,8 @@ The aim of this assignment was to collaboratively work on a software project, wi
 
         System.out.println("---------------------------------\n");
 
-        //After a player wins the game the user is able to prompted to exit the game
+        //After a player wins the game the user is able to
+        //prompted to exit the game
         game.exitGame(game);
     }
 
@@ -166,7 +172,8 @@ The aim of this assignment was to collaboratively work on a software project, wi
 
             //The random position of the player is 
             //set to a grass tile
-            player.position = player.setStartingPosition(map.getGrassTiles());
+            player.position = player.setStartingPosition(
+            map.getGrassTiles());
 
             //The created player is added to the ArrayList of players
             players.add(player);
@@ -176,7 +183,7 @@ The aim of this assignment was to collaboratively work on a software project, wi
 \end{lstlisting}
 \vspace{4mm}
 
-\noindent The design of the \textit{Game} class needed to include an efficient method on how to organise the implementation of the \textit{Player} objects and the \textit{Map} object. All of this processing is first done in the \textit{startGame()} Method, since this is where the initialisation and setting up of the game takes place.\\ 
+\noindent The design of the \textit{Game} class needed to include an efficient method on how to organise the implementation of the \textit{Player} objects and the \textit{Map} object. All of this processing is first done in the \textit{startGame()} Method, since this is where the initialisation and setting up of the game takes place.\\
 
 \newpage
 \begin{lstlisting}
@@ -197,7 +204,8 @@ The aim of this assignment was to collaboratively work on a software project, wi
 
             //The random position of the player is 
             //set to a grass tile
-            player.position = player.setStartingPosition(map.getGrassTiles());
+            player.position = 
+            player.setStartingPosition(map.getGrassTiles());
 
             //The created player is added to the ArrayList of players
             players.add(player);
@@ -206,11 +214,14 @@ The aim of this assignment was to collaboratively work on a software project, wi
 \end{lstlisting}
 \vspace{4mm}
 
-\noindent This method is called in the beginning of the \textit{Main} class. The number of players and map size is obtained from the user initially and with that information the game can be set up. First the \textit{Map} object created will have a tile map generated for it. This is taken care of in the \textit{generate()} method in the \textit{Map} class (Go to ------ section for more information on this class).\\
+\noindent This method is called in the beginning of the \textit{Main} class. The number of players and map size is obtained from the user initially and with that information the game can be set up. First the \textit{Map} object created will have a tile map generated for it. This is taken care of in the \textit{generate()} method in the \textit{Map} class.\\
+
+ADD IMAGE FOR USER INPUT IN GAME CLASS
 
 \noindent After generating the tile map, the \textit{Player} objects are created, initialised (by being given a starting position) and placed into an array list which simplifies the process by which the \textit{Player} objects can be manipulated throughout the program.\\
 
 \noindent After setting up the game, an initial map file is generated for each player using the\textit{generateHtmlFile} method. This method generates an html file for each player with all the tiles being gray except the tiles which the current player has landed on.\\
+
 \newpage
 \begin{lstlisting}
   //Method to initialise map along with players and
@@ -230,7 +241,8 @@ The aim of this assignment was to collaboratively work on a software project, wi
 
             //The random position of the player is 
             //set to a grass tile
-            player.position = player.setStartingPosition(map.getGrassTiles());
+            player.position = 
+            player.setStartingPosition(map.getGrassTiles());
 
             //The created player is added to the ArrayList of players
             players.add(player);
@@ -249,14 +261,18 @@ switch(tileType){
 
                         if(playerHere){
 
-                            htmlText.append("<div class=\"cellGreen\">" +
-                                    "<img src=\"player.png\" alt=\"player\">" +
+                            htmlText.append("<div class=\
+                            "cellGreen\">" +
+                                    "<img src=\
+                                    "player.png\" alt=
+                                    \"player\">" +
                                     "</div>\n");
                         }
 
                         else{
 
-                            htmlText.append("<div class=\"cellGreen\"></div>\n");
+                            htmlText.append("<div class=\
+                            "cellGreen\"></div>\n");
 
                         }
                         break;
@@ -266,14 +282,18 @@ switch(tileType){
 
                         if(playerHere){
 
-                            htmlText.append("<div class=\"cellBlue\">" +
-                                    "<img src=\"player.png\" alt=\"player\">" +
+                            htmlText.append("<div class=\
+                            "cellBlue\">" +
+                                    "<img src=\
+                                    "player.png\" alt=\
+                                    "player\">" +
                                     "</div>\n");
                         }
 
                         else{
 
-                            htmlText.append("<div class=\"cellBlue\"></div>\n");
+                            htmlText.append("<div class=\
+                            "cellBlue\"></div>\n");
 
                         }
                         break;
@@ -283,15 +303,19 @@ switch(tileType){
 
                         if(playerHere){
 
-                            htmlText.append("<div class=\"cellYellow\">" +
-                                    "<img src=\"player.png\" alt=\"player\">" +
+                            htmlText.append("<div class=\
+                            "cellYellow\">" +
+                                    "<img src=\
+                                    "player.png\" alt=\
+                                    "player\">" +
                                     "</div>\n");
 
                         }
 
                         else{
 
-                            htmlText.append("<div class=\"cellYellow\"></div>\n");
+                            htmlText.append("<div class=\
+                            "cellYellow\"></div>\n");
 
                         }
                         break;
@@ -299,7 +323,8 @@ switch(tileType){
                     default:
                         //No need to check for player here
                         //as a player can never be on a gray tile
-                        htmlText.append("<div class=\"cellGray\"></div>\n");
+                        htmlText.append("<div class=\
+                        "cellGray\"></div>\n");
                         break;
                 }
             }
@@ -307,9 +332,9 @@ switch(tileType){
 \end{lstlisting}
 \vspace{4mm}
 
-\noindent After setting up the map files, the game starts. A loop is made which keeps on iterating until a player wins, each \textit{Player} object has a check which is raised if the player lands on the winning tile. During each turn of the game, each player is asked to input a direction depending on where they want to move. The \textit{directionsLoop} method manages this problem.\\
-
 \newpage
+\noindent After setting up the map files, the game starts. A loop is made which keeps on iterating until a player wins, each \textit{Player} object has a check which is raised if the player lands on the winning tile. During each turn of the game, each player is asked to input a direction depending on where they want to move. The \textit{directionsLoop} method manages this.\\
+
 \begin{lstlisting}
 
 //Loop through each player in ArrayList
@@ -352,7 +377,7 @@ switch(tileType){
 \subsubsection{Map Class}
 \noindent The \textit{Map} class is used to generate the tile map which the players use to play the game on. Also the tile events which occur are also taken care of by the Map class.\\
 
-\noindent The map generation which is used in the \textit{startGame()} method basically constructs a 2-dimensional array called \textit{tiles}, which is the size of the map in both dimensions. The array holds the tile type of each tile positions in the game. Each position in the \textit{tiles} array corresponds to a tile in the map. Below one can see how each tile is randomly generated.
+\noindent The map generation which occurs in the \textit{startGame()} method basically constructs a 2-dimensional array called \textit{tiles}, which is the size of the map in both dimensions. The array holds the tile type of each tile positions in the game. Each position in the \textit{tiles} array corresponds to a tile in the map. Below one can see how each tile is randomly generated.
 
 \begin{lstlisting}
 //Keep on looping until all tiles are randomly generated
@@ -363,14 +388,18 @@ switch(tileType){
             randomPair[0] = random.nextInt(mapSize);
             randomPair[1] = random.nextInt(mapSize);
 
-            //Now checking if the tile has already been obtained in the generated tiles
-            //This is done by checking if the boolean value of the tile is true
+            //Now checking if the tile has already been obtained 
+            //in the generated tiles
+            //This is done by checking if the boolean 
+            //value of the tile is true
             if(generatedTiles[randomPair[0]][randomPair[1]][0]){
                 //Tile has already been generated
-                //So the user must get another tile which has not already been generated
+                //So the user must get another tile which
+                //has not already been generated
 
                 //Keeps on looping until a new tile is generated
-                while(generatedTiles[randomPair[0]][randomPair[1]][0]){
+                while(generatedTiles[randomPair[0]]
+                [randomPair[1]][0]){
 
                     randomPair[0] = random.nextInt(mapSize);
                     randomPair[1] = random.nextInt(mapSize);
@@ -380,25 +409,44 @@ switch(tileType){
 \end{lstlisting}
 \vspace{4mm}
 
-After a tile is randomly generated, a tile type has to be assigned, this is done using the below code within the same \textit{generate()} method. The tile type is an integer from 0 to 2, since there are three types in the current implementation of the game, however if a new tile wants to be included in the game, this can easily be done with this implementation. Below is the code of how the tile types are assigned to a given tile position.
+\noindent After a tile is randomly generated, a tile type has to be assigned, this is done using the below code within the same \textit{generate()} method. The tile type is an integer from 0 to 2, since there are three types in the current implementation of the game, however if a new tile wants to be included in the game, this can easily be done with this implementation. Below is the code of how the tile types are assigned to a given tile position.
 
+\begin{center}
+\includegraphics[scale=1]{greyTile.png}
+\hspace{1mm}
+\includegraphics[scale=1]{greenTile.png}
+\hspace{1mm}
+\includegraphics[scale=1]{blueTile.png}
+\hspace{1mm}
+\includegraphics[scale=1]{yellowTile.png}
+\hspace{1mm}
+
+Each tile implemented within the game
+\end{center}
+
+
+
+\newpage
 \begin{lstlisting}
 
  //Keep on looping until the current tile is given a tile type
             do {
 
                 //Set the tile type for the newly generated tile
-                //A random number from 0 to 2 is obtained which correspond to a tile type
+                //A random number from 0 to 2 is obtained which 
+                //correspond to a tile type
                 tileType = random.nextInt(3);
 
-                //A switch statement is used to go through each of the possible tile types
+                //A switch statement is used to go through
+                //each of the possible tile types
                 switch (tileType) {
 
                     //Grass tile
                     case 0:
                         tiles[randomPair[0]][randomPair[1]][0] = 0;
 
-                        //The counter is updated since another grass tile has been added to the map
+                        //The counter is updated since another 
+                        //grass tile has been added to the map
                         grassCount += 1;
 
                         break;
@@ -406,15 +454,21 @@ After a tile is randomly generated, a tile type has to be assigned, this is done
                     //Water tile
                     case 1:
                         if (waterCount == waterMaxTiles) {
-                            //When the maximum number of water tiles is reached the check is set to true
-                            //This is so that the while loop will continue until a random number is obtained which
+                            //When the maximum number of water 
+                            //tiles is reached the check 
+                            //is set to true
+                            //This is so that the while loop 
+                            //will continue until a random 
+                            //number is obtained which
                             //is not full
                             continue;
 
                         } else {
-                            tiles[randomPair[0]][randomPair[1]][0] = 1;
+                            tiles[randomPair[0]][randomPair[1]][0] 
+                            = 1;
 
-                            //The counter is updated since another water tile has been added to the map
+                            //The counter is updated since another 
+                            //water tile has been added to the map
                             waterCount += 1;
                         }
                         break;
@@ -423,21 +477,24 @@ After a tile is randomly generated, a tile type has to be assigned, this is done
                     case 2:
 
                         if (treasureCount == treasureMaxTiles) {
-                            //When a treasure tile is already placed the check is set to true
+                            //When a treasure tile is already placed 
+                            //the check is set to true
                             continue;
                         } else {
-                            tiles[randomPair[0]][randomPair[1]][0] = 2;
-                            //The counter is updated since a teasure tile has been added to the map
+                            tiles[randomPair[0]][randomPair[1]][0]
+                             = 2;
+                            //The counter is updated since a teasure
+                            // tile has been added to the map
                             treasureCount += 1;
                         }
                         break;
 
                     default:
-                        //This case is accessed only when a random number which is not 0,1 or 2 is obtained
-                        System.err.println("Invalid random number obtained");
+                        //This case is accessed only when a random 
+                        //number which is not 0,1 or 2 is obtained
+                        System.err.println("Invalid random 
+                        number obtained");
                         break;
-
-                }
                 
 \end{lstlisting}
 \vspace{4mm}
@@ -449,10 +506,12 @@ After a tile is randomly generated, a tile type has to be assigned, this is done
 \noindent When a \textit{Player} object is created the positions and the directions the \textit{Player} has moved are saved using an array list for each.
 
 \begin{lstlisting}
-  //This array list is used to hold the previous positions the player
+  //This array list is used to hold the previous 
+  //positions the player
     ArrayList<Position> positions = new ArrayList<Position>();
 
-  //This array list is used to hold the previous directions of the player
+  //This array list is used to hold the previous directions#
+  //of the player
     ArrayList<String> directions = new ArrayList<String>();
 \end{lstlisting}
 \vspace{4mm}
@@ -467,7 +526,8 @@ After a tile is randomly generated, a tile type has to be assigned, this is done
 
         Position position = new Position(0, 0);
 
-        //Obtaining the length of grassTiles so as to be able to know from which range to obtain a random number
+        //Obtaining the length of grassTiles so as to be able to 
+        //know from which range to obtain a random number
         int grassCount = grassTiles.length;
 
         //random number from 0 to length of grassTiles is obtained
@@ -477,7 +537,8 @@ After a tile is randomly generated, a tile type has to be assigned, this is done
         position.x = grassTiles[grassTilesIndex][0];
         position.y = grassTiles[grassTilesIndex][1];
 
-        //The current position of the player is set to the start position
+        //The current position of the player is set 
+        //to the start position
         this.position = position;
 
         //The start positions is added to the created player
@@ -493,10 +554,12 @@ After a tile is randomly generated, a tile type has to be assigned, this is done
 
 \begin{lstlisting}
 
-//Method to move the player's position according to a given direction
+//Method to move the player's position according to a 
+//given direction
     void move(char direction){
 
-        //A switch statement is used to represent all possible directions
+        //A switch statement is used to represent all 
+        //possible directions
         switch(direction){
             case 'l':
                 // change player's position
@@ -542,6 +605,14 @@ After a tile is randomly generated, a tile type has to be assigned, this is done
 \end{lstlisting}
 \vspace{4mm}
 
+\newpage
+
+\begin{center}
+\includegraphics[width=\textwidth]{BasicMap1.png}\\
+The initial position of a player when the game starts
+\end{center}
+
+\newpage
 \subsubsection{Position Class}
 
 The \textit{Position} class is used to simplify the way in which the program interprets the player's location within the tile map.\\
@@ -568,7 +639,8 @@ public class Position {
     Position(){
     }
 
-    //Constructor for the position object when both x and y values are given
+    //Constructor for the position object when both 
+    //x and y values are given
     Position(int px, int py) {
         x = px;
         y = py;
@@ -683,7 +755,7 @@ Ending screen of game using a hazardous map
 
 The design pattern chosen for this enhancement was the \textbf{singleton design pattern}. Since the problem involved the creation of only one map file it was clear that a creational design pattern was needed. The problem which needed to be solved here was that there was only one instance of a map file throughout the whole game. This could easily be taken care of using the Singleton design pattern.\\
 
-The class diagram of the enhancement can be seen below.\\
+\noindent The class diagram of the enhancement can be seen below.\\
 
 \begin{center}
 \includegraphics[width=\textwidth]{Enhancement2CD.png}\\
@@ -713,7 +785,8 @@ Local repository containing a single map file
     private SafeMap(){
     }
 
-    //This method is used to obtain the static instance of the object
+    //This method is used to obtain the static 
+    //instance of the object
     static SafeMap getInstance(){
             if(map == null){
                 map = new SafeMap();
@@ -727,15 +800,18 @@ Local repository containing a single map file
 
 
 \begin{lstlisting}
- //A static instance is created to implement the singleton design pattern
+ //A static instance is created to implement the 
+ //singleton design pattern
     private static HazardousMap map = null;
 
     //constructor for HazardousMap
-    //Constructor is set to private to implement the singleton design pattern
+    //Constructor is set to private to implement the 
+    //singleton design pattern
     private HazardousMap(){
     }
 
-    //This method is used to obtain the static instance of the object
+    //This method is used to obtain the static 
+    //instance of the object
     static HazardousMap getInstance(){
         if(map == null){
             map = new HazardousMap();
@@ -747,14 +823,15 @@ Local repository containing a single map file
 \end{lstlisting}
 \vspace{4mm}
 
-In the \textit{CreateMap} class, the \textit{getInstance()} method is used so as to create \textit{Map} object. This is the same for each map type. Hence now after going through this a map object is created which is able to be used by the game.\\
+\noindent In the \textit{CreateMap} class, the \textit{getInstance()} method is used so as to create \textit{Map} object. This is the same for each map type. Hence now after going through this a map object is created which is able to be used by the game.\\
 
 \begin{lstlisting}
 
  //Method to create and return a safe map
     @Override
     public Map create(){
-        //getInstance method used here to obtain a static instance of the hazardous map
+        //getInstance method used here to obtain
+        // a static instance of the hazardous map
         SafeMap map =  SafeMap.getInstance();
         map.setMapSize(mapSize);
         map.generate();
@@ -773,7 +850,8 @@ In the \textit{CreateMap} class, the \textit{getInstance()} method is used so as
     @Override
     public Map create(){
 
-        //getInstance method used here to obtain a static instance of the hazardous map
+        //getInstance method used here to obtain 
+        //a static instance of the hazardous map
         HazardousMap map = HazardousMap.getInstance();
         map.setMapSize(mapSize);
         map.generate();
@@ -784,15 +862,17 @@ In the \textit{CreateMap} class, the \textit{getInstance()} method is used so as
 \end{lstlisting}
 \vspace{4mm}
 
-In the initial idea of the game, a map file was created for each player and at the end of each turn the map file gets updated using the \textit{changeHtmlFile()} method.\\
+\noindent In the initial idea of the game, a map file was created for each player and at the end of each turn the map file gets updated using the \textit{changeHtmlFile()} method.\\
 
 \begin{lstlisting}
-//A file object is being created where the name is given depending on the number of the player
+//A file object is being created where the name is given 
+//depending on the number of the player
         File file = new File("map.html");
 
         //The actual file is created here
         try {
-            //If file already exists set return value to 2 to mark that it is being overwritten
+            //If file already exists set return value
+            //to 2 to mark that it is being overwritten
             if(!file.createNewFile()){
                 returnValue = 2;
             }
@@ -803,9 +883,7 @@ In the initial idea of the game, a map file was created for each player and at t
 \end{lstlisting}
 \vspace{4mm}
 
-Now instead we have only one file, and that file is changed to the corresponding player's map tile when it is the player's turn to choose their desired direction.\\
-
-HOWEVER SINCE THERE IS NOT METHOD IN PLACE FOR FILE STORAGE WE COULD NOT IMPLEMENT A METHOD TO ONLY SHOW THE FILE TO THE CURRENT PLAYER.
+\noindent Now instead we have only one file, and that file is changed to the corresponding player's map tile when it is the player's turn to choose their desired direction.
 
 \begin{lstlisting}
  
@@ -813,11 +891,15 @@ HOWEVER SINCE THERE IS NOT METHOD IN PLACE FOR FILE STORAGE WE COULD NOT IMPLEME
         for (Player player : players) {
 
             if(!foundTreasure) {
-                //At the end of the current player's turn the main html file is changed
-                teams.get(getTeamIndex(player)).changeHtmlFile(players.indexOf(player), map, player);
+                //At the end of the current player's turn 
+                //the main html file is changed
+                teams.get(getTeamIndex(player)).changeHtmlFile
+                (players.indexOf(player), map, player);
             }
 
-            System.out.println("Player " + (players.indexOf(player) + 1) + ", please choose a direction (u, d, l or r).");
+            System.out.println("Player " + 
+            (players.indexOf(player) + 1) +
+             ", please choose a direction (u, d, l or r).");
 \end{lstlisting}
 
 \newpage
@@ -847,22 +929,26 @@ Ending screen of game using a hazardous map
 import java.util.ArrayList;
 
 public interface User {
-    //The User interface is the component of the composite design pattern
+    //The User interface is the component of the 
+    //composite design pattern
 
     ArrayList<Position> positions = new ArrayList<Position>();
 
-    //Method used to add a position to the positions ArrayList using the x and y values
+    //Method used to add a position to the positions 
+    //ArrayList using the x and y values
     void addToPositions(int posx, int posy);
 }
 \end{lstlisting}
-\vspace{-1mm}
+\vspace{4mm}
 
 \noindent Given this is a basic implementation of the composite design pattern, the component element of the design pattern is not as useful here, since the enhancement could easily be implemented by just using the \textit{Team} class. This is the reason for the \textit{User} interface not having as much common objects between the \textit{Player} subclass and the \textit{Team} subclass.\\
 
 \noindent When running the program, the user is asked how many teams they would like to play with. This can be seen below.
 
-**INPUT TEXT FROM PROGRAM ASKING USER FOR TEAM NUMBER**\\
-
+\begin{center}
+\includegraphics[scale=0.5]{Tea4.png}\\
+Late game screen of a game between two players
+\end{center}
 \noindent After the user chooses the number of teams within the game, the players are randomly distributed among the teams. All of this is done within \textit{startGame()} method, using the \textit{generateTeam()} method and the \textit{distributeRemainder()} method.//
 \vspace{4mm}
 
@@ -883,14 +969,14 @@ public interface User {
             teams.add(team);
         }
 \end{lstlisting}
-\vspace{-1mm}
+\vspace{4mm}
 
 \noindent All the \textit{Player} objects which have already been added to a team are taken into account, this is used so as to add a unique \textit{Player} object to each \textit{Team} object. The random distribution of players is taken care of in the \textit{generateTeam()} method which can be seen below.\\
 
-\newpage
 \begin{lstlisting}
 //Method to generate the teams
-    Team generateTeam(ArrayList<Player> addedPlayers, int playersInTeamNum){
+    Team generateTeam(ArrayList<Player> addedPlayers, 
+    int playersInTeamNum){
 
         Random random = new Random();
 
@@ -903,20 +989,26 @@ public interface User {
         //A new team is created
         Team team = new Team();
 
-            //Randomly add the specified amount of players to a team
-            //Get playerInTeamNum random players from the players array list
+            //Randomly add the specified amount of 
+            //players to a team
+            //Get playerInTeamNum random players 
+            //from the players array list
             for (int j = 0; j < playersInTeamNum; j++) {
 
-                //At each iteration this check is always initialised to true
-                //If there is no matching value in the array list then the while loop breaks
+                //At each iteration this check is 
+                //always initialised to true
+                //If there is no matching value in 
+                //the array list then the while loop breaks
                 playerIsInATeam = false;
 
-                //Keep on looping until a new player index is obtained
+                //Keep on looping until a new 
+                //player index is obtained
                 do {
                     //A random index is obtained
                     rand = random.nextInt(playerNum);
 
-                    //If no player has currently been added to a team
+                    //If no player has currently 
+                    //been added to a team
                     if(addedPlayers.size() == 0){
 
                         //A random index is obtained
@@ -927,8 +1019,10 @@ public interface User {
 
                         addedPlayers.add(players.get(rand));
 
-                        //If the size of a team is only one player then this team is full
-                        //If not then continue adding players until the maximum is reached
+                        //If the size of a team is only one 
+                        //player then this team is full
+                        //If not then continue adding players 
+                        //until the maximum is reached
                         if(playersInTeamNum== 1){
                             playerIsInATeam = false;
                         }
@@ -937,14 +1031,20 @@ public interface User {
                     //If a player has been added to a team
                     else {
 
-                        //Initialised to false since we are checking if the current player is already in a team
+                        //Initialised to false since 
+                        //we are checking 
+                        //if the current player is 
+                        //already in a team
                         playerIsInATeam = false;
 
-                        //Loops through all the players which are already in a team
-                        //Ends when a player which is not in a team is obtained
+                        //Loops through all the players which 
+                        //are already in a team
+                        //Ends when a player which is not in a 
+                        //team is obtained
                         for (Player player : addedPlayers) {
 
-                            //If the current player has already been generated
+                            //If the current player has 
+                            //already been generated
                             if (players.get(rand) == player) {
                                 playerIsInATeam = true;
                             }
@@ -956,12 +1056,14 @@ public interface User {
 
                             addedPlayers.add(players.get(rand));
 
-                            //The check is false and the loop is broken
+                            //The check is false and 
+                            //the loop is broken
                             break;
                         }
                     }
 
-                    //Keep on looping while the current player being obtained is already in a team
+                    //Keep on looping while the current player 
+                    //being obtained is already in a team
                     } while (playerIsInATeam);
             }
 
@@ -973,8 +1075,10 @@ public interface User {
 
 \noindent This method works by first creating a \textit{Team} object, and then iterates for the total number of players to add to each team. A random index from the \textit{players} array list is obtained and compared to the indexes of the players within the \textit{addedPlayers} array list. If the random index does not match with any of those in \textit{addedPlayers}, then that player is not in any team and can be added to a team, the player is also added to \textit{addedPlayers}. This is repeated for each team.\\
 
+
 \noindent At the beginning of each game in the \textit{startGame()} method, after obtaining the number of players and teams, two more values are obtained. The \textit{playersInTeamNum} variable is the total number of players in each team which can all be equally divided into a team. The \textit{extraPlayersNum} is the total number of players which are removed so as to be able to divide the number of players equally at first. 
 
+\newpage
 \begin{lstlisting}
         //get number of players from user
         game.playerNum = getPlayerNum();
@@ -988,8 +1092,8 @@ public interface User {
         //The total number of player per team is obtained excluding the extra players
         int playersInTeamNum = (playerNum - extraPlayersNum)/teamNum;
 
-
 \end{lstlisting}
+\vspace{4mm}
 
 \noindent The extra players are then randomly inputted into random teams using the \textit{distributeRemainder} method.
 
@@ -1081,6 +1185,7 @@ public interface User {
         }
     }
 \end{lstlisting}
+\vspace{4mm}
 
 \noindent The method works by looping through each extra player, during iteration a unique team is obtained and after that a unique player is obtained. Code similar to that of the \textit{generateTeam()} method is used.
 
