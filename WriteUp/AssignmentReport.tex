@@ -47,67 +47,21 @@
 \tableofcontents
 \newpage
 
-\section{Diagram Example}
-\begin{center}
-\includegraphics[width=\textwidth]{FigureExample.png}
-\end{center}
-
-\section{Code Snippet}
-\begin{lstlisting}
-public class Main{
-  public static void main (String args[]){
-    System.out.println("Hello World!");
-  }
-}
-\end{lstlisting}
-
 \section{Introduction}
 The aim of this assignment was to collaboratively work on a software project, with the main focus being on rigorous software testing and the use of Git. Our first task was to set up our environments, namely our Git repository on Github and our Jenkins environment on the University Jenkins server. First, we initialised our Git repository and ensured that each team member could commit changes and push and pull them from Github. When this was ensured, we set up our Jenkins environment to work with Maven and scan for changes from Github every few minutes. Whenever changes are found, they are built and run with a detailed code coverage report and test results being displayed using the Emma plug-in. Our progress at this point can be seen by viewing the "Part1" tag on our Github repository. After completing our set-up, we were ready to start working on the two remaining tasks which will be discussed in detail throughout the remainder of this report.
 \newpage
 
 \section{InitialGame Design}
-The design of the game consists of sectioning the game into the classes, here we will talk about the contents of those classes while also explain how they all work together.
+\noindent The design of the game consists of sectioning the game into the classes, here we will talk about the contents of those classes while also explain how they all work together.\\
 
-The information provided will be regarding the basic version of the game i.e. before any enhancements to the game were made. The basic version of the game can be played by going to the tag "Part2".
+\noindent The information provided will be regarding the basic version of the game i.e. before any enhancements to the game were made. The basic version of the game can be played by going to the tag "Part2".
 
-\subsection{Game Class}
-The Game class contains the main game loop and most of the logic regarding the game. The most important functions of the Game class include initialising the tiles and setting up the players, compute the directions of each player, generate the HTML map files for each player (This changes in the future generations of the game)and also exits the program.
+\subsubsection{Game Class}
 
-\begin{lstlisting}[caption=The initial code of the Game class, label=amb]
+\noindent The \textit{Game} class contains the most essential parts of the game, this is because it encompasses all the other aspects of the game. Also this class contains the \textit{Main} class and so this is where the game executes. Below is a listing showing the \textit{Main} game loop.
 
-import java.io.*;
-import java.util.ArrayList;
-import java.util.InputMismatchException;
-import java.util.Scanner;
-
-public class Game {
-
-    // Amount of turns which have been played
-    private int turns = 0;
-    // Amount of players
-    int playerNum;
-	
-	// ArrayList of players
-    ArrayList<Player> players = new ArrayList<Player>();
-
-    Map map = new Map();// map object
-
-    final private int minPlayers = 2;
-    final private int maxPlayersFirstRange = 4;
-    final private int minPlayersSecondRange = 5;
-    final private int maxPlayers = 8;
-
-    final private int minMapSizeFirstRange = 5;
-    final private int minMapSizeSecondRange = 8;
-    final private int maxMapSize = 50;
-
-    private Scanner scanner;// to be used throughout class
-
-    //Constructor for the game object
-    Game() {
-    }
-
-    public static void main(String[] args) {
+\begin{lstlisting}
+ public static void main(String[] args) {
         //This variable is used to hold the 
         //previous directions taken by a given player
         String directions;
@@ -219,420 +173,77 @@ public class Game {
         }
     }
 
-    // Method to get the amount of players from the user
-    private int getPlayerNum() {
-        int num;
-        System.out.println("How many players will be playing? (Pick a number between 2 and 8)");
+\end{lstlisting}
+\vspace{4mm}
 
-        while (true) {
-            //Get user input
-            scanner = new Scanner(System.in);
+\noindent The design of the \textit{Game} class needed to include an efficient method on how to organise the implementation of the \textit{Player} objects and the \textit{Map} object. All of this processing is first done in the \textit{startGame()} Method, since this is where the initialisation and setting up of the game takes place.\\ 
 
-            //Validate user input
-            num = validatePlayerNum(scanner);
+\newpage
+\begin{lstlisting}
+  //Method to initialise map along with players and
+    // their starting positions
+    private void startGame(Game game) {
+        game.playerNum = getPlayerNum();
 
-            //Return value if it is valid (not an error value)
-            if (num > 1) {
-                return num;
-            }
+        map.mapSize = getMapSize();
+        map.generate();// Generate map
+
+        //In this loop all the Player objects are created 
+        //along with their starting position in the map
+        for (int i = 0; i < game.playerNum; i++) {
+
+            //A new player object is made
+            Player player = new Player();
+
+            //The random position of the player is 
+            //set to a grass tile
+            player.position = player.setStartingPosition(map.getGrassTiles());
+
+            //The created player is added to the ArrayList of players
+            players.add(player);
         }
     }
+\end{lstlisting}
+\vspace{4mm}
 
-    // Method to validate the user's input for the player number
-    int validatePlayerNum(Scanner scanner) {
-        int num;
-        try {
-            //Set to user input from getPlayerNum
-            num = scanner.nextInt();
-        }
-        //If input is not an integer
-        catch (InputMismatchException e) {
-            System.err.println("Invalid input. Please enter a number between 2 and 8");
-            return 0;//Return error value of 0
-        }
-        //If input is correct
-        if (num >= minPlayers && num <= maxPlayers) {
-            return num;//Return value entered by the user
-        }
-        //If input is not within required range
-        else {
-            System.err.println("Please enter a number between 2 and 8");
-            return 1;//Return error value of 1
-        }
-    }
+\noindent This method is called in the beginning of the \textit{Main} class. The number of players and map size is obtained from the user initially and with that information the game can be set up. First the \textit{Map} object created will have a tile map generated for it. This is taken care of in the \textit{generate()} method in the \textit{Map} class (Go to ------ section for more information on this class).\\
 
-    // Method to get the map size from the user
-    private int getMapSize() {
-        int size;
-        System.out.println("How large would you like the map to be? (Map will be n x n)");
+\noindent After generating the tile map, the \textit{Player} objects are created, initialised (by being given a starting position) and placed into an array list which simplifies the process by which the \textit{Player} objects can be manipulated throughout the program.\\
 
-        while (true) {
-            //Get user input
-            scanner = new Scanner(System.in);
+\noindent After setting up the game, an initial map file is generated for each player using the\textit{generateHtmlFile} method. This method generates an html file for each player with all the tiles being gray except the tiles which the current player has landed on.\\
+\newpage
+\begin{lstlisting}
+  //Method to initialise map along with players and
+    // their starting positions
+    private void startGame(Game game) {
+        game.playerNum = getPlayerNum();
 
-            //Validate user input
-            size = validateMapSize(scanner);
+        map.mapSize = getMapSize();
+        map.generate();// Generate map
 
-            //Return value if it is valid (not an error value)
-            if (size > 4) {
-                return size;
-            }
+        //In this loop all the Player objects are created 
+        //along with their starting position in the map
+        for (int i = 0; i < game.playerNum; i++) {
+
+            //A new player object is made
+            Player player = new Player();
+
+            //The random position of the player is 
+            //set to a grass tile
+            player.position = player.setStartingPosition(map.getGrassTiles());
+
+            //The created player is added to the ArrayList of players
+            players.add(player);
         }
     }
+\end{lstlisting}
+\vspace{4mm}
 
-    // Method to validate the user's input for the map size
-    int validateMapSize(Scanner scanner) {
-        int size;
-        try {
-            //Set to user input from getMapSize
-            size = scanner.nextInt();
-        }
+\noindent Then after generating a file, the html code is the same except the player number, the previous directions and also the uncovered tiles. The HTML code to display the colour of any given tile is the following.
 
-        //If input is not an integer
-        catch (InputMismatchException e) {
-            System.err.println("Invalid input. Please enter a number");
-            return 0;//Return error value of 0
-        }
+\begin{lstlisting}
 
-        //If input is above largest allowed map size
-        if (size > maxMapSize) {
-            System.err.println("Map too big. Please enter a size below 50");
-            return 1;//Return error value of 1
-        }
-
-        //If map is too small for 2-4 players
-        else if (playerNum <= maxPlayersFirstRange && size <
-         minMapSizeFirstRange) {
-            System.err.println("Map too small. Please enter a size of 5 or more");
-            return 2;//Return error value of 2
-        }
-
-        //If map is too small for 5-8 players
-        else if (playerNum >= minPlayersSecondRange && size <
-         minMapSizeSecondRange) {
-            System.err.println("Map too small. Please enter a size of 8 or more");
-            return 3;//Return error value of 3
-        }
-
-        //If input is correct
-        else {
-            return size;//Return value entered by the user
-        }
-    }
-
-
-
-    // Method to get direction which each player 
-    //would like to move in for the current turn
-    private void directionsLoop() {
-    //(u, d, l or r) depending on user's desired 
-    //direction of movement
-        char direction;
-        //Condition to break out of while 
-        //loop when a valid direction is entered
-        boolean validMove;
-
-        //Loop through each player in ArrayList
-        for (Player player : players) {
-            System.out.println("Player " + (players.indexOf(player) +
-             1) + ", please choose a direction (u, d, l or r).");
-
-            validMove = false;
-            while (!validMove) {
-                direction = 'x';
-                //Make sure that user input is
-                //valid (i.e. one of u, d, l or r)
-                while(direction == 'x' || direction == 'y') {
-                    scanner = new Scanner(System.in);
-                    direction = validateDirectionInput(scanner);
-                }
-
-                //Check if move is within map and execute if it is
-                if (checkOutOfBounds(direction, player, map.mapSize)
-                 == 1) {
-                    validMove = true;
-
-                    //Change player's position variables 
-                    //to new position
-                    player.move(direction);
-
-                    //Triggers event for corresponding tile type
-                    map.evaluateCurrentPlayerTile(player);
-                }
-            }
-        }
-    }
-
-    // Method to check whether a move is within the map boundaries
-    int checkOutOfBounds(char direction, Player player, 
-    	int mapSize) {
-        switch (direction) {
-            case 'l':
-                //If map limit is exceeded
-                if (player.position.x - 1 < 0) {
-                    System.err.println("Cannot move left. Please 
-                    try another direction.");
-                    return 0;//Return error value of 0
-                }
-
-                //If move is within map
-                else {
-                    System.out.println("Player moved to the left");
-                    return 1;//Return correct value 1
-                    	     //to indicate that move is valid
-                }
-
-            case 'r':
-                //If map limit is exceeded
-                if (player.position.x + 1 >= mapSize) {
-                    System.err.println("Cannot move right. 
-                    Please try another direction.");
-                    return 0;//Return error value of 0
-                }
-                //If move is within map
-                else {
-                    System.out.println("Player moved to the right");
-                    return 1;//Return correct value 1 to 
-                             //indicate that move is valid
-                }
-
-            case 'u':
-                //If map limit is exceeded
-                if (player.position.y - 1 < 0) {
-                    System.err.println("Cannot move up. 
-                    Please try another direction.");
-                    return 0;//Return error value of 0
-                }
-                //If move is within map
-                else {
-                    System.out.println("Player moved up");
-                    return 1;//Return correct value 1 to 
-                             //indicate that move is valid
-                }
-
-            case 'd':
-                //If map limit is exceeded
-                if (player.position.y + 1 >= mapSize) {
-                    System.err.println("Cannot move down. Please 
-                    try another direction.");
-                    return 0;//Return error value of 0
-                }
-                //If move is within map
-                else {
-                    System.out.println("Player moved down");
-                    return 1;//Return correct value 1 
-                             //to indicate that move is valid
-                }
-
-            default:
-                return 0;//Return error value of 0
-        }
-    }
-
-    // Method to check whether an inputted direction is 
-    //valid (i.e. either u, d, l or r)
-    char validateDirectionInput(Scanner scanner) {
-        String direction;//User input
-        char c;//User input after it being converted 
-        	   //into a character
-        String directions = "udlr";//String containing 
-                                   //each accepted direction
-
-        try {
-            //Set to user input from getDirections
-            direction = scanner.next();
-
-            //Ensure that inputted string is of length 1
-            if (direction.length() > 1) {
-                throw new RuntimeException("Input too long. 
-                Please enter a character (u, d, l or r)");
-            }
-
-            //Convert input string to char
-            c = direction.charAt(0);
-
-            //Ensure that character is a letter
-            if (!Character.isLetter(c)) {
-                throw new RuntimeException("Input is not a character.
-                 Please enter a character (u, d, l or r)");
-            }
-        }
-
-        //If an error is thrown in the try block
-        catch (RuntimeException e) {
-            System.err.println(e.getMessage());
-            return 'y';//Return an error value which we 
-            		   //will associate with an exception 
-            		   //when testing
-        }
-
-        //Change char input to lowercase to allow U, D, L and R
-        c = Character.toLowerCase(c);
-
-        //If input is a char but not one of the directions
-        if (!directions.contains(Character.toString(c))) {
-            System.err.println("Invalid input. Please enter a
-             direction (u, d, l or r)");
-            return 'x';//Return an error value which
-            // we will associate with an invalid character when testing
-        }
-
-        //If input is correct
-        else {
-            return c;//Return valid user inputted character
-        }
-    }
-
-
-    // This method is used to generate the 
-    //HTML files so that they can be opened in browser
-    int generateHtmlFile(int playerIndex, int mapSize, String direction) {
-        //Value to return to mark if 
-        //method has run successfully or not
-        //Set to 1 by default. This will 
-        //change to 0 if an error is encountered
-        int returnValue = 1;
-
-        //This variable is used to hold 
-        //the type of tile which the player has landed on
-        int tileType;
-
-        //This variable checks if the player 
-        //is currently on this tile
-        boolean playerHere;
-
-        //A file object is being created 
-        //where the name is given depending 
-        //on the number of the player
-        File file = new File("map_player_" + (playerIndex +1)+ ".html");
-
-        //The actual file is created here
-        try {
-            //If file already exists set return
-            // value to 2 to mark that it is being overwritten
-            if(!file.createNewFile()){
-                returnValue = 2;
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-            returnValue = 0;//Set return value to error
-        }
-
-        //This object is used to be able to add 
-        //to the string easily
-        StringBuilder htmlText = new StringBuilder();
-
-        //This is the html code which is going 
-        //to be placed in each file
-        htmlText.append( "<!doctype html>\n" );
-        htmlText.append( "<html>\n" );
-
-        htmlText.append( "<head>\n" );
-        htmlText.append( "<style>\n" );
-
-        htmlText.append("div {\n" +
-                //The width of the grid is
-                // set depending on the inputted map size
-                //The height is larger than 
-                //the width since we are also goign to 
-                //have to count the header which is above the grid
-                "    width: ").append(mapSize).append("00px;\n")
-                .append("    height: ").append(mapSize + 1).append("00px;\n")
-                .append("}\n")
-                .append("\n")
-                .append(".header {\n").append(
-                //The width of the header is changed 
-                //depending on the size of the map
-                "  width: ").append(mapSize).append("00px;\n")
-                .append("  height: 100px;\n")
-                .append("  outline: 1px solid;\n")
-                .append("  float: left;\n")
-                .append("  text-align: center;\n")
-                .append("  background-color: #1f599a;\n")
-                .append("  font-family: Arial, sans-serif;\n")
-                .append("  font-size: 20px;\n")
-                .append("  color: white;\n")
-                .append("}\n")
-                .append("\n")
-                .append(".cellGray {\n")
-                .append("    width: 100px;\n")
-                .append("    height: 100px;\n")
-                .append("    outline: 1px solid;\n")
-                .append("    float: left;\n")
-                .append("    background-color: Gray;\n")
-                .append("}\n")
-                .append("\n")
-                .append(".cellGreen {\n")
-                .append("  width: 100px;\n")
-                .append("    height: 100px;\n")
-                .append("    outline: 1px solid;\n")
-                .append("    float: left;\n")
-                .append("    background-color: Green;\n")
-                .append("}\n")
-                .append("\n")
-                .append(".cellBlue {\n")
-                .append("  width: 100px;\n")
-                .append("    height: 100px;\n")
-                .append("    outline: 1px solid;\n")
-                .append("    float: left;\n")
-                .append("    background-color: Blue;\n")
-                .append("}\n")
-                .append("\n")
-                .append(".cellYellow {\n")
-                .append("  width: 100px;\n")
-                .append("    height: 100px;\n")
-                .append("    outline: 1px solid;\n")
-                .append("    float: left;\n")
-                .append("    background-color: Yellow;\n")
-                .append("}\n");
-
-        htmlText.append( "</style>\n" );
-        htmlText.append( "</head>\n\n" );
-
-        htmlText.append( "<body>\n" );
-
-        htmlText.append("<div>\n" + "    <div class=\"header\"> \n" + "    \n" +
-                //First we need to set a header 
-                //for each game map which each player sees
-                "     <p> Player ").append(playerIndex + 1)
-                .append("</p>\n")
-                .append("     <p> Moves: ").append(direction).append(" </p> \n")
-                .append("    </div>\n")
-                .append("    \n");
-
-        //Now we will build the current 
-        //map depending on the players current position
-        //We will change colours of new tiles that have 
-        //been stepped on and mark the player's current position
-        //For loop used to loop through each grid
-        for (int j = 0; j < mapSize; j++) {
-            for (int i = 0; i < mapSize; i++) {
-
-                //playerHere is set to false at each iteration
-                playerHere = false;
-
-                //Check if the player went on this tile already
-                if(players.get(playerIndex).ifTileExists(i, j)){
-
-                    //If the tile exists then the player must 
-                    be on one of these tiles
-                    //Checking if the current tile is the 
-                    players current position on the map
-                    if(players.get(playerIndex).position.x == i &&
-                     players.get(playerIndex).position.y == j){
-                        playerHere = true;
-                    }
-
-                    //Obtain the tile type of the current tile
-                    tileType = map.getTileType(i,j);
-                }
-
-                else{
-                    //If not the tile has a default tile type
-                    tileType = 3;
-                }
-
-                switch(tileType){
+switch(tileType){
                     //Grass tile
                     case 0:
 
@@ -692,206 +303,59 @@ public class Game {
                         break;
                 }
             }
-        }
 
-        htmlText.append("\n</div>");
-        htmlText.append( "</body>\n" );
-        htmlText.append( "</html>\n" );
-
-        try{
-            BufferedWriter bw = new BufferedWriter(new FileWriter(file));
-            bw.write(htmlText.toString());
-            bw.close();
-        }catch(IOException io){
-            io.printStackTrace();
-            returnValue = 0;
-        }
-
-        return returnValue;
-    }
-
-    //Method used to get the last n directions
-    String getPreviousDirections(int playerIndex){
-        String directions;
-        StringBuilder stringBuilder = new StringBuilder();
-
-        int directionSize = players.get(playerIndex).directions.size();
-
-        //Loop for the last 6 directions the player has moved
-        for(int i = 1; i <= 6; i++){
-            //If only one direction has been entered
-            if(directionSize == 1){
-                stringBuilder.append(" ").append(players.get(playerIndex).
-                directions.get(directionSize - 1));
-                break;
-            }
-            //If more than 1 directions have been entered
-            else if (directionSize >1){
-                //Add direction unless there are 
-                //less than 6 total directions
-                if(directionSize - i <0){
-                    break;
-                }
-                stringBuilder.append(" ").append(players.get(playerIndex).
-                directions.get(directionSize - i));
-            }
-        }
-
-        directions = stringBuilder.toString();
-
-        return directions;
-    }
-
-    //Method to delete Html files
-    void deleteHtmlFiles(int playerNum){
-
-        //Loops through all player files
-        for(int i = 1; i <= playerNum ; i++){
-            //Delete each file iteratively
-            try{
-                File file = new File("map_player_" + i + ".html");
-
-                if(!file.delete()) {
-                    System.out.println("File does not exist");
-                }
-            }catch(Exception e){
-                e.printStackTrace();
-            }
-        }
-    }
-
-    //Method to exit the game
-    private void exitGame(Game game){
-        if(getExitChar() == 'e'){
-            //Delete all Html Files
-            deleteHtmlFiles(game.playerNum);
-            System.out.println("Thank you for playing!");
-        }
-    }
-
-    //Method to get the user to input e to exit the program
-    private char getExitChar(){
-        char exit = 'x';
-
-        System.out.println("Press e if you would like to exit the program");
-
-        //Make sure that user input is valid
-        while(exit == 'x' || exit == 'y') {
-            scanner = new Scanner(System.in);
-            exit = validateExitChar(scanner);
-        }
-
-        return exit;
-    }
-
-    //Method to validate user input from getExitChar()
-    char validateExitChar(Scanner scanner){
-        String input;//User input
-        char c;//User input after it being converted into a character
-
-        try {
-            //Set to user input from getDirections
-            input = scanner.next();
-
-            //Ensure that inputted string is of length 1
-            if (input.length() > 1) {
-                throw new RuntimeException("Input too long.
-                 Please enter e to exit");
-            }
-
-            //Convert input string to char
-            c = input.charAt(0);
-
-            //Ensure that character is a letter
-            if (!Character.isLetter(c)) {
-                throw new RuntimeException("Input is not a character.
-                 Please enter e to exit");
-            }
-        }
-
-        //If an error is thrown in the try block
-        catch (RuntimeException e) {
-            System.err.println(e.getMessage());
-            return 'y';//Return an error value which we will associate with an exception when testing
-        }
-
-        //Change char input to lowercase to allow U, D, L and R
-        c = Character.toLowerCase(c);
-
-        //If input is a char but not one of the directions
-        if (c != 'e') {
-            System.err.println("Invalid input. Please enter e to exit");
-            return 'x';//Return an error value which 
-            //we will associate with an invalid character when testing
-        }
-
-        //If input is correct
-        else {
-            return c;//Return valid user inputted character
-        }
-    }
-}
 \end{lstlisting}
+\vspace{4mm}
 
-\subsection{Map Class}
-The Map class is used to generate the tile map which the players use to play the game on. Also the tile events which occur are also taken care of by the Map class.
+\noindent After setting up the map files, the game starts. A loop is made which keeps on iterating until a player wins, each \textit{Player} object has a check which is raised if the player lands on the winning tile. During each turn of the game, each player is asked to input a direction depending on where they want to move. The \textit{directionsLoop} method manages this problem.\\
 
+\newpage
+\begin{lstlisting}
 
+//Loop through each player in ArrayList
+        for (Player player : players) {
+            System.out.println("Player " + (players.indexOf(player) +
+             1) + ", please choose a direction (u, d, l or r).");
 
+            validMove = false;
+            while (!validMove) {
+                direction = 'x';
+                //Make sure that user input is
+                //valid (i.e. one of u, d, l or r)
+                while(direction == 'x' || direction == 'y') {
+                    scanner = new Scanner(System.in);
+                    direction = validateDirectionInput(scanner);
+                }
 
-\begin{lstlisting}[caption=The initial code of the Map class]
-import java.util.Random;
+                //Check if move is within map and execute if it is
+                if (checkOutOfBounds(direction, player, map.mapSize)
+                 == 1) {
+                    validMove = true;
 
-class Map {
+                    //Change player's position variables 
+                    //to new position
+                    player.move(direction);
 
-    //Size of the map. Total squares will be mapSize x mapSize
-    int mapSize;
-
-    //The map will consist of 2d array of tiles along with each tile's type
-    int[][][] tiles;
-
-    //Below are counters used to hold the current number of tiles with the corresponding tile type
-    //The use of these is so that the program does not have more than one treasure or a large amount of water tiles
-    int grassCount = 0;
-    private int waterCount = 0;
-    private int treasureCount = 0;
-
-    //Constructor for the map object
-    Map(){
-    }
-
-    //This method is used on start up to create the map
-    //All tiles are randomly assigned a tile type
-    void generate(){
-
-        tiles = new int[mapSize][mapSize][1];
-
-        Random random = new Random();
-
-        //Holds the current random tile obtained
-        int[] randomPair = new int[2];
-
-        //Holds a boolean value which determines if the [i][j] tile has already been generated for the map
-        boolean[][][] generatedTiles = new boolean[mapSize][mapSize][1];
-
-        //This value holds the tile type (grass, water, treasure)which corresponds to a random number from 0 to 2
-        int tileType;
-
-
-        //The maximum number of water tiles in a map is set to one less than mapSize
-        double waterMaxTiles = Math.ceil(mapSize-1);
-
-        //The maximum number of treasure tiles is one
-        int treasureMaxTiles = 1;
-
-        //Initialising the generatedTiles array
-        for(int i = 0; i < mapSize; i++) {
-            for (int j = 0; j < mapSize; j++) {
-                generatedTiles[i][j][0] = false;
+                    //Triggers event for corresponding tile type
+                    map.evaluateCurrentPlayerTile(player);
+                }
             }
         }
 
-        //Keep on looping until all tiles are randomly generated
+\end{lstlisting}
+\vspace{4mm}
+
+\noindent The html files of each player is updated at the end of each turn, also at the end of each turn the flag is checked to see if anyone has won the game. If at least one player has stepped on the golden tile, the game stops and the game announces the winners at the end of the turn.\\
+
+\noindent All user input within the game is taken care of by validation methods, so if the user gives incorrect input the program will not exit.\\
+\newpage
+\subsubsection{Map Class}
+\noindent The \textit{Map} class is used to generate the tile map which the players use to play the game on. Also the tile events which occur are also taken care of by the Map class.\\
+
+\noindent The map generation which is used in the \textit{startGame()} method basically constructs a 2-dimensional array called \textit{tiles}, which is the size of the map in both dimensions. The array holds the tile type of each tile positions in the game. Each position in the \textit{tiles} array corresponds to a tile in the map. Below one can see how each tile is randomly generated.
+
+\begin{lstlisting}
+//Keep on looping until all tiles are randomly generated
         while(generatedTilesNum(generatedTiles) != mapSize*mapSize){
 
             //Randomly generate a pair of tiles
@@ -913,8 +377,14 @@ class Map {
 
                 }
             }
+\end{lstlisting}
+\vspace{4mm}
 
-            //Keep on looping until the current tile is given a tile type
+After a tile is randomly generated, a tile type has to be assigned, this is done using the below code within the same \textit{generate()} method. The tile type is an integer from 0 to 2, since there are three types in the current implementation of the game, however if a new tile wants to be included in the game, this can easily be done with this implementation. Below is the code of how the tile types are assigned to a given tile position.
+
+\begin{lstlisting}
+
+ //Keep on looping until the current tile is given a tile type
             do {
 
                 //Set the tile type for the newly generated tile
@@ -968,154 +438,62 @@ class Map {
                         break;
 
                 }
-
-                //add the the tile to the generatedTiles array
-                generatedTiles[randomPair[0]][randomPair[1]][0] = true;
-            }while( tiles[randomPair[0]][randomPair[1]][0] != 0 && tiles[randomPair[0]][randomPair[1]][0] != 1 && tiles[randomPair[0]][randomPair[1]][0] != 2);
-        }
-    }
-
-    //Method to obtain the current number of elements in the generatedTiles array
-    int generatedTilesNum(boolean[][][] array){
-        int count = 0;
-
-        for(int i = 0; i < mapSize; i++){
-            for(int j = 0; j < mapSize; j++){
-                if(array[i][j][0]){
-                    count++;
-                }
-            }
-        }
-
-        return count;
-    }
-
-    //Method used to show the map
-    void showMap(){
-        for (int x = 0; x < mapSize; x++) {
-            for (int y = 0; y < mapSize; y++) {
-                System.out.println("(" + x  + "," + y + ") -> " + tiles[x][y][0]);
-            }
-        }
-    }
-
-    //This method is used to create a 2d array which holds the map location of all grass tiles
-    int[][] getGrassTiles(){
-
-        //This array holds the number of grass elements each with 2 spaces for the x and y values of the given tile
-        int[][] grassTiles = new int[grassCount][2];
-
-        //Counter used to keep track of the element in grassTiles
-        int i = 0;
-
-        //Loop through all the tiles
-        for (int x = 0; x < mapSize; x++) {
-            for (int y = 0; y < mapSize; y++) {
-
-                //To obtain which tiles are grass just check the tile type indicated by a 0
-
-                //If the current tile has a grass tile type
-                if(tiles[x][y][0] == 0){
-
-                    //Save the x and y coordinates in the grassTiles array
-                    grassTiles[i][0] = x;
-                    grassTiles[i][1] = y;
-
-                    //The counter is incremented so as to be able to go to the next value in the array
-                    i++;
-
-                }
-            }
-        }
-        return grassTiles;
-    }
-
-    //This method is used to get the tile type of the current tile
-    int getTileType(int x, int y){
-        return tiles[x][y][0];
-    }
-
-    //This method handles the events of when a player lands on each specific tile type
-    void evaluateCurrentPlayerTile(Player player){
-
-        int tileType = tiles[player.position.x][player.position.y][0];
-
-        switch(tileType){
-
-            //When grass tile
-            case 0:
-                //Nothing happens since a player is able to walk on grass
-                break;
-
-            //When water tile
-            case 1:
-                //Get the start position of the current player
-                int startPositionx = player.positions.get(0).x;
-                int startPositiony = player.positions.get(0).y;
-
-                //The start position of the current player is added again to the visited tiles
-                player.addToPositions(startPositionx, startPositiony);
-
-                //The current position of the current player is reset to the start position
-                player.position.x = startPositionx;
-                player.position.y = startPositiony;
-
-                //Display message
-                System.out.println("Player stepped on a blue tile, moving back to starting position!");
-                break;
-
-            //When treasure tile
-            case 2:
-                //The foundTreasure element is set to true
-                player.foundTreasure = true;
-                break;
-
-            default:
-                break;
-        }
-    }
-}
+                
 \end{lstlisting}
+\vspace{4mm}
 
-\subsection{Player Class}
+\newpage
+\subsubsection{Player Class}
+\noindent The Player class manages the individual properties of a player, such as the tile positions the player has moved on and the directions in which the player has moved.\\
 
+\noindent When a \textit{Player} object is created the positions and the directions the \textit{Player} has moved are saved using an array list for each.
 
-The Player class manages the individual properties of a player, such as the tile positions the player has moved on and the directions in which the player has moved.
-
-\begin{lstlisting}[caption=The initial code of the Player class]
-import java.util.ArrayList;
-import java.util.Random;
-
-class Player {
-
-    //Player's current position
-    Position position;
-
-    //This array list is used to hold the previous positions the player
+\begin{lstlisting}
+  //This array list is used to hold the previous positions the player
     ArrayList<Position> positions = new ArrayList<Position>();
 
-    //This array list is used to hold the previous directions of the player
+  //This array list is used to hold the previous directions of the player
     ArrayList<String> directions = new ArrayList<String>();
+\end{lstlisting}
+\vspace{4mm}
 
-    //Check to see if a player has found the treasure
-    boolean foundTreasure;
+\noindent In the \textit{startGame()} method, a starting position is set for each new \textit{Player} object which is created, this is done using the \textit{setStartingPosition()} method, this method takes two random values from a \textit{grassTiles} array, which holds all the tile positions of grass tiles within the tile map, these two numbers are added to the \textit{positions} array list of the player and the player is seen to start at this positions.
 
-    //Constructor for the player object
-    Player(){
+\begin{lstlisting}
+    //This method sets the starting position of a player
+    Position setStartingPosition(int[][] grassTiles){
+
+        Random random = new Random();
+
+        Position position = new Position(0, 0);
+
+        //Obtaining the length of grassTiles so as to be able to know from which range to obtain a random number
+        int grassCount = grassTiles.length;
+
+        //random number from 0 to length of grassTiles is obtained
+        int grassTilesIndex = random.nextInt(grassCount);
+
+        //The start position is set
+        position.x = grassTiles[grassTilesIndex][0];
+        position.y = grassTiles[grassTilesIndex][1];
+
+        //The current position of the player is set to the start position
+        this.position = position;
+
+        //The start positions is added to the created player
+        addToPositions(position.x, position.y);
+
+        return position;
     }
+\end{lstlisting}
+\vspace{4mm}
 
-    //Constructor for the player object when the player's position is given
-    Player(Position position){
-       this.position = position;
-    }
+\newpage
+\noindent This class also modifies the current position of the current player through the use of the \textit{move()}. Depending on which direction the player moves, the current position of the player is modified and the added to the \textit{positions} array list, the given direction is added to the \textit{directions} array list.
 
-    //Method used to add a position to the positions ArrayList using the x and y values
-    void addToPositions(int posx, int posy){
-        Position position = new Position(posx, posy);
-        positions.add(position);
-    }
+\begin{lstlisting}
 
-    //Method to move the player's position according to a given direction
+//Method to move the player's position according to a given direction
     void move(char direction){
 
         //A switch statement is used to represent all possible directions
@@ -1161,58 +539,16 @@ class Player {
         }
     }
 
-    //This method sets the starting position of a player
-    Position setStartingPosition(int[][] grassTiles){
-
-        Random random = new Random();
-
-        Position position = new Position(0, 0);
-
-        //Obtaining the length of grassTiles so as to be able to know from which range to obtain a random number
-        int grassCount = grassTiles.length;
-
-        //random number from 0 to length of grassTiles is obtained
-        int grassTilesIndex = random.nextInt(grassCount);
-
-        //The start position is set
-        position.x = grassTiles[grassTilesIndex][0];
-        position.y = grassTiles[grassTilesIndex][1];
-
-        //The current position of the player is set to the start position
-        this.position = position;
-
-        //The start positions is added to the created player
-        addToPositions(position.x, position.y);
-
-        return position;
-    }
-
-    //This method is used in the game class to check if a player has already been on a specific tile
-    boolean ifTileExists(int x, int y){
-
-        //Create the Position object to use to compare
-        Position positionUse = new Position(x,y);
-
-        //Looping through element in the positions array list
-        for (Position position : positions) {
-
-            //Comparing the x and y values of the current Position object in the array list and the positionUse object
-            if(positionUse.x == position.x && positionUse.y == position.y){
-
-                //If one of the obejct in the array list matched then it exists in the array list
-                return true;
-            }
-        }
-        return false;
-    }
-}
 \end{lstlisting}
+\vspace{4mm}
 
-\subsection{Position Class}
+\subsubsection{Position Class}
 
-The Position class is used to simplify the way in which the program interprets the player's location within the tile map.
+The \textit{Position} class is used to simplify the way in which the program interprets the player's location within the tile map.\\
 
-\begin{lstlisting}[caption=The initial code of the Position class]
+\noindent As seen in the class diagram, a \textit{Position} class is used by \textit{Player} objects, so any instacnes of \textit{Position} objects are within the \textit{Player} objects.
+
+\begin{lstlisting}
 public class Position {
 
     //Value of each coordinate
@@ -1238,6 +574,7 @@ public class Position {
         y = py;
 }
 \end{lstlisting}
+\vspace{4mm}
 
 \newpage
 \section{Enhancements}
@@ -1466,9 +803,7 @@ In the initial idea of the game, a map file was created for each player and at t
 \end{lstlisting}
 \vspace{4mm}
 
-Now instead we have only one file, and that file is changed to the corresponding player's map tile when it is the player's turn to choose their desired direction.\\
-
-HOWEVER SINCE THERE IS NOT METHOD IN PLACE FOR FILE STORAGE WE COULD NOT IMPLEMENT A METHOD TO ONLY SHOW THE FILE TO THE CURRENT PLAYER.
+\noindent Now instead we have only one file, and that file is changed to the corresponding player's map tile when it is the player's turn to choose their desired direction.
 
 \begin{lstlisting}
  
@@ -1482,18 +817,6 @@ HOWEVER SINCE THERE IS NOT METHOD IN PLACE FOR FILE STORAGE WE COULD NOT IMPLEME
 
             System.out.println("Player " + (players.indexOf(player) + 1) + ", please choose a direction (u, d, l or r).");
 \end{lstlisting}
-
-SHOW SCREENSHOT OF ADDING ONLY ONE FILE BEGIN PRESENT IN REPOSITORY
-
-
--create private static map object in safe and hazardous class
--implement a method called getInstance which checks if there already exists a map instance, if there is does not build another map.
--In the map creator when the map is being creator the get instance method is called which checks if the map is null or full,
-If full no more classes can be made so the there is only one static map currently
-
--Talk about having hundreds of people at the same time
--Talk about when the map change occurs
--Talk about them seeing the parts they discovered
 
 \newpage
 \subsection{Teams}
@@ -1539,6 +862,7 @@ public interface User {
 **INPUT TEXT FROM PROGRAM ASKING USER FOR TEAM NUMBER**\\
 
 \noindent After the user chooses the number of teams within the game, the players are randomly distributed among the teams. All of this is done within \textit{startGame()} method, using the \textit{generateTeam()} method and the \textit{distributeRemainder()} method.//
+\vspace{4mm}
 
 \begin{lstlisting}
 //Holds the players which have been added to a team
@@ -1643,6 +967,7 @@ public interface User {
         return team;
     }
 \end{lstlisting}
+\vspace{4mm}
 
 \noindent This method works by first creating a \textit{Team} object, and then iterates for the total number of players to add to each team. A random index from the \textit{players} array list is obtained and compared to the indexes of the players within the \textit{addedPlayers} array list. If the random index does not match with any of those in \textit{addedPlayers}, then that player is not in any team and can be added to a team, the player is also added to \textit{addedPlayers}. This is repeated for each team.\\
 
@@ -1769,11 +1094,7 @@ Late game screen in a game with two teams of three players each
 Late game screen of a game between two players
 \end{center}
 
-One can see the different patches of tiles in a team game, this is because there are different players playing and so every player on the team is able to observe the tiles, unlike a game not in cooperative mode where all the tiles are those which a player has visited on already.
-
-MAYBE SHOW TILES IN HARD MODE
-
-OR SHOW DIFFERENT PRESEPECTIVES FOR THE SAME TEAM 
+\noindent One can see the different patches of tiles in a team game, this is because there are different players playing and so every player on the team is able to observe the tiles, unlike a game not in cooperative mode where all the tiles are those which a player has visited on already.\\
 
 \newpage 
 \section{Code Coverage}
