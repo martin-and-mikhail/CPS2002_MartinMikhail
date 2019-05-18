@@ -540,10 +540,9 @@ public class Game {
         //Loop through each player in ArrayList
         for (Player player : players) {
 
-            if(!foundTreasure) {
-                //At the end of the current player's turn the main html file is changed
-                teams.get(getTeamIndex(player)).changeHtmlFile(players.indexOf(player), map, player);
-            }
+            //At the start of the current player's turn the main html file is changed
+            teams.get(getTeamIndex(player)).changeHtmlFile(players.indexOf(player), map, player);
+
 
             System.out.println("Player " + (players.indexOf(player) + 1) + ", please choose a direction (u, d, l or r).");
 
