@@ -1,14 +1,14 @@
 \contentsline {section}{Introduction}{3}{section*.2}
-\contentsline {section}{InitialGame Design}{4}{section*.3}
-\contentsline {subsubsection}{Game Class}{4}{section*.4}
-\contentsline {subsubsection}{Map Class}{12}{section*.5}
-\contentsline {subsubsection}{Player Class}{15}{section*.6}
-\contentsline {subsubsection}{Position Class}{18}{section*.7}
-\contentsline {section}{Enhancements}{19}{section*.8}
-\contentsline {subsection}{Different Map Types}{19}{section*.9}
-\contentsline {subsection}{Single Map File}{23}{section*.10}
-\contentsline {subsection}{Teams}{28}{section*.11}
-\contentsline {section}{Code Coverage}{37}{section*.12}
-\contentsline {subsection}{Basic Version of the Game}{37}{section*.13}
-\contentsline {subsection}{The Game After Enhancements}{39}{section*.14}
-\contentsline {section}{Instructions to Run The Game}{41}{section*.15}
+\contentsline {section}{Initial Game Design}{4}{section*.3}
+\contentsline {subsection}{Game Class}{4}{section*.4}
+\contentsline {subsection}{Map Class}{11}{section*.5}
+\contentsline {subsection}{Player Class}{14}{section*.6}
+\contentsline {subsection}{Position Class}{17}{section*.7}
+\contentsline {section}{Enhancements}{18}{section*.8}
+\contentsline {subsection}{Different Map Types}{18}{section*.9}
+\contentsline {subsection}{Single Map File}{22}{section*.10}
+\contentsline {subsection}{Teams}{26}{section*.11}
+\contentsline {section}{Code Coverage}{34}{section*.12}
+\contentsline {subsection}{Basic Version of the Game}{34}{section*.13}
+\contentsline {subsection}{The Game After Enhancements}{36}{section*.14}
+\contentsline {section}{Instructions to Run The Game}{38}{section*.15}
