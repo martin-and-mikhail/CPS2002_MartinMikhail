@@ -256,6 +256,7 @@ Asking the player to input the number of players and the size of the map
 
 \noindent During the actual game the same \textit{generateHtmlFile()} method is used when generating the files at the HTML files at the end of turn , however here the full functionality of the method is used, the previous directions and the previous positions of the current player are displayed in the HTML file. Given there are various tile types within the game, a conditional statement is used within the \textit{generateHtmlFile()} method which displays the corresponding colour depending on the tile type. The code mentioned is displayed below.
 
+\newpage
 \begin{lstlisting}
 
 switch(tileType){
@@ -335,11 +336,17 @@ switch(tileType){
 \end{lstlisting}
 \vspace{4mm}
 
-\newpage
 \noindent After setting up the map files, the game starts. A loop is made which keeps on iterating until a player wins, each \textit{Player} object has a check which is raised if the player lands on the winning tile.\\
+
+\begin{center}
+\includegraphics[scale=1]{BasicMap3.png}
+\hspace{1mm}
+Given display when a player wins
+\end{center}
 
 During each turn of the game, each player is asked to input a direction depending on where they want to move. The \textit{directionsLoop} method manages this.\\
 
+\newpage
 \begin{lstlisting}
 
 //Loop through each player in ArrayList
@@ -429,7 +436,6 @@ During each turn of the game, each player is asked to input a direction dependin
 Each tile implemented within the game
 \end{center}
 
-\newpage
 \begin{lstlisting}
 
  //Keep on looping until the current tile is given a tile type
@@ -764,18 +770,16 @@ The design pattern chosen for this enhancement was the \textbf{singleton design 
 \includegraphics[width=\textwidth]{Enhancement2CD.png}\\
 \end{center}
 
-\noindent Given the first enhancement led to the creation of the \textit{safeMap} class and \textit{hazardousMap} class, a singleton design patter for each subclass has to be implemented since they produce different objects.\\
+\noindent Given the first enhancement led to the creation of the \textit{safeMap} class and \textit{hazardousMap} class, a singleton design pattern for each subclass has to be implemented since they produce different objects.\\
 
 \noindent After the user chooses which map type they want, through the process previously defined in the first enhancement, the program goes to the corresponding \textit{Map} subclass through the \textit{MapCreator} class.\\ 
 
-\noindent In the \textit{SafeMap} class and \textit{HazardousMap} class, a private static instance is initialised. By doing this the \textit{Map} object cannot be used in any other method and since it is static the object will be directly affected at every change which occurs throughout the lifetime of the program. This means that given only one map, and hence one map file, any change which occurs will affect that single map file and so there is only one map file which is being affected. This can be seen in the screenshot below.\\
-
+\noindent In the \textit{SafeMap} class and \textit{HazardousMap} class, a private static instance is initialised. By doing this the \textit{Map} object cannot be used in any other method and since it is static the object will be directly affected by every modification which occurs throughout the lifetime of the program. This means that given only one map, any change which occurs will affect that single map file and so there is only one map file which is being affected. This can be seen in the screenshot below.\\
 
 \begin{center}
 \includegraphics[width=\textwidth]{Singleton1.png}\\
 Local repository containing a single map file
 \end{center}
-
 
 \noindent A \textit{getInstance()} method is also created in the subclasses. This method declares the previously initialised static object created. However, the object is declared only if the object is null. This is so because it would lead to the creation of a new object and so this method takes care of that.\\
 
@@ -826,7 +830,7 @@ Local repository containing a single map file
 \end{lstlisting}
 \vspace{4mm}
 
-\noindent In the \textit{CreateMap} class, the \textit{getInstance()} method is used so as to create \textit{Map} object. This is the same for each map type. Hence now after going through this a map object is created which is able to be used by the game.
+\noindent In the \textit{CreateMap} class, the \textit{getInstance()} method is used so as to create a \textit{Map} object. The methods for each sub-class are very similar.
 
 \newpage
 \begin{lstlisting}
@@ -846,8 +850,6 @@ Local repository containing a single map file
 \end{lstlisting}
 \vspace{4mm}
 
-
-
 \begin{lstlisting}
 
    //Method to create and return a hazardous map
@@ -866,7 +868,7 @@ Local repository containing a single map file
 \end{lstlisting}
 \vspace{4mm}
 
-\noindent In the initial idea of the game, a map file was created for each player and at the end of each turn the map file gets updated using the \textit{changeHtmlFile()} method.
+\noindent In the initial idea of the game, an HTML file was created for each player and at the end of each turn the HTML file is updated using the \textit{changeHtmlFile()} method.
 
 \begin{lstlisting}
 //A file object is being created where the name is given 
@@ -887,28 +889,28 @@ Local repository containing a single map file
 \end{lstlisting}
 \vspace{4mm}
 
-\noindent Now instead we have only one file, and that file is changed to the corresponding player's map tile when it is the player's turn to choose their desired direction.
+\noindent Now instead we have only one file, and that file is modified to the corresponding player's map tile when it is the player's turn to choose their desired direction.
 
 \begin{lstlisting}
  
         //Loop through each player in ArrayList
         for (Player player : players) {
 
-            if(!foundTreasure) {
-                //At the end of the current player's turn 
-                //the main html file is changed
-                teams.get(getTeamIndex(player)).changeHtmlFile
-                (players.indexOf(player), map, player);
-            }
+            
+            //At the end of the current player's turn 
+            //the main html file is changed
+            teams.get(getTeamIndex(player)).changeHtmlFile
+            (players.indexOf(player), map, player);
 
             System.out.println("Player " + 
             (players.indexOf(player) + 1) +
              ", please choose a direction (u, d, l or r).");
 \end{lstlisting}
 
+This implementation can be used to display the HTML file of hundreds of players which are playing together.
 \newpage
 \subsection{Teams}
-The design pattern chosen for this enhancement was the \textbf{composite design pattern}. This enhancement required us to rethink the Player concept of the game. We needed to find a way how to add players randomly to a team, this problem was a structural one since this problem deals with the composition of different classes.\\
+The design pattern chosen for this enhancement was the \textbf{composite design pattern}. This enhancement required us to rethink the concept of a player in the game. We needed to find a way how to add players randomly to a team, this problem was a structural one since this problem deals with the composition of different classes.\\
 
 \begin{center}
 \includegraphics[scale=0.5]{Enhancement2CD.png}\\
@@ -1079,7 +1081,6 @@ public interface User {
 \vspace{4mm}
 
 \noindent This method works by first creating a \textit{Team} object, and then iterates for the total number of players to add to each team. A random index from the \textit{players} array list is obtained and compared to the indexes of the players within the \textit{addedPlayers} array list. If the random index does not match with any of those in \textit{addedPlayers}, then that player is not in any team and can be added to a team, the player is also added to \textit{addedPlayers}. This is repeated for each team.\\
-
 
 \noindent At the beginning of each game in the \textit{startGame()} method, after obtaining the number of players and teams, two more values are obtained. The \textit{playersInTeamNum} variable is the total number of players in each team which can all be equally divided into a team. The \textit{extraPlayersNum} is the total number of players which are removed so as to be able to divide the number of players equally at first. 
 
