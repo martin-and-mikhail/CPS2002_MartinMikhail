@@ -4,12 +4,13 @@ import org.junit.Before;
 import org.junit.Test;
 import java.util.Arrays;
 
-public class MapTest {
+public class SafeMapTest{
     private Map map;
 
     @Before
     public void setup(){
-        map = new Map();
+        MapCreator creator = new MapCreator();
+        map = creator.createMap("safe", 6);
     }
 
     @After
@@ -17,65 +18,77 @@ public class MapTest {
         map = null;
     }
 
-    // Testing Map generation
+    //Testing mapSize getter
+    @Test
+    public void TestMapSizeGetter_shouldReturn6(){
+        Assert.assertEquals(6, map.getMapSizeVar());
+    }
+
+    //Testing mapSize setter
+    @Test
+    public void TestMapSizeSetter_shouldReturn5(){
+        //test before
+        Assert.assertEquals(6, map.getMapSizeVar());
+        map.setMapSize(5);
+
+        //test after
+        Assert.assertEquals(5, map.getMapSizeVar());
+    }
+
+    // Testing Map generation and tiles getter
+    @Test
+    public void TestGeneratedMap_shouldDisplayTilesIncluding3WaterTilesAnd1TreasureTile(){
+        System.out.println(Arrays.deepToString(map.getTiles()));
+    }
+
+    //Testing tile setter
+    @Test
+    public void TestTileSetter_shouldReturnSetTileArray(){
+        map.setTiles(new int[][][]{{{0},{0}},{{1},{2}}});
+        Assert.assertEquals("[[[0], [0]], [[1], [2]]]",Arrays.deepToString(map.getTiles()));
+    }
+
+    //Testing that counts are properly initialised
 
     @Test
-    public void TestMapGenerate_shouldGenerateMapWithoutErrorsAndDisplayIt(){
-        map.mapSize = 5;
-        map.generate();
-        System.out.println(Arrays.deepToString(map.tiles));
-        map.showMap();
+    public void TestCounts_shouldSetCorrectAmountofEachTile(){
+        Assert.assertEquals(3, map.getWaterCount());
+        Assert.assertEquals(1, map.getTreasureCount());
+        Assert.assertEquals(32, map.getGrassCount());
     }
 
     //Testing getGrassTiles
 
     @Test
-    public void TestGetGrassTiles_testNoGrass_eachElementShouldBe0ByDefault(){
-        //simulate map with a single tile
-        map.mapSize = 1;
-        map.tiles = new int [1][1][1];
-        map.grassCount = 0;
-
-        // set only tile to water
-        map.tiles[0][0][0] = 1;
-        System.out.println("map is " + Arrays.deepToString(map.tiles));
-
+    public void TestGetGrassTiles_thereShouldBe32GrassTiles(){
+        System.out.println(Arrays.deepToString(map.getGrassTiles()));
+        int i=0;
         for(int[] array : map.getGrassTiles()) {
-            for (int num : array) {
-                Assert.assertEquals(0, num);
-            }
+            i++;
         }
+
+        //ensure that 32 grass tiles have been found
+        Assert.assertEquals(32,i);
+    }
+
+    //Testing getInstance
+
+    @Test
+    public void TestGetInstance_testNullInstance_shouldReturnNewSafeMap(){
+
+        //A new SafeMap instance is made
+        SafeMap map = null;
+
+        Assert.assertEquals(SafeMap.getInstance() , map.getInstance());
     }
 
     @Test
-    public void TestGetGrassTiles_testAllGrass_onlyElementShouldHaveGrassValue(){
-        //simulate map with a single tile
-        map.mapSize = 1;
+    public void TestGetInstance_testNotNullInstance_shouldReturnTheSameSafeMap(){
 
-        //create map with single grass tile
-        map.tiles = new int[][][]{{{0}}};
-        map.grassCount = 1;
+        //An already defined Safemap instance is made
+        SafeMap map = SafeMap.getInstance();
 
-        //grass tile position which we expect
-        int[][] checker = new int[][]{{0,0}};
-
-        //Should find a grass tile at position [0,0]
-        Assert.assertArrayEquals(checker,map.getGrassTiles());
-    }
-
-    @Test
-    public void TestGetGrassTiles_testSomeGrass_oneElementShouldHaveGrassValue(){
-        //simulate map with 2 tiles
-        map.mapSize = 2;
-        map.grassCount = 1;
-
-        //create map with single grass tile and 3 water tiles
-        map.tiles = new int[][][]{{{1},{1}},{{0},{1}}};
-
-        //grass tile position which we expect
-        int[][] checker = new int[][]{{1,0}};
-
-        Assert.assertArrayEquals(checker,map.getGrassTiles());
+        Assert.assertEquals(SafeMap.getInstance(), map.getInstance());
     }
 
     //Testing getTileType
@@ -83,10 +96,10 @@ public class MapTest {
     @Test
     public void TestGetTileType_testGrassTile_shouldReturn0(){
         //simulate map with 4 tiles
-        map.mapSize = 2;
+        map.setMapSize(2);
 
         //create map with 2 grass tiles, a water tile and a treasure tile
-        map.tiles = new int[][][]{{{0},{0}},{{1},{2}}};
+        map.setTiles(new int[][][]{{{0},{0}},{{1},{2}}});
 
         Assert.assertEquals(0,map.getTileType(0,0));
     }
@@ -94,10 +107,10 @@ public class MapTest {
     @Test
     public void TestGetTileType_testWaterTile_shouldReturn1(){
         //simulate map with 4 tiles
-        map.mapSize = 2;
+        map.setMapSize(2);
 
         //create map with 2 grass tiles, a water tile and a treasure tile
-        map.tiles = new int[][][]{{{0},{0}},{{1},{2}}};
+        map.setTiles(new int[][][]{{{0},{0}},{{1},{2}}});
 
         Assert.assertEquals(1,map.getTileType(1,0));
     }
@@ -105,23 +118,24 @@ public class MapTest {
     @Test
     public void TestGetTileType_testTreasureTile_shouldReturn2(){
         //simulate map with 4 tiles
-        map.mapSize = 2;
+        map.setMapSize(2);
 
         //create map with 2 grass tiles, a water tile and a treasure tile
-        map.tiles = new int[][][]{{{0},{0}},{{1},{2}}};
+        map.setTiles(new int[][][]{{{0},{0}},{{1},{2}}});
 
         Assert.assertEquals(2,map.getTileType(1,1));
     }
+
 
     //Test evaluateCurrentPlayerTile
 
     @Test
     public void TestEvaluateCurrentPlayerTile_testGrassTile_shouldDoNothing(){
         //simulate map with 4 tiles
-        map.mapSize = 2;
+        map.setMapSize(2);
 
         //create map with 2 grass tiles, a water tile and a treasure tile
-        map.tiles = new int[][][]{{{0},{0}},{{1},{2}}};
+        map.setTiles(new int[][][]{{{0},{0}},{{1},{2}}});
 
         //Create player and place on grass tile
         Position position = new Position(0,0);
@@ -134,10 +148,10 @@ public class MapTest {
     @Test
     public void TestEvaluateCurrentPlayerTile_testWaterTile_shouldMoveBackToStartingPosition(){
         //simulate map with 4 tiles
-        map.mapSize = 2;
+        map.setMapSize(2);
 
         //create map with 2 grass tiles, a water tile and a treasure tile
-        map.tiles = new int[][][]{{{0},{0}},{{1},{2}}};
+        map.setTiles(new int[][][]{{{0},{0}},{{1},{2}}});
 
         //Create player and place on grass tile
         Position startingPosition = new Position(0,0);
@@ -162,10 +176,10 @@ public class MapTest {
     @Test
     public void TestEvaluateCurrentPlayerTile_testTreasureTile_shouldSetFoundTreasureToTrue() {
         //simulate map with 4 tiles
-        map.mapSize = 2;
+        map.setMapSize(2);
 
         //create map with 2 grass tiles, a water tile and a treasure tile
-        map.tiles = new int[][][]{{{0}, {0}}, {{1}, {2}}};
+        map.setTiles(new int[][][]{{{0}, {0}}, {{1}, {2}}});
 
         //Create player and place on grass tile
         Position position = new Position(1, 1);
@@ -177,12 +191,13 @@ public class MapTest {
         Assert.assertTrue(player.foundTreasure);
     }
 
+
     //Test generatedTilesNum
 
     @Test
     public void TestGeneratedTilesNum_shouldReturnNumberOfTiles(){
         //simulate map with 4 tiles
-        map.mapSize = 2;
+        map.setMapSize(2);
 
         //create map with 2 grass tiles, a water tile and a treasure tile
         boolean [][][] testArray = new boolean[][][]{{{true},{false}},{{false},{true}}};

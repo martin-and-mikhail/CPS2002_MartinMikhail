@@ -1,13 +1,21 @@
 import java.util.ArrayList;
 import java.util.Random;
 
-class Player {
+class Player implements User{
 
     //Player's current position
     Position position;
 
-    //This array list is used to hold the previous positions the player
+    //Stores all the positions of each player
     ArrayList<Position> positions = new ArrayList<Position>();
+
+    //Player toString
+    @Override
+    public String toString() {
+        return "Player{" +
+                "position=" + position +
+                '}';
+    }
 
     //This array list is used to hold the previous directions of the player
     ArrayList<String> directions = new ArrayList<String>();
@@ -25,10 +33,11 @@ class Player {
     }
 
     //Method used to add a position to the positions ArrayList using the x and y values
-    void addToPositions(int posx, int posy){
+    public void addToPositions(int posx, int posy){
         Position position = new Position(posx, posy);
         positions.add(position);
     }
+
 
     //Method to move the player's position according to a given direction
     void move(char direction){
@@ -102,22 +111,33 @@ class Player {
         return position;
     }
 
-    //This method is used in the game class to check if a player has already been on a specific tile
-    boolean ifTileExists(int x, int y){
+    //Method used to get the last n directions
+    String getPreviousDirections(){
+        String directions;
+        StringBuilder stringBuilder = new StringBuilder();
 
-        //Create the Position object to use to compare
-        Position positionUse = new Position(x,y);
+        //Get the size of the players previous directions
+        int directionSize = this.directions.size();
 
-        //Looping through element in the positions array list
-        for (Position position : positions) {
-
-            //Comparing the x and y values of the current Position object in the array list and the positionUse object
-            if(positionUse.x == position.x && positionUse.y == position.y){
-
-                //If one of the obejct in the array list matched then it exists in the array list
-                return true;
+        //Loop for the last 6 directions the player has moved
+        for(int i = 1; i <= 6; i++){
+            //If only one direction has been entered
+            if(directionSize == 1){
+                stringBuilder.append(" ").append(this.directions.get(directionSize - 1));
+                break;
+            }
+            //If more than 1 directions have been entered
+            else if (directionSize >1){
+                //Add direction unless there are less than 6 total directions
+                if(directionSize - i <0){
+                    break;
+                }
+                stringBuilder.append(" ").append(this.directions.get(directionSize - i));
             }
         }
-        return false;
+
+        directions = stringBuilder.toString();
+
+        return directions;
     }
 }

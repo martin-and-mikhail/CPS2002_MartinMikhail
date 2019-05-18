@@ -1,16 +1,20 @@
 import java.io.*;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
+import java.util.Random;
 import java.util.Scanner;
 
 public class Game {
 
     private int turns = 0;// Amount of turns which have been played
+    int teamNum;// Amount of teams
     int playerNum;// Amount of players
 
+    ArrayList<Team> teams = new ArrayList<Team>();// ArrayList for teams
     ArrayList<Player> players = new ArrayList<Player>();// ArrayList of players
 
-    Map map = new Map();// map object
+    // map object
+    Map map;
 
     final private int minPlayers = 2;
     final private int maxPlayersFirstRange = 4;
@@ -28,8 +32,6 @@ public class Game {
     }
 
     public static void main(String[] args) {
-        //This variable is used to hold the previous directions taken by a given player
-        String directions;
 
         System.out.println("Welcome to the Treasure Map Game by Martin Bartolo and Mikhail Cassar");
         Game game = new Game();
@@ -43,13 +45,9 @@ public class Game {
         //This is just in case more than one player finds it on the same turn
         boolean[] winners = new boolean[game.players.size()];
 
-        //Generating the initial html files here before there are any moves
-        //Generating an html file for each player in the game
-        for(int i = 0; i < game.players.size(); i++){
-
-            if(game.generateHtmlFile(i, game.map.mapSize, " ") == 0){
-                System.err.println("Could not generate HTML files");
-            }
+        //The position array lists of each team are initialised with the starting position of the corresponding players
+        for(Team team: game.teams){
+            team.updateAllTeamPositions();
         }
 
         //Main game loop
@@ -61,25 +59,28 @@ public class Game {
             //Get each players desired direction of movement for the current turn
             game.directionsLoop();
 
-            //Generating an html file for each player's current state
-            for(int i = 0; i < game.players.size(); i++){
-
-                //Obtaining the last 4 directions of each player
-                directions = game.getPreviousDirections(i);
-
-                if(game.generateHtmlFile(i, game.map.mapSize, directions) == 0){
-                    System.err.println("Could not generate HTML files");
-                }
-            }
+            //After the main directions loop and each player has moved the map is updated
 
             //Go through each player in the game and check if they found the treasure
             //Mark the players who have found the treasure
             int i = 0;
-            for(Player player: game.players){
 
-                if(player.foundTreasure){
+            for (Player player : game.players) {
+
+                if (player.foundTreasure) {
+
                     foundTreasure = true;
                     winners[i] = true;
+
+                    //Check which team contains the player
+                    for(Team team : game.teams){
+                        //If the player is in the team
+                        if(team.players.indexOf(player) >= 0){
+                            //The html file is changed to the last player which won
+                            team.changeHtmlFile(game.players.indexOf(player), game.map , player);
+                        }
+                    }
+
                 }
                 i++;
             }
@@ -87,12 +88,14 @@ public class Game {
             //If the treasure has been found by one of the players
             if (foundTreasure) {
 
-                for(i = 0; i < winners.length; i++){
+                for (i = 0; i < winners.length; i++) {
 
-                    if (winners[i]){
-                        System.out.println("Congratualtions player " + (i+1) + ", you have found the treasure in " + game.turns + " turns!");
+                    if (winners[i]) {
+
+                        System.out.println("Congratualtions player " + (i + 1) + ", you have found the treasure in " + game.turns + " turns!");
                     }
                 }
+
                 break;
             }
         }
@@ -103,14 +106,32 @@ public class Game {
         game.exitGame(game);
     }
 
-
-
     //Method to initialise map along with players and their starting positions
     private void startGame(Game game) {
+
+        //get number of players from user
         game.playerNum = getPlayerNum();
 
-        map.mapSize = getMapSize();
-        map.generate();// Generate map
+        //get number of teams from user
+        game.teamNum = getTeamNum();
+
+        //The remainder of the total number of players divided by the total number of teams is obtained
+        int extraPlayersNum = playerNum % teamNum;
+
+        //The total number of player per team is obtained excluding the extra players
+        int playersInTeamNum = (playerNum - extraPlayersNum)/teamNum;
+
+        //get map size from user
+        int mapSize = getMapSize();
+
+        //get map type from user
+        String type = getMapType();
+
+        //create instance of map creator
+        MapCreator creator = new MapCreator();
+
+        //create map of chosen type and size using the creator classes
+        map = creator.createMap(type, mapSize);
 
         //In this loop all the Player objects are created along with their starting position in the map
         for (int i = 0; i < game.playerNum; i++) {
@@ -123,6 +144,291 @@ public class Game {
 
             //The created player is added to the ArrayList of players
             players.add(player);
+        }
+
+        //Holds the players which have been added to a team
+        ArrayList<Player> addedPlayers = new ArrayList<Player>();
+
+        //Now to assign all the player objects to a random team
+        for (int i = 0; i < game.teamNum; i++) {
+
+            //A new team is created
+            Team team;
+
+            //Generate the team
+            team = generateTeam(addedPlayers, playersInTeamNum);
+
+            //Add the team to the list of teams in the game
+            teams.add(team);
+        }
+
+        //If the players are not all evenly distributed among the teams
+        if(extraPlayersNum != 0){
+            distributeRemainder(addedPlayers, extraPlayersNum);
+        }
+
+        //List teams and their players
+        int i = 1;
+        for(Player player: players){
+            System.out.println("Player " + i + " is in Team "+ (getTeamIndex(player)+1));
+            i++;
+        }
+    }
+
+    // Method to get the amount of teams from the user
+    private int getTeamNum() {
+        int num;
+        System.out.println("How many teams should the players be split into? (Pick a number between 2 and the amount of players in the game)");
+
+        while (true) {
+            //Get user input
+            scanner = new Scanner(System.in);
+
+            //Validate user input
+            num = validateTeamNum(scanner);
+
+            //Return value if it is valid (not an error value)
+            if (num > 1) {
+                return num;
+            }
+        }
+
+    }
+
+    // Method to validate the user's input for the team number
+    int validateTeamNum(Scanner scanner) {
+
+        int num;
+        try {
+            //Set to user input from getPlayerNum
+            num = scanner.nextInt();
+        }
+        //If input is not an integer
+        catch (InputMismatchException e) {
+            System.err.println("Invalid input. Please enter a number between 1 and the amount of players in the game");
+            return 0;//Return error value of 0
+        }
+        //If input is correct
+        if (num > 1 && num <= playerNum) {
+            return num;//Return value entered by the user
+        }
+        //If input is not within required range
+        else {
+            System.err.println("Please enter a number between 1 and the amount of players in the game");
+            return 1;//Return error value of 1
+        }
+    }
+
+    //Method to generate the teams
+    Team generateTeam(ArrayList<Player> addedPlayers, int playersInTeamNum){
+
+        Random random = new Random();
+
+        //Check if the current player exists in a team
+        boolean playerIsInATeam;
+
+        //Holds a random index of a player
+        int rand;
+
+        //A new team is created
+        Team team = new Team();
+
+            //Randomly add the specified amount of players to a team
+            //Get playerInTeamNum random players from the players array list
+            for (int j = 0; j < playersInTeamNum; j++) {
+
+                //At each iteration this check is always initialised to true
+                //If there is no matching value in the array list then the while loop breaks
+                playerIsInATeam = false;
+
+                //Keep on looping until a new player index is obtained
+                do {
+                    //A random index is obtained
+                    rand = random.nextInt(playerNum);
+
+                    //If no player has currently been added to a team
+                    if(addedPlayers.size() == 0){
+
+                        //A random index is obtained
+                        rand = random.nextInt(playerNum);
+
+                        //An initial player has been added
+                        team.addPlayer(players.get(rand));
+
+                        addedPlayers.add(players.get(rand));
+
+                        //If the size of a team is only one player then this team is full
+                        //If not then continue adding players until the maximum is reached
+                        if(playersInTeamNum== 1){
+                            playerIsInATeam = false;
+                        }
+                    }
+
+                    //If a player has been added to a team
+                    else {
+
+                        //Initialised to false since we are checking if the current player is already in a team
+                        playerIsInATeam = false;
+
+                        //Loops through all the players which are already in a team
+                        //Ends when a player which is not in a team is obtained
+                        for (Player player : addedPlayers) {
+
+                            //If the current player has already been generated
+                            if (players.get(rand) == player) {
+                                playerIsInATeam = true;
+                            }
+                        }
+
+                        if(!playerIsInATeam){
+                            //Add the player to the team
+                            team.addPlayer(players.get(rand));
+
+                            addedPlayers.add(players.get(rand));
+
+                            //The check is false and the loop is broken
+                            break;
+                        }
+                    }
+
+                    //Keep on looping while the current player being obtained is already in a team
+                    } while (playerIsInATeam);
+            }
+
+        //Returns a team with the player
+        return team;
+    }
+
+    // Method to distribute the remaining player if the players are not evenly distrubted among the teams
+    void distributeRemainder(ArrayList<Player> addedPlayers, int extraPlayersNum){
+
+        Random random = new Random();
+
+        //Array list which holds the teams which have already been generated
+        ArrayList<Team> obtainedTeams = new ArrayList<Team>();
+
+        //Check if the current player exists in a team
+        boolean playerIsInATeam;
+
+        //check if an extra player is already added to the team
+        boolean teamIsFull;
+
+        //Holds a random index for the player and the team respectively
+        int playerIndex;
+        int teamIndex;
+
+        //Obtain a player which is not in a team for extraPlayerNum times
+        for(int i = 0; i < extraPlayersNum; i++){
+
+            //First obtain a random unique team
+            //This is so only one extra player is added to a team so there would not be much of a disadvantage to the other players
+
+            //Keep on looping until a new team index is obtained
+            do {
+
+                teamIsFull = false;
+
+                //A random index is obtained
+                teamIndex = random.nextInt(teamNum);
+
+                //This is used so as to set up the obtainedTeams array list
+                if(obtainedTeams.size() == 0){
+
+                    obtainedTeams.add(teams.get(teamIndex));
+
+                }
+
+                else{
+
+                    for (Team team : obtainedTeams) {
+
+                        //If the current player has already been generated
+                        if (teams.get(teamIndex) == team) {
+                            teamIsFull = true;
+                        }
+                    }
+
+                }
+
+            }while(teamIsFull);
+
+            //Now a new team is obtained with every iteration
+
+            //Keep on looping until a new player index is obtained
+            do {
+                //At each iteration the checks are set to false
+                playerIsInATeam = false;
+
+                //A random index is obtained
+                playerIndex = random.nextInt(playerNum);
+
+                for (Player player : addedPlayers) {
+
+                    //If the current player has already been generated
+                    if (players.get(playerIndex) == player) {
+                        playerIsInATeam = true;
+                    }
+                }
+
+                if(!playerIsInATeam){
+                    //Add the player to the team
+                    teams.get(teamIndex).addPlayer(players.get(playerIndex));
+
+                    addedPlayers.add(players.get(playerIndex));
+
+                    //The check is set to false and the loop is broken
+                    break;
+                }
+
+
+            }while(playerIsInATeam);
+
+        }
+    }
+
+    // Method to get the map type from the user
+    private String getMapType() {
+        int num;
+
+        System.out.println("Would you like to play in\n 1) a safe map with 10% water squares\n 2) a hazardous map with 25%-35% water squares");
+
+        while(true){
+            //Get user input
+            scanner = new Scanner(System.in);
+
+            //Validate user input
+            num = validateMapType(scanner);
+
+            if(num == 1){
+                return "safe";
+            }
+            else if(num == 2){
+                return "hazardous";
+            }
+        }
+    }
+
+    // Method to validate the user's input for the map type
+    int validateMapType(Scanner scanner) {
+        int num;
+
+        try {
+            //Set to user input from getMapType
+            num = scanner.nextInt();
+        }
+        //If input is not an integer
+        catch (InputMismatchException e) {
+            System.err.println("Invalid input. Please enter 1 or 2");
+            return 0;//Return error value of 0
+        }
+        //If input is correct
+        if (num == 1 || num == 2) {
+            return num;//Return value entered by the user
+        }
+        //If input is not within required range
+        else {
+            System.err.println("Please enter 1 or 2");
+            return 3;//Return error value of 1
         }
     }
 
@@ -225,15 +531,19 @@ public class Game {
         }
     }
 
-
-
     // Method to get direction which each player would like to move in for the current turn
     private void directionsLoop() {
         char direction;//(u, d, l or r) depending on user's desired direction of movement
         boolean validMove;//Condition to break out of while loop when a valid direction is entered
+        boolean foundTreasure = false;//Condition to check if a player has found the treasure
 
         //Loop through each player in ArrayList
         for (Player player : players) {
+
+            //At the start of the current player's turn the main html file is changed
+            teams.get(getTeamIndex(player)).changeHtmlFile(players.indexOf(player), map, player);
+
+
             System.out.println("Player " + (players.indexOf(player) + 1) + ", please choose a direction (u, d, l or r).");
 
             validMove = false;
@@ -246,17 +556,36 @@ public class Game {
                 }
 
                 //Check if move is within map and execute if it is
-                if (checkOutOfBounds(direction, player, map.mapSize) == 1) {
+                if (checkOutOfBounds(direction, player, map.getMapSizeVar()) == 1) {
                     validMove = true;
 
                     //Change player's position variables to new position
                     player.move(direction);
 
+                    //Adding the new direction to the corresponding team
+                    teams.get(getTeamIndex(player)).updateTeamPositions(player);
+
                     //Triggers event for corresponding tile type
                     map.evaluateCurrentPlayerTile(player);
+
+                    if(player.foundTreasure){
+                        foundTreasure = true;
+                    }
                 }
             }
         }
+    }
+
+    //Gets the index of the team the current player is in
+    int getTeamIndex(Player player){
+        for(Team team: teams){
+            for(Player usePlayer: team.players){
+                if(player == usePlayer){
+                    return teams.indexOf(team);
+                }
+            }
+        }
+        return -1;
     }
 
     // Method to check whether a move is within the map boundaries
@@ -271,7 +600,7 @@ public class Game {
 
                 //If move is within map
                 else {
-                    System.out.println("Player moved to the left");
+                    System.out.println("Player moved to the left\n");
                     return 1;//Return correct value 1 to indicate that move is valid
                 }
 
@@ -283,7 +612,7 @@ public class Game {
                 }
                 //If move is within map
                 else {
-                    System.out.println("Player moved to the right");
+                    System.out.println("Player moved to the right\n");
                     return 1;//Return correct value 1 to indicate that move is valid
                 }
 
@@ -295,7 +624,7 @@ public class Game {
                 }
                 //If move is within map
                 else {
-                    System.out.println("Player moved up");
+                    System.out.println("Player moved up\n");
                     return 1;//Return correct value 1 to indicate that move is valid
                 }
 
@@ -307,7 +636,7 @@ public class Game {
                 }
                 //If move is within map
                 else {
-                    System.out.println("Player moved down");
+                    System.out.println("Player moved down\n");
                     return 1;//Return correct value 1 to indicate that move is valid
                 }
 
@@ -361,264 +690,27 @@ public class Game {
         }
     }
 
-
-    // This method is used to generate the HTML files so that they can be opened in browser
-    int generateHtmlFile(int playerIndex, int mapSize, String direction) {
-        //Value to return to mark if method has run successfully or not
-        //Set to 1 by default. This will change to 0 if an error is encountered
-        int returnValue = 1;
-
-        //This variable is used to hold the type of tile which the player has landed on
-        int tileType;
-
-        //This variable checks if the player is currently on this tile
-        boolean playerHere;
-
-        //A file object is being created where the name is given depending on the number of the player
-        File file = new File("map_player_" + (playerIndex +1)+ ".html");
-
-        //The actual file is created here
-        try {
-            //If file already exists set return value to 2 to mark that it is being overwritten
-            if(!file.createNewFile()){
-                returnValue = 2;
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-            returnValue = 0;//Set return value to error
-        }
-
-        //This object is used to be able to add to the string easily
-        StringBuilder htmlText = new StringBuilder();
-
-        //This is the html code which is going to be placed in each file
-        htmlText.append( "<!doctype html>\n" );
-        htmlText.append( "<html>\n" );
-
-        htmlText.append( "<head>\n" );
-        htmlText.append( "<style>\n" );
-
-        htmlText.append("div {\n" +
-                //The width of the grid is set depending on the inputted map size
-                //The height is larger than the width since we are also goign to have to count the header which is above the grid
-                "    width: ").append(mapSize).append("00px;\n")
-                .append("    height: ").append(mapSize + 1).append("00px;\n")
-                .append("}\n")
-                .append("\n")
-                .append(".header {\n").append(
-                //The width of the header is changed depending on the size of the map
-                "  width: ").append(mapSize).append("00px;\n")
-                .append("  height: 100px;\n")
-                .append("  outline: 1px solid;\n")
-                .append("  float: left;\n")
-                .append("  text-align: center;\n")
-                .append("  background-color: #1f599a;\n")
-                .append("  font-family: Arial, sans-serif;\n")
-                .append("  font-size: 20px;\n")
-                .append("  color: white;\n")
-                .append("}\n")
-                .append("\n")
-                .append(".cellGray {\n")
-                .append("    width: 100px;\n")
-                .append("    height: 100px;\n")
-                .append("    outline: 1px solid;\n")
-                .append("    float: left;\n")
-                .append("    background-color: Gray;\n")
-                .append("}\n")
-                .append("\n")
-                .append(".cellGreen {\n")
-                .append("  width: 100px;\n")
-                .append("    height: 100px;\n")
-                .append("    outline: 1px solid;\n")
-                .append("    float: left;\n")
-                .append("    background-color: Green;\n")
-                .append("}\n")
-                .append("\n")
-                .append(".cellBlue {\n")
-                .append("  width: 100px;\n")
-                .append("    height: 100px;\n")
-                .append("    outline: 1px solid;\n")
-                .append("    float: left;\n")
-                .append("    background-color: Blue;\n")
-                .append("}\n")
-                .append("\n")
-                .append(".cellYellow {\n")
-                .append("  width: 100px;\n")
-                .append("    height: 100px;\n")
-                .append("    outline: 1px solid;\n")
-                .append("    float: left;\n")
-                .append("    background-color: Yellow;\n")
-                .append("}\n");
-
-        htmlText.append( "</style>\n" );
-        htmlText.append( "</head>\n\n" );
-
-        htmlText.append( "<body>\n" );
-
-        htmlText.append("<div>\n" + "    <div class=\"header\"> \n" + "    \n" +
-                //First we need to set a header for each game map which each player sees
-                "     <p> Player ").append(playerIndex + 1)
-                .append("</p>\n")
-                .append("     <p> Moves: ").append(direction).append(" </p> \n")
-                .append("    </div>\n")
-                .append("    \n");
-
-        //Now we will build the current map depending on the players current position
-        //We will change colours of new tiles that have been stepped on and mark the player's current position
-        //For loop used to loop through each grid
-        for (int j = 0; j < mapSize; j++) {
-            for (int i = 0; i < mapSize; i++) {
-
-                //playerHere is set to false at each iteration
-                playerHere = false;
-
-                //Check if the player went on this tile already
-                if(players.get(playerIndex).ifTileExists(i, j)){
-
-                    //If the tile exists then the player must be on one of these tiles
-                    //Checking if the current tile is the players current position on the map
-                    if(players.get(playerIndex).position.x == i && players.get(playerIndex).position.y == j){
-                        playerHere = true;
-                    }
-
-                    //Obtain the tile type of the current tile
-                    tileType = map.getTileType(i,j);
-                }
-
-                else{
-                    //If not the tile has a default tile type
-                    tileType = 3;
-                }
-
-                switch(tileType){
-                    //Grass tile
-                    case 0:
-
-                        if(playerHere){
-
-                            htmlText.append("<div class=\"cellGreen\">" +
-                                    "<img src=\"player.png\" alt=\"player\">" +
-                                    "</div>\n");
-                        }
-
-                        else{
-
-                            htmlText.append("<div class=\"cellGreen\"></div>\n");
-
-                        }
-                        break;
-
-                    //Water tile
-                    case 1:
-
-                        if(playerHere){
-
-                            htmlText.append("<div class=\"cellBlue\">" +
-                                    "<img src=\"player.png\" alt=\"player\">" +
-                                    "</div>\n");
-                        }
-
-                        else{
-
-                            htmlText.append("<div class=\"cellBlue\"></div>\n");
-
-                        }
-                        break;
-
-                    //Treasure Tile
-                    case 2:
-
-                        if(playerHere){
-
-                            htmlText.append("<div class=\"cellYellow\">" +
-                                    "<img src=\"player.png\" alt=\"player\">" +
-                                    "</div>\n");
-
-                        }
-
-                        else{
-
-                            htmlText.append("<div class=\"cellYellow\"></div>\n");
-
-                        }
-                        break;
-
-                    default:
-                        //No need to check for player here as a player can never be on a gray tile
-                        htmlText.append("<div class=\"cellGray\"></div>\n");
-                        break;
-                }
-            }
-        }
-
-        htmlText.append("\n</div>");
-        htmlText.append( "</body>\n" );
-        htmlText.append( "</html>\n" );
-
-        try{
-            BufferedWriter bw = new BufferedWriter(new FileWriter(file));
-            bw.write(htmlText.toString());
-            bw.close();
-        }catch(IOException io){
-            io.printStackTrace();
-            returnValue = 0;
-        }
-
-        return returnValue;
-    }
-
-    //Method used to get the last n directions
-    String getPreviousDirections(int playerIndex){
-        String directions;
-        StringBuilder stringBuilder = new StringBuilder();
-
-        int directionSize = players.get(playerIndex).directions.size();
-
-        //Loop for the last 6 directions the player has moved
-        for(int i = 1; i <= 6; i++){
-            //If only one direction has been entered
-            if(directionSize == 1){
-                stringBuilder.append(" ").append(players.get(playerIndex).directions.get(directionSize - 1));
-                break;
-            }
-            //If more than 1 directions have been entered
-            else if (directionSize >1){
-                //Add direction unless there are less than 6 total directions
-                if(directionSize - i <0){
-                    break;
-                }
-                stringBuilder.append(" ").append(players.get(playerIndex).directions.get(directionSize - i));
-            }
-        }
-
-        directions = stringBuilder.toString();
-
-        return directions;
-    }
-
     //Method to delete Html files
-    void deleteHtmlFiles(int playerNum){
+    void deleteHtmlFile(){
 
-        //Loops through all player files
-        for(int i = 1; i <= playerNum ; i++){
-            //Delete each file iteratively
-            try{
-                File file = new File("map_player_" + i + ".html");
+        //Deleting the only file used in the game
+        try{
+            File file = new File("map.html");
 
-                if(!file.delete()) {
-                    System.out.println("File does not exist");
-                }
-            }catch(Exception e){
-                e.printStackTrace();
+            if(!file.delete()) {
+                System.out.println("File does not exist");
             }
+        }catch(Exception e){
+            e.printStackTrace();
         }
+
     }
 
     //Method to exit the game
     private void exitGame(Game game){
         if(getExitChar() == 'e'){
             //Delete all Html Files
-            deleteHtmlFiles(game.playerNum);
+            deleteHtmlFile();
             System.out.println("Thank you for playing!");
         }
     }

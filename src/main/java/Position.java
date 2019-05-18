@@ -13,7 +13,7 @@ public class Position {
                 '}';
     }
 
-    //Constructor for the player object
+    //Constructor for the position object
     Position(){
     }
 

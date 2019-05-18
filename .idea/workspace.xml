@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e9f6fb8f-a2a2-4fa8-894d-77361c58593c" name="Default Changelist" comment="">
+    <list default="true" id="e9f6fb8f-a2a2-4fa8-894d-77361c58593c" name="Default Changelist" comment="Added Testing for team class">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Map.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Map.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/MapTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/MapTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WriteUp/AssignmentReport.aux" beforeDir="false" afterPath="$PROJECT_DIR$/WriteUp/AssignmentReport.aux" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WriteUp/AssignmentReport.out" beforeDir="false" afterPath="$PROJECT_DIR$/WriteUp/AssignmentReport.out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WriteUp/AssignmentReport.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/WriteUp/AssignmentReport.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WriteUp/AssignmentReport.synctex.gz" beforeDir="false" afterPath="$PROJECT_DIR$/WriteUp/AssignmentReport.synctex.gz" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WriteUp/AssignmentReport.tex" beforeDir="false" afterPath="$PROJECT_DIR$/WriteUp/AssignmentReport.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WriteUp/AssignmentReport.toc" beforeDir="false" afterPath="$PROJECT_DIR$/WriteUp/AssignmentReport.toc" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -14,37 +18,22 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="CoverageOptionsProvider">
+    <option name="myAddOrReplace" value="0" />
+  </component>
+  <component name="CoverageViewManager">
+    <option name="myElementSize" value="174" />
+  </component>
   <component name="DefaultGradleProjectSettings">
     <option name="isMigrated" value="true" />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/Game.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="595">
-              <caret line="44" lean-forward="true" selection-start-line="44" selection-end-line="44" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/Map.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="228">
-              <caret line="132" column="9" selection-start-line="132" selection-start-column="9" selection-end-line="132" selection-end-column="9" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/java/GameTest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="7004">
-              <caret line="416" column="5" selection-start-line="416" selection-start-column="5" selection-end-line="416" selection-end-column="5" />
+            <state relative-caret-position="305">
+              <caret line="543" column="53" selection-start-line="543" selection-start-column="53" selection-end-line="543" selection-end-column="53" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -53,36 +42,13 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/java/MapTest.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/Team.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3043">
-              <caret line="183" column="35" selection-start-line="183" selection-start-column="35" selection-end-line="183" selection-end-column="35" />
+            <state relative-caret-position="442">
+              <caret line="32" column="9" selection-start-line="32" selection-start-column="9" selection-end-line="32" selection-end-column="9" />
               <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/java/PlayerTest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="527">
-              <caret line="35" column="5" lean-forward="true" selection-start-line="35" selection-start-column="5" selection-end-line="35" selection-end-column="5" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/java/PositionTest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="19" selection-start-line="19" selection-end-line="19" />
-              <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="e#576#577#0" expanded="true" />
+                <element signature="e#611#612#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -90,11 +56,45 @@
       </file>
     </leaf>
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="FindInProjectRecents">
     <findStrings>
       <find>getPrevious</find>
       <find>generatedTilesNum</find>
+      <find>mapSize</find>
+      <find>tiles</find>
+      <find>print</find>
+      <find>count</find>
+      <find>assertThat</find>
+      <find>setmAP</find>
+      <find>setMap</find>
+      <find>indexOf</find>
+      <find>generate</find>
+      <find>html</find>
+      <find>getGrass</find>
+      <find>grassCount</find>
+      <find>playerIn</find>
+      <find>extraPlayers</find>
+      <find>playersInTeam</find>
+      <find>game</find>
+      <find>de</find>
+      <find>positionExists</find>
+      <find>add</find>
+      <find>Tile</find>
+      <find>exist</find>
+      <find>instan</find>
+      <find>delete</find>
     </findStrings>
+    <replaceStrings>
+      <replace>getMapSize</replace>
+      <replace>getMapSizeVar</replace>
+    </replaceStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -107,10 +107,24 @@
         <option value="$PROJECT_DIR$/src/main/java/Main.java" />
         <option value="$PROJECT_DIR$/src/test/java/CalculatorUnitTests.java" />
         <option value="$PROJECT_DIR$/src/main/java/Calculator.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Game.java" />
-        <option value="$PROJECT_DIR$/src/test/java/GameTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/MapTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/MapCreator.java" />
+        <option value="$PROJECT_DIR$/src/test/java/MapCreatorTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/Map.java" />
+        <option value="$PROJECT_DIR$/src/main/java/HazardousMapCreator.java" />
+        <option value="$PROJECT_DIR$/src/main/java/SafeMapCreator.java" />
+        <option value="$PROJECT_DIR$/src/test/java/HazardousMapTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Position.java" />
+        <option value="$PROJECT_DIR$/src/main/java/User.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Player.java" />
+        <option value="$PROJECT_DIR$/src/test/java/SafeMapTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/PlayerTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/TeamTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Team.java" />
+        <option value="$PROJECT_DIR$/src/test/java/GameTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/SafeMap.java" />
+        <option value="$PROJECT_DIR$/src/main/java/HazardousMap.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Game.java" />
       </list>
     </option>
   </component>
@@ -122,9 +136,9 @@
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-7" />
-    <option name="width" value="974" />
-    <option name="height" value="1047" />
+    <option name="x" value="676" />
+    <option name="width" value="697" />
+    <option name="height" value="735" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -132,6 +146,49 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="CPS2002_MartinMikhail" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CPS2002_MartinMikhail" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="CPS2002_MartinMikhail" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CPS2002_MartinMikhail" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="CPS2002_MartinMikhail" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CPS2002_MartinMikhail" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="CPS2002_MartinMikhail" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CPS2002_MartinMikhail" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="CPS2002_MartinMikhail" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CPS2002_MartinMikhail" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="CPS2002_MartinMikhail" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CPS2002_MartinMikhail" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
       <pane id="Scope">
         <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
           <expand>
@@ -179,61 +236,19 @@
           <select />
         </subPane>
       </pane>
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="CPS2002_MartinMikhail" type="b2602c69:ProjectViewProjectNode" />
-              <item name="CPS2002_MartinMikhail" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="CPS2002_MartinMikhail" type="b2602c69:ProjectViewProjectNode" />
-              <item name="CPS2002_MartinMikhail" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="CPS2002_MartinMikhail" type="b2602c69:ProjectViewProjectNode" />
-              <item name="CPS2002_MartinMikhail" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="CPS2002_MartinMikhail" type="b2602c69:ProjectViewProjectNode" />
-              <item name="CPS2002_MartinMikhail" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="CPS2002_MartinMikhail" type="b2602c69:ProjectViewProjectNode" />
-              <item name="CPS2002_MartinMikhail" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="CPS2002_MartinMikhail" type="b2602c69:ProjectViewProjectNode" />
-              <item name="CPS2002_MartinMikhail" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1554889715158" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1557574000539" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/CPS2002_MartinMikhail.iml" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -255,19 +270,10 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="GameTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="MapCreatorTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="CPS2002_MartinMikhail" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="GameTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="MapTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="CPS2002_MartinMikhail" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="MapTest" />
+      <option name="MAIN_CLASS_NAME" value="MapCreatorTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -286,6 +292,15 @@
       <module name="CPS2002_MartinMikhail" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="PositionTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TeamTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="CPS2002_MartinMikhail" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="TeamTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -341,10 +356,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.Game" />
+        <item itemvalue="JUnit.TeamTest" />
         <item itemvalue="JUnit.PositionTest" />
         <item itemvalue="JUnit.PlayerTest" />
-        <item itemvalue="JUnit.MapTest" />
-        <item itemvalue="JUnit.GameTest" />
+        <item itemvalue="JUnit.MapCreatorTest" />
       </list>
     </recent_temporary>
   </component>
@@ -359,6 +374,12 @@
       <option name="presentableId" value="Default" />
       <updated>1554395562995</updated>
       <workItem from="1554395567633" duration="250000" />
+      <workItem from="1556817942258" duration="6936000" />
+      <workItem from="1557439719424" duration="798000" />
+      <workItem from="1557441580712" duration="1796000" />
+      <workItem from="1557573073423" duration="849000" />
+      <workItem from="1557831249537" duration="828000" />
+      <workItem from="1558165206068" duration="2418000" />
     </task>
     <task id="LOCAL-00001" summary="Jenkins Building Test">
       <created>1554399195622</created>
@@ -378,39 +399,39 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="GameTest_TestGetPreviousDirections_testSingleDirection_shouldOutputDirection - 2019.04.23 at 17h 50m 50s.xml">
-      <configuration name="GameTest.TestGetPreviousDirections_testSingleDirection_shouldOutputDirection" configurationId="JUnit" />
+    <history-entry file="TeamTest - 2019.05.08 at 00h 16m 18s.xml">
+      <configuration name="TeamTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="GameTest_TestGetPreviousDirections_testLessThan6Directions_shouldOutputDirections - 2019.04.23 at 17h 51m 35s.xml">
-      <configuration name="GameTest.TestGetPreviousDirections_testLessThan6Directions_shouldOutputDirections" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="MapTest - 2019.04.25 at 00h 53m 11s.xml">
-      <configuration name="MapTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="GameTest - 2019.04.25 at 00h 53m 23s.xml">
+    <history-entry file="GameTest - 2019.05.08 at 00h 22m 49s.xml">
       <configuration name="GameTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="MapTest_TestGeneratedTilesNum_shouldReturnNumberOfTiles - 2019.04.25 at 01h 04m 24s.xml">
-      <configuration name="MapTest.TestGeneratedTilesNum_shouldReturnNumberOfTiles" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="GameTest - 2019.04.25 at 01h 05m 24s.xml">
+    <history-entry file="GameTest - 2019.05.10 at 00h 14m 51s.xml">
       <configuration name="GameTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="MapTest - 2019.04.25 at 01h 05m 36s.xml">
-      <configuration name="MapTest" configurationId="JUnit" />
+    <history-entry file="GameTest - 2019.05.10 at 00h 19m 11s.xml">
+      <configuration name="GameTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="MapTest - 2019.04.25 at 01h 07m 16s.xml">
-      <configuration name="MapTest" configurationId="JUnit" />
+    <history-entry file="GameTest - 2019.05.12 at 15h 45m 28s.xml">
+      <configuration name="GameTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="PlayerTest - 2019.04.25 at 01h 07m 24s.xml">
+    <history-entry file="HazardousMapTest - 2019.05.12 at 18h 13m 09s.xml">
+      <configuration name="HazardousMapTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="MapCreatorTest - 2019.05.12 at 18h 17m 35s.xml">
+      <configuration name="MapCreatorTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="PlayerTest - 2019.05.12 at 18h 21m 34s.xml">
       <configuration name="PlayerTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="PositionTest - 2019.04.25 at 01h 07m 29s.xml">
+    <history-entry file="PositionTest - 2019.05.12 at 18h 22m 13s.xml">
       <configuration name="PositionTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="TeamTest - 2019.05.12 at 18h 22m 51s.xml">
+      <configuration name="TeamTest" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1863000" />
+    <option name="totallyTimeSpent" value="36318000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -422,9 +443,9 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="0" width="974" height="1047" extended-state="0" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26914662" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.1482602" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -432,18 +453,18 @@
       <window_info id="UI Designer" order="5" />
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32719547" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.24070022" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32502708" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.3163597" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39938557" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32936078" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="8" />
-      <window_info anchor="bottom" id="Terminal" order="9" weight="0.32936078" />
+      <window_info anchor="bottom" id="Terminal" order="9" weight="0.32827735" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" weight="0.32872504" />
-      <window_info anchor="bottom" id="Version Control" order="11" />
-      <window_info anchor="bottom" id="Messages" order="12" weight="0.32577905" />
+      <window_info anchor="bottom" id="Version Control" order="11" weight="0.32936078" />
+      <window_info anchor="bottom" id="Messages" order="12" weight="0.39111593" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -453,9 +474,10 @@
       <window_info anchor="right" id="Maven" order="6" />
       <window_info anchor="right" id="Capture Analysis" order="7" />
       <window_info anchor="right" id="Palette&#9;" order="8" />
+      <window_info active="true" anchor="right" id="Coverage" order="9" side_tool="true" visible="true" weight="0.22654584" />
     </layout>
     <layout-to-restore>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2375189" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1482602" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -463,18 +485,18 @@
       <window_info id="UI Designer" order="5" />
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32872504" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32502708" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.31260228" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39938557" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32936078" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="8" />
-      <window_info anchor="bottom" id="Terminal" order="9" weight="0.32936078" />
+      <window_info anchor="bottom" id="Terminal" order="9" weight="0.32827735" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" weight="0.32872504" />
-      <window_info anchor="bottom" id="Version Control" order="11" />
-      <window_info anchor="bottom" id="Messages" order="12" weight="0.32872504" />
+      <window_info anchor="bottom" id="Version Control" order="11" weight="0.32936078" />
+      <window_info anchor="bottom" id="Messages" order="12" weight="0.39219934" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -484,6 +506,7 @@
       <window_info anchor="right" id="Maven" order="6" />
       <window_info anchor="right" id="Capture Analysis" order="7" />
       <window_info anchor="right" id="Palette&#9;" order="8" />
+      <window_info active="true" anchor="right" id="Coverage" order="9" side_tool="true" visible="true" weight="0.22654584" />
     </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -492,11 +515,23 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Mikhail Test Commit" />
     <MESSAGE value="Jenkins Building Test" />
-    <option name="LAST_COMMIT_MESSAGE" value="Jenkins Building Test" />
+    <MESSAGE value="Introduced safe and hazardous map types using the factory design pattern.&#10;Includes all required tests." />
+    <MESSAGE value="Added user input for team number. Awaiting fix for generateTeam method." />
+    <MESSAGE value="Added Testing for team class" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added Testing for team class" />
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
     <option name="FILTER_TARGETS" value="false" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/CPS2002_MartinMikhail$PositionTest.ic" NAME="PositionTest Coverage Results" MODIFIED="1557678101797" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/CPS2002_MartinMikhail$GameTest.ic" NAME="GameTest Coverage Results" MODIFIED="1557668671284" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/CPS2002_MartinMikhail$HazardousMapTest.ic" NAME="HazardousMapTest Coverage Results" MODIFIED="1557677558090" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/CPS2002_MartinMikhail$TeamTest.ic" NAME="TeamTest Coverage Results" MODIFIED="1557678141189" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/CPS2002_MartinMikhail$MapCreatorTest.ic" NAME="MapCreatorTest Coverage Results" MODIFIED="1557677824241" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/CPS2002_MartinMikhail$SafeMapTest.ic" NAME="SafeMapTest Coverage Results" MODIFIED="1557253595233" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/CPS2002_MartinMikhail$PlayerTest.ic" NAME="PlayerTest Coverage Results" MODIFIED="1557678063589" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/pom.xml">
@@ -509,8 +544,8 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/Main.java" />
     <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="7820">
-          <caret line="460" column="10" selection-start-line="460" selection-start-column="10" selection-end-line="460" selection-end-column="10" />
+        <state relative-caret-position="14365">
+          <caret line="878" column="10" selection-start-line="878" selection-start-column="10" selection-end-line="878" selection-end-column="10" />
         </state>
       </provider>
     </entry>
@@ -524,17 +559,143 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/Calculator.java" />
     <entry file="file://$PROJECT_DIR$/src/test/java/CalculatorUnitTests.java" />
     <entry file="file://$PROJECT_DIR$/ map_player_1.html" />
+    <entry file="jar://$MAVEN_REPOSITORY$/junit/junit/4.13-beta-2/junit-4.13-beta-2.jar!/org/junit/Assert.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="78">
+          <caret line="334" selection-start-line="334" selection-end-line="334" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk-11.0.1/lib/src.zip!/java.base/java/util/ArrayList.java" />
+    <entry file="jar://C:/Program Files/Java/jdk-11.0.1/lib/src.zip!/java.base/java/lang/reflect/Method.java" />
+    <entry file="jar://$MAVEN_REPOSITORY$/junit/junit/4.13-beta-2/junit-4.13-beta-2.jar!/org/junit/runners/model/FrameworkMethod.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="71">
+          <caret line="36" selection-start-line="36" selection-end-line="36" />
+          <folding>
+            <element signature="e#1059#1252#0" expanded="true" />
+            <element signature="e#1251#1252#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/junit/junit/4.13-beta-2/junit-4.13-beta-2.jar!/org/junit/internal/runners/model/ReflectiveCallable.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="15" selection-start-line="15" selection-end-line="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/junit/junit/4.13-beta-2/junit-4.13-beta-2.jar!/org/junit/internal/runners/statements/RunAfters.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="139">
+          <caret line="78" column="48" selection-start-line="78" selection-start-column="48" selection-end-line="78" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/PositionTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/MapCreatorTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2">
+          <caret line="11" column="23" selection-start-line="11" selection-start-column="23" selection-end-line="11" selection-end-column="23" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#250#251#0" expanded="true" />
+            <element signature="e#292#293#0" expanded="true" />
+            <element signature="e#333#334#0" expanded="true" />
+            <element signature="e#363#364#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/SafeMapTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="18" column="5" lean-forward="true" selection-start-line="7" selection-start-column="4" selection-end-line="18" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/HazardousMapTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="640">
+          <caret line="70" column="35" selection-start-line="70" selection-start-column="35" selection-end-line="70" selection-end-column="35" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/TeamTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="19" column="23" lean-forward="true" selection-start-line="19" selection-start-column="23" selection-end-line="19" selection-end-column="23" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#207#208#0" expanded="true" />
+            <element signature="e#232#233#0" expanded="true" />
+            <element signature="e#293#294#0" expanded="true" />
+            <element signature="e#319#320#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/PlayerTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="66">
+          <caret line="31" lean-forward="true" selection-start-line="31" selection-end-line="31" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#214#215#0" expanded="true" />
+            <element signature="e#251#252#0" expanded="true" />
+            <element signature="e#291#292#0" expanded="true" />
+            <element signature="e#320#321#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/map.html" />
+    <entry file="file://$PROJECT_DIR$/src/test/java/MapTest.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/Position.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="15" selection-start-line="9" selection-start-column="15" selection-end-line="12" selection-end-column="20" />
+        <state relative-caret-position="255">
+          <caret line="15" column="34" selection-start-line="15" selection-start-column="34" selection-end-line="15" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/User.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" selection-start-line="10" selection-end-line="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/HazardousMapCreator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="19" column="1" selection-start-line="19" selection-start-column="1" selection-end-line="19" selection-end-column="1" />
+          <folding>
+            <element signature="e#159#160#0" expanded="true" />
+            <element signature="e#193#194#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Player.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" column="4" selection-start-line="17" selection-start-column="4" selection-end-line="19" selection-end-column="5" />
+        <state relative-caret-position="34">
+          <caret line="3" column="6" selection-start-line="3" selection-start-column="6" selection-end-line="3" selection-end-column="6" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -543,58 +704,78 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/GameTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="7004">
-          <caret line="416" column="5" selection-start-line="416" selection-start-column="5" selection-end-line="416" selection-end-column="5" />
+        <state relative-caret-position="9299">
+          <caret line="559" column="29" selection-start-line="559" selection-start-column="29" selection-end-line="559" selection-end-column="29" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/MapTest.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/SafeMapCreator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3043">
-          <caret line="183" column="35" selection-start-line="183" selection-start-column="35" selection-end-line="183" selection-end-column="35" />
+        <state relative-caret-position="68">
+          <caret line="4" selection-start-line="4" selection-end-line="4" />
+          <folding>
+            <element signature="e#193#194#0" expanded="true" />
+            <element signature="e#227#228#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/SafeMap.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1224">
+          <caret line="87" column="70" selection-start-line="86" selection-start-column="8" selection-end-line="87" selection-end-column="70" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/PlayerTest.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/MapCreator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="35" column="5" lean-forward="true" selection-start-line="35" selection-start-column="5" selection-end-line="35" selection-end-column="5" />
+        <state relative-caret-position="459">
+          <caret line="29" column="5" selection-start-line="29" selection-start-column="5" selection-end-line="29" selection-end-column="5" />
           <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/PositionTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="19" selection-start-line="19" selection-end-line="19" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Game.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="595">
-          <caret line="44" lean-forward="true" selection-start-line="44" selection-end-line="44" />
-          <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#606#607#0" expanded="true" />
+            <element signature="e#633#634#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Map.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="132" column="9" selection-start-line="132" selection-start-column="9" selection-end-line="132" selection-end-column="9" />
+        <state relative-caret-position="306">
+          <caret line="18" column="8" selection-start-line="18" selection-start-column="8" selection-end-line="18" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/HazardousMap.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="526">
+          <caret line="87" column="85" selection-start-line="87" selection-start-column="85" selection-end-line="87" selection-end-column="85" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Game.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="305">
+          <caret line="543" column="53" selection-start-line="543" selection-start-column="53" selection-end-line="543" selection-end-column="53" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Team.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="32" column="9" selection-start-line="32" selection-start-column="9" selection-end-line="32" selection-end-column="9" />
+          <folding>
+            <element signature="e#576#577#0" expanded="true" />
+            <element signature="e#611#612#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
